@@ -1,0 +1,2843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced MS Word MCQ Exam System</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            --success-color: #48bb78;
+            --error-color: #e53e3e;
+            --warning-color: #d69e2e;
+            --info-color: #4299e1;
+            --dark-bg: #1a202c;
+            --dark-card: #2d3748;
+            --dark-text: #e2e8f0;
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--primary-gradient); 
+            min-height: 100vh; 
+            padding: 20px; 
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: var(--dark-text);
+        }
+        
+        .container { 
+            background: white; 
+            border-radius: 20px; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15); 
+            padding: 2rem; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            min-height: 75vh;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode .container {
+            background: var(--dark-card);
+            color: var(--dark-text);
+        }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        /* Admin Toggle */
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(159, 122, 234, 0.3);
+        }
+        
+        .admin-toggle:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Home Section */
+        .home-section { text-align: center; }
+        
+        .institute-logo { 
+            font-size: 5rem; 
+            margin-bottom: 1rem; 
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .institute-name { 
+            font-size: 2rem; 
+            font-weight: bold; 
+            color: #0078d4; 
+            margin-bottom: 0.5rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+        }
+        
+        body.dark-mode .institute-name { color: var(--dark-text); }
+        
+        .institute-location { 
+            font-size: 1.2rem; 
+            color: var(--error-color); 
+            font-weight: 600;
+            margin-bottom: 3rem;
+        }
+        
+        /* Access Card */
+        .access-card { 
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border: 2px solid #e2e8f0; 
+            border-radius: 25px; 
+            padding: 3rem 2rem; 
+            margin: 2rem auto; 
+            max-width: 550px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        body.dark-mode .access-card {
+            background: linear-gradient(145deg, #2d3748, #1a202c);
+            border-color: #4a5568;
+        }
+        
+        .graduation-icon { 
+            font-size: 4rem; 
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .access-title { 
+            color: #2d3748; 
+            font-size: 1.6rem; 
+            font-weight: bold; 
+            margin-bottom: 1rem;
+        }
+        
+        body.dark-mode .access-title { color: var(--dark-text); }
+        
+        .access-description { 
+            color: #4a5568; 
+            font-size: 1.1rem; 
+            margin-bottom: 2rem; 
+            line-height: 1.6;
+        }
+        
+        body.dark-mode .access-description { color: #a0aec0; }
+        
+        /* Input Styling */
+        .student-code-input { 
+            width: 100%; 
+            padding: 18px 25px; 
+            border: 2px solid #cbd5e0; 
+            border-radius: 15px; 
+            font-size: 1.2rem; 
+            margin-bottom: 1.5rem; 
+            outline: none; 
+            text-align: center; 
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .student-code-input:focus { 
+            border-color: var(--info-color); 
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        body.dark-mode .student-code-input {
+            background: #1a202c;
+            color: var(--dark-text);
+            border-color: #4a5568;
+        }
+        
+        /* Button Styling */
+        .access-btn { 
+            background: linear-gradient(135deg, var(--success-color) 0%, #38a169 100%); 
+            color: white; 
+            border: none; 
+            padding: 18px 45px; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+            width: 100%; 
+            transition: all 0.3s ease;
+        }
+        
+        .access-btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 20px 40px rgba(72, 187, 120, 0.3);
+        }
+        
+        /* Loading Bar */
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 1rem 0;
+            display: none;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--info-color), var(--success-color));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        /* Question Sets */
+        .set-selection-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+            margin: 2rem 0; 
+        }
+        
+        .set-card { 
+            background: white; 
+            border: 3px solid #e2e8f0; 
+            border-radius: 20px; 
+            padding: 2rem; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.4s ease;
+        }
+        
+        .set-card:hover { 
+            border-color: #0078d4; 
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 25px 50px rgba(0, 120, 212, 0.2);
+        }
+        
+        body.dark-mode .set-card {
+            background: #1a202c;
+            border-color: #4a5568;
+        }
+        
+        .set-icon { 
+            font-size: 3rem; 
+            margin-bottom: 1rem;
+        }
+        
+        .set-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        
+        body.dark-mode .set-title { color: var(--dark-text); }
+        
+        .set-description {
+            color: #4a5568;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        body.dark-mode .set-description { color: #a0aec0; }
+        
+        .set-info {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #0078d4;
+        }
+        
+        body.dark-mode .set-info { background: #2d3748; }
+        
+        .set-info div {
+            margin: 0.3rem 0;
+            font-size: 0.9rem;
+            color: #2d3748;
+        }
+        
+        body.dark-mode .set-info div { color: var(--dark-text); }
+        
+        .set-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .topic-tag {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Student Info */
+        .student-info-card {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        body.dark-mode .student-info-card {
+            background: #1a202c;
+            border-color: #4a5568;
+        }
+        
+        .student-info-card h2 {
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        body.dark-mode .student-info-card h2 { color: var(--dark-text); }
+        
+        .student-details {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #0078d4;
+        }
+        
+        body.dark-mode .student-details { background: #2d3748; }
+        
+        .student-details p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            color: #2d3748;
+        }
+        
+        body.dark-mode .student-details p { color: var(--dark-text); }
+        
+        .selected-set-info {
+            background: #dbeafe;
+            border: 2px solid #0078d4;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .selected-set-text {
+            color: #1e40af;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        /* Exam Instructions */
+        .exam-instructions {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #48bb78;
+        }
+        
+        body.dark-mode .exam-instructions { background: #2d3748; }
+        
+        .exam-instructions h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        
+        body.dark-mode .exam-instructions h3 { color: var(--dark-text); }
+        
+        .exam-instructions ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .exam-instructions li {
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            background: #f7fafc;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            color: #2d3748;
+        }
+        
+        body.dark-mode .exam-instructions li {
+            background: #1a202c;
+            color: var(--dark-text);
+        }
+        
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 120, 212, 0.3);
+        }
+        
+        .start-exam-btn {
+            width: 100%;
+            font-size: 1.2rem;
+            padding: 15px;
+        }
+        
+        /* Exam Interface */
+        .exam-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(145deg, #f7fafc, #edf2f7);
+            border-radius: 15px;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        body.dark-mode .exam-header {
+            background: linear-gradient(145deg, #1a202c, #2d3748);
+        }
+        
+        .timer {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--error-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(229, 62, 62, 0.1);
+            border-radius: 10px;
+        }
+        
+        .progress {
+            font-size: 1.1rem;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        body.dark-mode .progress { color: var(--dark-text); }
+        
+        /* Question Container */
+        .question-container {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: opacity 0.3s ease;
+        }
+        
+        body.dark-mode .question-container {
+            background: linear-gradient(145deg, #2d3748, #1a202c);
+            border-color: #4a5568;
+        }
+        
+        .question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            padding: 1rem;
+            background: rgba(0, 120, 212, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #0078d4;
+        }
+        
+        body.dark-mode .question {
+            color: var(--dark-text);
+            background: rgba(0, 120, 212, 0.1);
+        }
+        
+        /* Options */
+        .options {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+        
+        .option:hover {
+            border-color: #cbd5e0;
+            background: #f7fafc;
+            transform: translateX(5px);
+        }
+        
+        .option input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+            accent-color: #0078d4;
+        }
+        
+        .option.selected {
+            border-color: #0078d4;
+            background: linear-gradient(145deg, #dbeafe, #bfdbfe);
+            transform: translateX(5px);
+        }
+        
+        body.dark-mode .option {
+            background: #1a202c;
+            border-color: #4a5568;
+            color: var(--dark-text);
+        }
+        
+        body.dark-mode .option:hover {
+            background: #2d3748;
+        }
+        
+        body.dark-mode .option.selected {
+            background: linear-gradient(145deg, #1e3a8a, #1e40af);
+            border-color: #0078d4;
+        }
+        
+        /* Skip Option */
+        .skip-option {
+            background: linear-gradient(145deg, #fff5b0, #faf089) !important;
+            border-color: var(--warning-color) !important;
+            color: #744210 !important;
+            font-weight: bold;
+        }
+        
+        .skip-option:hover {
+            background: linear-gradient(145deg, #faf089, #f6e05e) !important;
+        }
+        
+        .skip-option.selected {
+            background: linear-gradient(145deg, #f6e05e, #d69e2e) !important;
+        }
+        
+        /* Navigation */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .btn-nav {
+            background: linear-gradient(135deg, #4a5568, #2d3748);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-nav:hover {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            transform: translateY(-2px);
+        }
+        
+        .btn-nav:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, var(--success-color) 0%, #38a169 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: block;
+            margin: 2rem auto;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(72, 187, 120, 0.3);
+        }
+        
+        /* Results Section */
+        .result-section {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, #f7fafc, #edf2f7);
+            border-radius: 20px;
+            margin: 1rem 0;
+        }
+        
+        body.dark-mode .result-section {
+            background: linear-gradient(145deg, #1a202c, #2d3748);
+        }
+        
+        .score {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+        }
+        
+        .score.pass {
+            color: var(--success-color);
+            animation: success-pulse 2s infinite;
+        }
+        
+        .score.fail {
+            color: var(--error-color);
+        }
+        
+        @keyframes success-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Progress Circle */
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--success-color) 0%, #e2e8f0 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .progress-circle::before {
+            content: '';
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            position: absolute;
+        }
+        
+        body.dark-mode .progress-circle::before {
+            background: var(--dark-card);
+        }
+        
+        .progress-text {
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Achievement Badges */
+        .achievement-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .badge.excellent { background: linear-gradient(45deg, #48bb78, #38a169); }
+        .badge.good { background: linear-gradient(45deg, #4299e1, #3182ce); }
+        .badge.average { background: linear-gradient(45deg, #d69e2e, #b7791f); }
+        .badge.poor { background: linear-gradient(45deg, #e53e3e, #c53030); }
+        
+        /* Notification System */
+        .notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3000;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, var(--success-color), #38a169);
+            color: white;
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, var(--error-color), #c53030);
+            color: white;
+        }
+        
+        .notification.warning {
+            background: linear-gradient(135deg, var(--warning-color), #b7791f);
+            color: white;
+        }
+        
+        .notification.info {
+            background: linear-gradient(135deg, var(--info-color), #3182ce);
+            color: white;
+        }
+        
+        /* Hidden Classes */
+        .hidden { display: none !important; }
+        .set-selection-section, 
+        .student-info-section, 
+        .exam-section, 
+        .result-section, 
+        .review-section,
+        .admin-section { display: none; }
+        
+        .header { 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            display: none; 
+        }
+        
+        .header h1 { 
+            color: #4a5568; 
+            margin-bottom: 0.5rem; 
+            font-size: 2.5rem; 
+        }
+        
+        .header p { 
+            color: #718096; 
+            font-size: 1.2rem; 
+        }
+        
+        body.dark-mode .header h1 { color: var(--dark-text); }
+        body.dark-mode .header p { color: #a0aec0; }
+        
+        /* Review Section */
+        .review-section {
+            padding: 2rem;
+            background: linear-gradient(145deg, #f7fafc, #edf2f7);
+            border-radius: 20px;
+            margin: 1rem 0;
+        }
+        
+        body.dark-mode .review-section {
+            background: linear-gradient(145deg, #1a202c, #2d3748);
+        }
+        
+        .review-question {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        body.dark-mode .review-question {
+            background: #2d3748;
+            border-color: #4a5568;
+        }
+        
+        .review-question .option.correct {
+            background: #c6f6d5;
+            border-color: #38a169;
+            color: #22543d;
+        }
+        
+        .review-question .option.wrong {
+            background: #fed7d7;
+            border-color: #e53e3e;
+            color: #742a2a;
+        }
+        
+        /* Contact Info */
+        .contact-info {
+            color: #e53e3e;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        
+        /* Modals */
+        .password-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .password-modal-content {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        
+        body.dark-mode .password-modal-content {
+            background: var(--dark-card);
+            color: var(--dark-text);
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .institute-name { font-size: 1.5rem; }
+            .set-selection-grid { grid-template-columns: 1fr; }
+            .exam-header { flex-direction: column; }
+            .score { font-size: 2rem; }
+            .navigation { flex-direction: column; }
+            .achievement-badges { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙 Dark</button>
+    
+    <!-- Admin Toggle -->
+    <button class="admin-toggle" onclick="toggleAdmin()" id="adminToggle">👨‍💼 Admin</button>
+
+    <div class="container">
+        <!-- Home Section -->
+        <div class="home-section" id="homeSection">
+            <div class="institute-header">
+                <div class="institute-logo">📄</div>
+                <h1 class="institute-name">JATIYA YUVA COMPUTER CENTER MANKUNDU</h1>
+                <p class="institute-location">📍 Mankundu, Hooghly</p>
+            </div>
+            <div class="access-card">
+                <div class="graduation-icon">💻</div>
+                <h2 class="access-title">🔒 Student Access Required</h2>
+                <p class="access-description">Enter your Student Code to access the Advanced MS Word Practice Test System</p>
+                <div class="student-input-section">
+                    <input type="text" id="studentCode" class="student-code-input" placeholder="Enter Student Code" maxlength="15">
+                    <div class="loading-bar" id="loadingBar">
+                        <div class="loading-progress" id="loadingProgress"></div>
+                    </div>
+                    <button class="access-btn" onclick="accessTest()">🚀 ACCESS TEST</button>
+                </div>
+                <div class="contact-info">📞 Contact your instructor if you don't have a student code</div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="header" id="examHeader">
+            <h1>📄 Advanced MS Word MCQ Exam</h1>
+            <p>Next-Generation Computer Institute Assessment</p>
+        </div>
+        
+        <!-- Set Selection Section -->
+        <div class="set-selection-section" id="setSelectionSection">
+            <div class="student-info-card">
+                <h2>📚 Select Question Set</h2>
+                <div id="studentDetailsSet" class="student-details"></div>
+                <div class="set-selection-grid">
+                    <div class="set-card" onclick="selectQuestionSet('A')">
+                        <div class="set-icon">📝</div>
+                        <div class="set-title">SET A</div>
+                        <div class="set-description">Basic to Intermediate Level</div>
+                        <div class="set-info">
+                            <div>✅ 25 Questions</div>
+                            <div>⏰ 35 Minutes</div>
+                            <div>🎯 Document Creation & Basic Features</div>
+                            <div>📊 Pass: 60% (15/25)</div>
+                        </div>
+                        <div class="set-topics">
+                            <span class="topic-tag">Document Creation</span>
+                            <span class="topic-tag">Text Formatting</span>
+                            <span class="topic-tag">Font & Styles</span>
+                            <span class="topic-tag">Page Setup</span>
+                            <span class="topic-tag">Print Options</span>
+                        </div>
+                    </div>
+                    
+                    <div class="set-card" onclick="selectQuestionSet('B')">
+                        <div class="set-icon">📊</div>
+                        <div class="set-title">SET B</div>
+                        <div class="set-description">Intermediate to Advanced Level</div>
+                        <div class="set-info">
+                            <div>✅ 25 Questions</div>
+                            <div>⏰ 35 Minutes</div>
+                            <div>🎯 Tables, Images & Advanced Features</div>
+                            <div>📊 Pass: 60% (15/25)</div>
+                        </div>
+                        <div class="set-topics">
+                            <span class="topic-tag">Tables</span>
+                            <span class="topic-tag">Images</span>
+                            <span class="topic-tag">Headers/Footers</span>
+                            <span class="topic-tag">Mail Merge</span>
+                            <span class="topic-tag">References</span>
+                        </div>
+                    </div>
+                    
+                    <div class="set-card" onclick="selectQuestionSet('C')">
+                        <div class="set-icon">⚡</div>
+                        <div class="set-title">SET C</div>
+                        <div class="set-description">Expert Level Challenge</div>
+                        <div class="set-info">
+                            <div>✅ 25 Questions</div>
+                            <div>⏰ 35 Minutes</div>
+                            <div>🎯 Advanced Features & Automation</div>
+                            <div>📊 Pass: 60% (15/25)</div>
+                        </div>
+                        <div class="set-topics">
+                            <span class="topic-tag">Macros</span>
+                            <span class="topic-tag">Forms</span>
+                            <span class="topic-tag">Track Changes</span>
+                            <span class="topic-tag">Templates</span>
+                            <span class="topic-tag">Collaboration</span>
+                        </div>
+                    </div>
+                    
+                    <div class="set-card" onclick="requestFinalTestAccess()" style="border: 3px solid #0078d4; background: linear-gradient(135deg, #f0f8ff 0%, #dbeafe 100%);">
+                        <div class="set-icon">🏆</div>
+                        <div class="set-title" style="color: #1e40af;">FINAL TEST</div>
+                        <div class="set-description" style="color: #1e3a8a;">Comprehensive Assessment</div>
+                        <div class="set-info" style="background: #fff; border-left: 4px solid #0078d4;">
+                            <div>✅ 40 Questions</div>
+                            <div>⏰ 60 Minutes</div>
+                            <div>🎯 Complete MS Word Mastery Test</div>
+                            <div>📊 Pass: 70% (28/40)</div>
+                            <div style="color: #1e40af; font-weight: bold;">🔒 Password Protected</div>
+                        </div>
+                        <div class="set-topics">
+                            <span class="topic-tag" style="background: #dbeafe; color: #1e40af;">Mixed Levels</span>
+                            <span class="topic-tag" style="background: #dbeafe; color: #1e40af;">All Topics</span>
+                            <span class="topic-tag" style="background: #dbeafe; color: #1e40af;">Comprehensive</span>
+                            <span class="topic-tag" style="background: #dbeafe; color: #1e40af;">Instructor Access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Student Info Section -->
+        <div class="student-info-section" id="studentInfoSection">
+            <div class="student-info-card">
+                <h2>📋 Student Information</h2>
+                <div id="studentDetails" class="student-details"></div>
+                <div class="selected-set-info">
+                    <div class="selected-set-text" id="selectedSetDisplay">📝 Selected: MS Word Question Set A</div>
+                </div>
+                <div class="exam-instructions">
+                    <h3 id="examInstructions">📝 Exam Instructions:</h3>
+                    <ul id="instructionsList">
+                        <li>⏰ <strong>Time Limit:</strong> 35 minutes</li>
+                        <li>📊 <strong>Questions:</strong> 25 Multiple Choice Questions</li>
+                        <li>✅ <strong>Passing Score:</strong> 60% (15 correct answers)</li>
+                        <li>⏭️ <strong>Skip Option:</strong> You can skip questions and return later</li>
+                        <li>🔄 <strong>Navigation:</strong> Use Previous/Next buttons to move between questions</li>
+                        <li>📤 <strong>Auto-Submit:</strong> Exam will auto-submit when time expires</li>
+                        <li>🎯 <strong>Smart Features:</strong> Progress tracking, visual feedback, and performance analytics</li>
+                    </ul>
+                </div>
+                <button class="btn start-exam-btn" onclick="startExam()">🚀 Start Advanced MS Word Exam</button>
+            </div>
+        </div>
+        
+        <!-- Exam Section -->
+        <div class="exam-section" id="examSection">
+            <div class="exam-header">
+                <div class="progress" id="progress">
+                    <span>📊</span>
+                    <span>Question 1 of 25</span>
+                </div>
+                <div class="timer" id="timer">
+                    <span>⏰</span>
+                    <span>35:00</span>
+                </div>
+            </div>
+            <div class="question-container" id="questionContainer"></div>
+            <div class="navigation">
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn-nav" id="prevBtn" onclick="previousQuestion()" disabled>
+                        <span>⬅️</span>
+                        <span>Previous</span>
+                    </button>
+                    <button class="btn-nav" id="nextBtn" onclick="nextQuestion()">
+                        <span>Next</span>
+                        <span>➡️</span>
+                    </button>
+                </div>
+                <div>
+                    <button class="btn-nav" onclick="showQuestionMap()">🗺️ Question Map</button>
+                </div>
+            </div>
+            <div style="text-align: center; margin: 2rem 0;">
+                <button class="submit-btn" id="submitBtn" onclick="submitExam()" style="display: none;">
+                    <span>✅ Submit Exam</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Result Section -->
+        <div class="result-section" id="resultSection">
+            <h2>🎉 Exam Completed!</h2>
+            <div class="progress-circle" id="progressCircle">
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+            <div class="score" id="scoreDisplay"></div>
+            <div class="achievement-badges" id="achievementBadges"></div>
+            <div id="resultMessage"></div>
+            <div style="margin-top: 2rem;">
+                <button class="btn" onclick="handleReviewClick()">📝 Review Answers</button>
+                <button class="btn" onclick="handleRestartClick()">🔄 Take Another Exam</button>
+            </div>
+        </div>
+        
+        <!-- Review Section -->
+        <div class="review-section" id="reviewSection">
+            <h2>📖 Detailed Answer Review</h2>
+            <div id="reviewContainer"></div>
+            <button class="btn" onclick="goBackToResult()">⬅️ Back to Results</button>
+        </div>
+    </div>
+
+    <!-- Password Modal for Final Test -->
+    <div id="passwordModal" class="password-modal" style="display: none;">
+        <div class="password-modal-content" style="max-width: 480px; padding: 2.5rem; border-radius: 20px;">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🔒</div>
+                <h3 style="font-size: 1.4rem; font-weight: 600; color: #2d3748; margin-bottom: 0.8rem;">Final Test Access</h3>
+                <p style="color: #4a5568; font-size: 0.95rem; line-height: 1.5; margin: 0;">This is a secured comprehensive examination. Please enter the password provided by your instructor to access the Final Test.</p>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <input type="password" id="finalTestPassword" 
+                       placeholder="Enter Final Test Password" 
+                       maxlength="20"
+                       style="width: 100%; padding: 14px 18px; border: 2px solid #e2e8f0; 
+                              border-radius: 10px; font-size: 1rem; text-align: center; 
+                              outline: none; transition: all 0.3s ease; background: #f8f9fa;
+                              color: #2d3748; font-weight: 500;">
+            </div>
+            
+            <div style="display: flex; gap: 12px; justify-content: center; margin-bottom: 1.5rem;">
+                <button onclick="verifyFinalTestPassword()" 
+                        style="background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%); 
+                               color: white; border: none; padding: 12px 24px; border-radius: 8px; 
+                               cursor: pointer; font-size: 0.95rem; font-weight: 600; 
+                               transition: all 0.3s ease; display: flex; align-items: center; gap: 6px;">
+                    <span>🔓</span> Access Test
+                </button>
+                <button onclick="closeFinalTestModal()" 
+                        style="background: #e2e8f0; color: #4a5568; border: none; 
+                               padding: 12px 24px; border-radius: 8px; cursor: pointer; 
+                               font-size: 0.95rem; font-weight: 600; transition: all 0.3s ease;
+                               display: flex; align-items: center; gap: 6px;">
+                    <span>❌</span> Cancel
+                </button>
+            </div>
+            
+            <div style="text-align: center; font-size: 0.85rem; color: #718096; line-height: 1.4;">
+                <div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 4px;">
+                    <span>🎓</span>
+                    <span>Contact your instructor if you don't have the password</span>
+                </div>
+                <div style="font-size: 0.8rem; opacity: 0.8;">Advanced security measures are in place for this assessment</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Confirmation Modal -->
+    <div id="submitModal" class="password-modal" style="display: none;">
+        <div class="password-modal-content" style="max-width: 520px; padding: 2rem; border-radius: 15px;">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🤔</div>
+                <h3 style="font-size: 1.4rem; font-weight: 600; color: #2d3748; margin-bottom: 1rem;">Submit Confirmation</h3>
+            </div>
+            
+            <div id="submitModalMessage" style="margin-bottom: 2rem;"></div>
+            
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button onclick="confirmSubmission()" 
+                        style="background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%); 
+                               color: white; border: none; padding: 14px 28px; border-radius: 8px; 
+                               cursor: pointer; font-size: 1rem; font-weight: 600; 
+                               transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                    <span>✅</span> Yes, Submit Exam
+                </button>
+                <button onclick="cancelSubmission()" 
+                        style="background: #e2e8f0; color: #4a5568; border: none; 
+                               padding: 14px 28px; border-radius: 8px; cursor: pointer; 
+                               font-size: 1rem; font-weight: 600; transition: all 0.3s ease;
+                               display: flex; align-items: center; gap: 8px;">
+                    <span>❌</span> Cancel, Continue Exam
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Map Modal -->
+    <div id="questionMapModal" class="password-modal" style="display: none;">
+        <div class="password-modal-content" style="max-width: 600px; padding: 2rem; border-radius: 15px;">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+                <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🗺️</div>
+                <h3 style="font-size: 1.4rem; font-weight: 600; color: #2d3748; margin-bottom: 1rem;">Question Navigation Map</h3>
+            </div>
+            
+            <div id="questionMapGrid"></div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button onclick="closeQuestionMap()" 
+                        style="background: linear-gradient(135deg, #4299e1, #3182ce); 
+                               color: white; border: none; padding: 12px 24px; border-radius: 8px; 
+                               cursor: pointer; font-size: 1rem; font-weight: 600; 
+                               transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;
+                               margin: 0 auto;">
+                    <span>✅</span> Close Map
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Student database (same as Excel version)
+        var students = {
+            'JYCSM-55': {name: 'TIYASHA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-64': {name: 'SOUNAK DAS(ADCA)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-65': {name: 'PAYAL DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-74': {name: 'ANIKET PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-79': {name: 'SRIJA SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-80': {name: 'SUBHADIP ROY (COURSE)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-82': {name: 'RAJRANI BHARTI', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-83': {name: 'YUBRAJ SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-84': {name: 'SURYA CHANDRA SINGHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-91': {name: 'SURYA SAHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-92': {name: 'SANCHAYITA PANDA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-93': {name: 'PRIYA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-101': {name: 'SUSHREE MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-105': {name: 'BARNALI MANDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-107': {name: 'TAMAL DEBNATH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-112': {name: 'BRISTI MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-113': {name: 'SNEHA SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-116': {name: 'PRITAM DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-119': {name: 'ANMOL BARI', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-125': {name: 'RITU MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-130': {name: 'ANANDA SAHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-134': {name: 'BRISTEE DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-135': {name: 'DIPA BEHERA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-141': {name: 'SANDIPA SEAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-147': {name: 'NILANJANA CHAKRABORTY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-154': {name: 'PRIYA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-156': {name: 'JAYETA SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-158': {name: 'SAHALI DEY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-159': {name: 'ANUSHKA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-164': {name: 'TANIA PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-174': {name: 'ASMITA BHOWMICK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-177': {name: 'TRISHA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-179': {name: 'SOMDATTA GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-203': {name: 'AKHORA CHATTERJEE', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-208': {name: 'ANTARA GOLDER', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-209': {name: 'SAMPRITA BHOWMICK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-210': {name: 'SRIJA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-214': {name: 'SK IMRAN HOSSEN', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-228': {name: 'ANINDITA AUDDYA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-241': {name: 'ANINDITA ADDYA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-313': {name: 'DEBONITA GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-314': {name: 'JAYSREE ACHARYA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-318': {name: 'SUMAN DUTTA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-320': {name: 'DEBASISH MALIK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-322': {name: 'RITTICKA SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-338': {name: 'PAPIYA PRAMANIK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-347': {name: 'DEBOLINA BERA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-357': {name: 'SAYANIKA MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-374': {name: 'ANKITA GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-375': {name: 'SHANU GHOSH(FREE)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-378': {name: 'KAJAL BISWAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-404': {name: 'ISHAN MALLICK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-405': {name: 'SARMISTHA DEB', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-408': {name: 'MD:MOHSIM', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-426': {name: 'RAJAT ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-447': {name: 'KUHELI DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-456': {name: 'OM RAJBANSHI', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-486': {name: 'AKASH KUMAR CHOWDHURY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-489': {name: 'BISWAJIT DAS( NEW)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-501': {name: 'SAJALI MAZUMDER', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-558': {name: 'AYUSH MAHATO', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-588': {name: 'ANAMIKA PANDA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-618': {name: 'RIMA POREL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-634': {name: 'SANDIMA SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-635': {name: 'DEB HORE', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-637': {name: 'ROHAN SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-639': {name: 'ROHIT SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-642': {name: 'SRIJA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-644': {name: 'RAIMA PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-649': {name: 'DHRUV PRASAD', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-658': {name: 'KOYEL DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-661': {name: 'ANWESHA MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-665': {name: 'MADHUMITA MALAKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-674': {name: 'ARGHYA KAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-675': {name: 'RUPAM DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-680': {name: 'DEB NAYAK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-685': {name: 'JAYITA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-689': {name: 'SUKARNA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-690': {name: 'SOMA SAHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-697': {name: 'TITI HALDAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-699': {name: 'SHRABANI GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-701': {name: 'PRIYANKA PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-705': {name: 'SANCHITA SANTRA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-707': {name: 'GITANJALI CHOUDHARY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-709': {name: 'SANDIPAN DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-712': {name: 'RINTU PALIT', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-714': {name: 'AHINDRITA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-718': {name: 'NEHA BISWAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-721': {name: 'BITANGKO SEN', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-730': {name: 'SANJANA SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-738': {name: 'SAMIR BANSFORE', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-739': {name: 'PRONUSH MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-748': {name: 'BRISTY DEY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-749': {name: 'AHANA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-615': {name: 'JEETANGSU CHATTERJEE', course: 'ADCA+COMA', joinDate: '2025-04-30'},
+            'JYCSM-25': {name: 'SWASTIKA BISWAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-122': {name: 'CHANCHALA KUMARI PRASAD', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-123': {name: 'PRIYANKA KUMARI SINGH', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-155': {name: 'SHATARUPA KARMAKAR', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-157': {name: 'ANWESHA BISWAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-161': {name: 'BIJAY GAIN', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-171': {name: 'PRATIM SEN', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-180': {name: 'DEBOJIT JODDER', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-196': {name: 'DEBADYUTI DAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-213': {name: 'AKASH DUTTA', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-257': {name: 'SUSANTA DEBNATH', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-448': {name: 'SAIKAT BHADRA', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-537': {name: 'SUBHAM DHALI', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-632': {name: 'SOUMYA DAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-636': {name: 'ARNAB DHALI', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-659': {name: 'DEEP HALDER', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-742': {name: 'ARKAPRABHO CHATTERJEE', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-753': {name: 'ARIJEET PAL', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-38': {name: 'SRIJA KUNDU', course: 'ADIT+COMS', joinDate: '2025-04-30'},
+            'JYCSM-220': {name: 'PROGATA DUTTA', course: 'ADIT+COMS', joinDate: '2025-04-30'},
+            'JYCSM-671': {name: 'ISHITA DAS(ON LINE)', course: 'ADVANCE EXCEL', joinDate: '2025-04-30'},
+            'JYCSM-272': {name: 'MOUSUMI DAS', course: 'BASIC', joinDate: '2025-04-30'},
+            'JYCSM-13': {name: 'IPSHITA SAMANTA', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-95': {name: 'MADHUSMITA GHOSH', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-146': {name: 'SUBHODEEP DAS', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-227': {name: 'ANIK HALDER', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-260': {name: 'ARPITA DAS', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-290': {name: 'SOUVICK NANDI', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-301': {name: 'ARITRA PAL', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-348': {name: 'PREYOSHI DAW', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-531': {name: 'SUPARNA PAUL', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-569': {name: 'AYUSH SHAW', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-578': {name: 'RAJAT SAIN', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-648': {name: 'SUBHAM SINGHA ROY', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-654': {name: 'MOUPRIYA KUNDU', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-676': {name: 'ARPITA KARMAKAR', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-679': {name: 'AYON PAL', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-439': {name: 'ANKIT SAHA(DIPYENDU)', course: 'CCA', joinDate: '2025-04-30'},
+            'JYCSM-710': {name: 'ARATI PODDAR', course: 'CCA', joinDate: '2025-04-30'},
+            'JYCSM-746': {name: 'SUDIPA SAMANTA(DIPYENDU)', course: 'CFA', joinDate: '2025-04-30'},
+            'JYCSM-747': {name: 'ANKITA SANTRA(DIPYENDU)', course: 'CFA', joinDate: '2025-04-30'},
+            'JYCSM-89': {name: 'SANCHITA DAS (XI)', course: 'COMA', joinDate: '2025-04-30'},
+            'JYCSM-609': {name: 'SUROJIT SAHA', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-613': {name: 'SOUGATA CHAKRABORTY', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-686': {name: 'DEBOSMITA KUNDU', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-698': {name: 'KABERI MONDAL', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-144': {name: 'ADRIJA DUTTA', course: 'DCA', joinDate: '2025-04-30'},
+            'JYCSM-503': {name: 'SUSMITA ROY', course: 'DCA', joinDate: '2025-04-30'},
+            'JYCSM-695': {name: 'TRISHA HALDAR', course: 'DCA', joinDate: '2025-04-30'},
+            'JYCSM-713': {name: 'MOUSUMI SAHA', course: 'DDA', joinDate: '2025-04-30'},
+            'JYCSM-740': {name: 'DEEPAK SHAW', course: 'DDA', joinDate: '2025-04-30'},
+            'JYCSM-12': {name: 'PREETAM CHAKRABORTY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-14': {name: 'SUBRATA MALIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-28': {name: 'SUCHARITA PATRA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-41': {name: 'SUBHADIP SEAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-49': {name: 'AYAN GHOSH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-52': {name: 'PRANAB PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-67': {name: 'KAUSHIK MANDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-103': {name: 'SHARMISTHA MALIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-104': {name: 'DIPANNITA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-108': {name: 'TRISHNA MAJUMDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-126': {name: 'MOUMITA GHOSH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-128': {name: 'MEGHNA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-142': {name: 'RIYA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-172': {name: 'SUPARNA BISWAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-178': {name: 'DEBAYAN SAHA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-181': {name: 'SHARANYA MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-182': {name: 'PRIYANKA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-190': {name: 'SUPRIYA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-197': {name: 'SHAYANI MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-207': {name: 'INDRANIL TAMBULI', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-212': {name: 'NILIMA SINGH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-240': {name: 'SIMA ROY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-269': {name: 'BARSHA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-309': {name: 'BRISTI THANDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-312': {name: 'SUROJIT PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-360': {name: 'SUBHANJANA BANERJEE', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-361': {name: 'SHREYA MAITRA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-385': {name: 'KAUSHIK PANDIT', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-391': {name: 'SANGITA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-407': {name: 'JEET DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-430': {name: 'ANAMIKA ROY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-432': {name: 'ANIRUDDHA MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-433': {name: 'DEBANNITA HALDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-459': {name: 'BISHAL CHOWDHARY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-473': {name: 'KOUSHALI DEBNATH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-497': {name: 'SRABONI MALIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-499': {name: 'BISWAJIT DAS(DFA)', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-510': {name: 'BITANKA PARIAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-517': {name: 'RIKTA GHOSH ANTE', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-522': {name: 'RIYA BISWAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-533': {name: 'BUBUN PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-538': {name: 'DEBASISH DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-539': {name: 'SNEHA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-550': {name: 'ARGHYA ROY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-565': {name: 'AKASH PODDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-566': {name: 'ANKITA GHOSH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-567': {name: 'NEHA AGARWAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-568': {name: 'DEBANGAN BANERJEE', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-571': {name: 'AYAN ACHARYA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-614': {name: 'SAYAN DHALI', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-616': {name: 'SUMIT DHAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-662': {name: 'MADHUMITA BAIDYA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-668': {name: 'AKASH BALA(3 MONTH)', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-669': {name: 'DEBASISH MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-694': {name: 'PRANAB CHAKRABORTY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-696': {name: 'SANDIPAN BHATTACHARYA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-708': {name: 'PINKI BHOWMIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-722': {name: 'VIDYA KUMARI SHAW', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-725': {name: 'RAHUL SHAW', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-729': {name: 'SWARNAV DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-731': {name: 'DEEPIKA PRASAD', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-735': {name: 'PAYEL DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-736': {name: 'SNEHA BISWAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-737': {name: 'RIYA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-741': {name: 'SHANKAR MANJHI', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-380': {name: 'RUPAM RAY CHAWDHURY', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-650': {name: 'ABHISHIKTA SARKAR', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-653': {name: 'ANUSUA MAJUMDAR', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-655': {name: 'AMRITA SAHA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-663': {name: 'SOUNAK PANDA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-664': {name: 'SANTANU MONDAL', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-682': {name: 'SAYANTIKA SEN', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-692': {name: 'SUPARNA SAHA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-726': {name: 'ANANYA DAS', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-744': {name: 'MONALISA DUTTA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-745': {name: 'BINITA BISWAS', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-339': {name: 'GANESH PRADHAN', course: 'MS OFFICE 2013', joinDate: '2025-04-30'},
+            'JYCSM-268': {name: 'ARPITA SAHA', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-570': {name: 'SNEHA DAS', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-672': {name: 'TANDRA BOSE(3MONTH)', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-703': {name: 'SUBHAS DAS', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-727': {name: 'NAMITA PANDIT(4MONTH)', course: 'PYTHON', joinDate: '2025-04-30'},
+            'JYCSM-2': {name: 'RICK SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-4': {name: 'PRITAM SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-18': {name: 'PAROMITA PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-19': {name: 'SAYAN GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-24': {name: 'ROHINEE CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-47': {name: 'SNEHA DUTTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-53': {name: 'DEBOSMITA BANERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-54': {name: 'SIDDHARTHA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-56': {name: 'ANKIT ADHIKARY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-58': {name: 'SAMPRITI BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-60': {name: 'MOUSUMI SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-61': {name: 'ADRITA KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-66': {name: 'SUVAJIT MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-68': {name: 'RENUKA MAHATO', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-78': {name: 'RIDHI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-94': {name: 'SOUMYADIP MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-96': {name: 'SAYAN BAIDYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-97': {name: 'ARGHOJIT BANDYOPADHYAY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-98': {name: 'TIYASHA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-99': {name: 'ANWESHA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-100': {name: 'SAYAN MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-102': {name: 'PRITAM DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-109': {name: 'SUDIPTA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-111': {name: 'SEEMANA NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-118': {name: 'MAINAK MAJI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-124': {name: 'ARIN CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-139': {name: 'TRISHAN KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-140': {name: 'RAMEET BHATTACHARJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-151': {name: 'PRIYAM PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-152': {name: 'PARIJAAT DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-153': {name: 'DIPANWITA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-160': {name: 'AYANTIKA BODAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-165': {name: 'KINGSHUK DAS PRAMANIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-166': {name: 'SOUMYADEB BARMAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-187': {name: 'RITIKA CHAKRABARTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-189': {name: 'SRIJIT DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-191': {name: 'ABIR MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-192': {name: 'SUBHAM ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-193': {name: 'ACROMIC KHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-194': {name: 'AHIR SINGHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-200': {name: 'ARNAB RAJAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-201': {name: 'SUBHAM DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-206': {name: 'DIPTIVA GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-217': {name: 'FIZA KHATUN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-219': {name: 'SUPRITY MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-221': {name: 'ANURUP PITURI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-224': {name: 'ADWITIYA BAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-229': {name: 'DISHITA MRIDHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-233': {name: 'RAJDIP ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-248': {name: 'SAMRIDDHA BANERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-303': {name: 'DIPAYAN SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-304': {name: 'MANISH CHOUDHARY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-305': {name: 'SAWAN DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-306': {name: 'AYAN CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-307': {name: 'ANNESHA BANIK BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-311': {name: 'PRIYANGSHU SOUMITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-315': {name: 'ANISH BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-316': {name: 'BARSHAN DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-317': {name: 'SAMPRITI GUHA ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-319': {name: 'ISHITA CHAKRABARTI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-321': {name: 'LOVELY DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-324': {name: 'DEBOSMITA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-325': {name: 'ANYASWA DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-326': {name: 'TIYASHA MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-327': {name: 'ANUSHKA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-328': {name: 'AAYAN GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-330': {name: 'AVIRAJ DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-332': {name: 'SMITAKSHI TALUKDAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-336': {name: 'SAGNIK GANGULY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-337': {name: 'TIOM DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-340': {name: 'GOURAV DAS(CLASS-5)', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-341': {name: 'BAISAKHI DUTTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-342': {name: 'ANWESHA MALLIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-343': {name: 'ADRIJA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-344': {name: 'SREEJA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-345': {name: 'TANMOY DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-346': {name: 'KINJAL ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-349': {name: 'KRISHNENDU GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-350': {name: 'SHIVANI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-352': {name: 'ISHIKA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-353': {name: 'MOUMITA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-354': {name: 'SREEMAYEE DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-355': {name: 'SAYANI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-358': {name: 'SHREYASHREE DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-359': {name: 'ANKUSH MISTRY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-362': {name: 'SAPTARSHI GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-363': {name: 'SWOSTIKA PARIDA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-365': {name: 'DEBRAJ BAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-366': {name: 'PORI KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-367': {name: 'TIYASHA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-369': {name: 'SHUVAM PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-394': {name: 'ANIK MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-400': {name: 'SOUMILI PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-402': {name: 'SUVAJIT DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-403': {name: 'DEEP MAHATO', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-406': {name: 'HRIDHAAN BANERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-409': {name: 'SANCHITA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-410': {name: 'SAIKAT SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-412': {name: 'SUCHANDAN MITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-414': {name: 'RIVAAN BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-417': {name: 'TORSHA DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-418': {name: 'DEBMALYA BHOWMICK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-419': {name: 'PRIYAM KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-420': {name: 'ANKIT MITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-423': {name: 'DEEPTANU DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-427': {name: 'NILADRA PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-434': {name: 'ARYA BARMAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-442': {name: 'RUPKATHA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-443': {name: 'AYAN MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-444': {name: 'ISHIKA KHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-445': {name: 'PRITHVIJIT CHATTERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-446': {name: 'SRIYA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-449': {name: 'ASHMI BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-452': {name: 'AYUSHMAAN MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-453': {name: 'ANKITA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-457': {name: 'RIDDHIJIT MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-466': {name: 'SAIKAT MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-474': {name: 'ISHIKA RAUTH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-475': {name: 'ADHYA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-476': {name: 'SWARNALI MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-477': {name: 'SOUMILI MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-479': {name: 'MEHUL DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-500': {name: 'AARISH BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-502': {name: 'SUBHRANIL DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-505': {name: 'ARPITA BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-506': {name: 'AADITYA KARAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-508': {name: 'PALAK CHOWHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-509': {name: 'SAYAN SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-511': {name: 'DEEP SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-512': {name: 'DIYA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-513': {name: 'ADRITO DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-514': {name: 'DAKSH JAISWAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-515': {name: 'SAGNIK ADAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-519': {name: 'SHARANYA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-520': {name: 'DEEPAN KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-521': {name: 'SOUMILI KAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-524': {name: 'SOUMYOJIT NAYAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-525': {name: 'TORSA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-532': {name: 'SOUMYAJIT PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-534': {name: 'ADITYA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-535': {name: 'SATYAKI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-546': {name: 'SHUVASHREE PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-547': {name: 'PUSAN SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-548': {name: 'PUJAN SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-549': {name: 'ANKIT GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-551': {name: 'PRIYANSHU BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-553': {name: 'ARADHYA ROY (NEW)', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-554': {name: 'AYUSH ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-555': {name: 'PRIYASHREE NAYAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-556': {name: 'RIYANKA NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-557': {name: 'RIDDHIYANKA NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-559': {name: 'RANBIR BANDYOPADHYAY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-560': {name: 'ANKIT NASKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-561': {name: 'OM BIDYA BARMAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-563': {name: 'TITIKSHA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-564': {name: 'DIP GHORUI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-572': {name: 'AISHIK SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-573': {name: 'PRIYANSU SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-574': {name: 'SOUMYADEEP SAHA(V)', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-575': {name: 'ARITYA DHARA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-576': {name: 'SOHAM DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-579': {name: 'ADRIJA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-580': {name: 'ARADHYA PANDA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-581': {name: 'SNIGDHADEEP CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-583': {name: 'SAYAN BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-584': {name: 'KRITIKA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-585': {name: 'RUPAM GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-586': {name: 'KUSHAN GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-587': {name: 'SURYA BASAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-589': {name: 'AYUSH MISHRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-590': {name: 'ANANYA DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-591': {name: 'ALEKHYA SENGUPTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-592': {name: 'SHUBHAYAN PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-593': {name: 'AVIRUP MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-594': {name: 'SAPTAK GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-595': {name: 'ANIK HALDER', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-596': {name: 'SAYAN PATRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-597': {name: 'PIYUSH MALICK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-598': {name: 'MINISHA KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-599': {name: 'RAJ KUMAR GAYEN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-600': {name: 'SNEHADITYA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-601': {name: 'KHEYALI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-602': {name: 'NAMRATA GHOSHAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-603': {name: 'SUBHASREE BHATTACHARJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-604': {name: 'SMITA GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-605': {name: 'SOUMAJIT PRAMANIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-606': {name: 'PRIYANKSU SANTRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-607': {name: 'TRISHAN DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-608': {name: 'NILADRI CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-610': {name: 'RITTIKA DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-611': {name: 'TULIKA ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-612': {name: 'RAJDEEP DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-617': {name: 'ISHIKA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-619': {name: 'SRIJAN PATRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-620': {name: 'ANUJ SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-621': {name: 'SUCHITRA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-622': {name: 'ISHAN SIKDAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-623': {name: 'MUKTA PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-624': {name: 'SAMRIDDHI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-625': {name: 'ANKAN KHANTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-626': {name: 'ANGSHU MALICK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-627': {name: 'AYUSH PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-628': {name: 'SANDIP DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-629': {name: 'TIYASA MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-630': {name: 'MANISHA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-631': {name: 'SOWMODEEP SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-638': {name: 'AYUSH SINGH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-643': {name: 'PRIYA BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-645': {name: 'SUBHASHREE GANGULY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-646': {name: 'RUPSA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-647': {name: 'SHRABANTI KHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-656': {name: 'SHREYA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-657': {name: 'SUJAY SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-660': {name: 'ADRISA HALDAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-666': {name: 'DIBYENDU DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-667': {name: 'ARINJOY KONPAI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-670': {name: 'AHANA SINGHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-673': {name: 'TANUSKA MANNA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-677': {name: 'AJAY CHAND PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-678': {name: 'RUDRA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-681': {name: 'SUPARNA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-683': {name: 'PRIYAM GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-684': {name: 'PRIYANGSHU GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-687': {name: 'RUPKOTHA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-688': {name: 'DEBJEET SAHOO', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-691': {name: 'SHREEYANEE DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-693': {name: 'SANKET MITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-700': {name: 'RITAM TAMBULI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-702': {name: 'PRITHWISH BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-704': {name: 'ANSH KUMAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-706': {name: 'RITESH PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-711': {name: 'SHUVASREE NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-715': {name: 'ARGHA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-716': {name: 'ARGHA ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-717': {name: 'KIRAN KUMARI SHAW', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-719': {name: 'AYUSH KUMAR PANDIT', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-720': {name: 'DEBATRI ASH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-723': {name: 'KOUSHANI MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-724': {name: 'MRITWIKA DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-728': {name: 'HIMAGHNA GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-732': {name: 'TAMOJIT SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-733': {name: 'GUNJAN GOLDER', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-734': {name: 'PRAPTI MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-743': {name: 'AYUSH GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-750': {name: 'SOHAM SINGH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-751': {name: 'RAJIB RUIDAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-752': {name: 'PIJUS BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-754': {name: 'ARPITA KUNDU', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-3': {name: 'ABHISHIKTA CHATTERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-8': {name: 'PABITRA CHOWDHURY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-11': {name: 'SUBHODIPA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-15': {name: 'PALLABI DEBNATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-16': {name: 'MOHANA DEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-17': {name: 'BARNALI BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-20': {name: 'SONALI SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-22': {name: 'SAYAN NATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-26': {name: 'ANANYA BYAPARI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-27': {name: 'AVIJIT DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-29': {name: 'SHREYAN COOMAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-30': {name: 'ADRISH GUHAROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-31': {name: 'MOUMITA DEBNATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-32': {name: 'SOUMODEEP RAY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-33': {name: 'ARADHYA RAY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-35': {name: 'DIPAYAN BARMAN', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-36': {name: 'BITAN GHOSAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-48': {name: 'RUPREKHA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-50': {name: 'SHREYA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-57': {name: 'MAYUKHEE MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-59': {name: 'SUMANA ROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-62': {name: 'SUSMITA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-70': {name: 'ASHMI SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-72': {name: 'PRIYANKA PRAMANIK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-73': {name: 'TRISHA TAMBULI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-76': {name: 'SHANTANU DULEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-87': {name: 'NAINIKA KANRAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-106': {name: 'ARUNAKSHA BERA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-114': {name: 'AGNEESH GOSWAMI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-115': {name: 'ANSHUMAN BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-120': {name: 'INDRAJIT SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-121': {name: 'ANKUSH GHOSH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-131': {name: 'SRIJIT SEAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-145': {name: 'ARADHA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-150': {name: 'AHAN DEBNATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-162': {name: 'ANIK BERA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-163': {name: 'SAYAN PAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-167': {name: 'SHUBHAYAN GHOSH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-168': {name: 'BARSAN SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-170': {name: 'SHRISTI KARMKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-176': {name: 'SHUBHOSMITA BAYEN', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-188': {name: 'DIPAYAN DEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-199': {name: 'SHANKHADIP PATRA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-202': {name: 'SHREYAM MUKHERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-204': {name: 'PRANJWAL PAUL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-211': {name: 'PRAYOSI MAZUMDER', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-216': {name: 'SANANDA MAITY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-222': {name: 'SUPROBHO KUMAR BAIRAGI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-223': {name: 'SWAGATO KUMAR BAIRAGI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-225': {name: 'SHRIJA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-226': {name: 'SUBHOJIT SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-234': {name: 'SOUMIK GHOSH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-235': {name: 'RUDRANIL BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-236': {name: 'BINIT HALDER', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-237': {name: 'MAINAK BALA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-238': {name: 'SNEHA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-239': {name: 'NINAD BANERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-242': {name: 'KUHELI DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-243': {name: 'RISHITA MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-244': {name: 'AVIRUP SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-245': {name: 'BISWARUP SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-246': {name: 'JHANGKRITA BARURY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-247': {name: 'Tuhin Das', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-249': {name: 'ANJISHNU SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-250': {name: 'SUJAN MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-251': {name: 'ANUSHRI BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-254': {name: 'SOUMEN RUIDAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-255': {name: 'SHUBHAM DHAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-256': {name: 'DEBMALYA BHATTACHARYA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-258': {name: 'ARGHYA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-259': {name: 'SHABARI DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-262': {name: 'SWASTIKA DEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-263': {name: 'SHREYA SAMADDAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-264': {name: 'DIYA SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-265': {name: 'AYUSH DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-266': {name: 'SUMANA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-267': {name: 'ISHITA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-271': {name: 'PRIYANKA PAUL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-274': {name: 'SHUVRANSHU SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-275': {name: 'JOYEETA ROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-276': {name: 'SOUMYAJIT DATTA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-277': {name: 'NIDHI BARMAN', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-278': {name: 'TULIKA PRAMANIK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-279': {name: 'DEBASHIS RAJAK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-280': {name: 'SOUMODIP ADHIKARY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-282': {name: 'RAJDIP ROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-283': {name: 'ASWINI KUMAR NAYAK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-284': {name: 'DHITIK MUKHERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-285': {name: 'SOURI MITRA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-287': {name: 'NABAMITA HALDER', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-289': {name: 'DEBAYAN BANERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-291': {name: 'SOMASHREE KARMAKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-292': {name: 'MAYUKH SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-296': {name: 'ARYA MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-297': {name: 'SOURICK SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-300': {name: 'PURBITA CHAKRABORTY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-372': {name: 'ANKAN DHAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-373': {name: 'SUPRITI DUTTA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-379': {name: 'SNIGDHA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-383': {name: 'SAYAN DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-384': {name: 'SOUGATA SANTRA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-389': {name: 'ANISH DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-393': {name: 'MEGHLA KUNDU', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-413': {name: 'ABHI MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-37': {name: 'DIP SADHUKHAN', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-42': {name: 'ARIJIT PRAMANICK', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-528': {name: 'ABHISEKH CHATTERJEE', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-562': {name: 'SUVAJIT SANTRA', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-640': {name: 'SUPRIYO POREL', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-641': {name: 'MRINALIKA BISWAS', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-651': {name: 'SOUNAK MAJHI', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-652': {name: 'ANKANA MONDAL', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-450': {name: 'ANJALI MISHRA', course: 'TYPING COURSE', joinDate: '2025-04-30'},
+            'TEST001': {name: 'TEST STUDENT', course: 'ADCA', joinDate: '2024-01-01'},
+            'ADMIN001': {name: 'SYSTEM ADMIN', course: 'ADMIN', joinDate: '2024-01-01'}
+        };
+        
+        var eligibleCourses = ['ADCA', 'DFA', 'CA', 'ADIT', 'ADIT+COMS', 'MS WORD', 'ADMIN','SCHOOL SYLLABUS','CCA','COMA'];
+        
+        // MS Word Question sets - 25 questions each with GUARANTEED SEQUENTIAL ORDER
+        var questionSets = {
+            'A': {
+                title: 'MS Word Question Set A - Basic to Intermediate',
+                timeLimit: 2100, // 35 minutes
+                passingScore: 60,
+                questions: [
+                    {question: "What is the default file extension for MS Word 2019/2021 documents?", options: [".docx", ".doc", ".txt", ".rtf"], correct: 0},
+                    {question: "Which keyboard shortcut is used to create a new document?", options: ["Ctrl+N", "Ctrl+O", "Ctrl+S", "Ctrl+P"], correct: 0},
+                    {question: "What does Ctrl+S do in MS Word?", options: ["Save document", "Select all", "Copy text", "Search text"], correct: 0},
+                    {question: "Which tab contains the font formatting options?", options: ["Insert", "Home", "Page Layout", "Review"], correct: 1},
+                    {question: "What is the shortcut key for Bold formatting?", options: ["Ctrl+I", "Ctrl+U", "Ctrl+B", "Ctrl+F"], correct: 2},
+                    {question: "Which option is used to change the case of text?", options: ["Change Case", "Font", "Paragraph", "Styles"], correct: 0},
+                    {question: "What does Ctrl+Z do?", options: ["Redo", "Undo", "Cut", "Copy"], correct: 1},
+                    {question: "Which key combination selects all text in a document?", options: ["Ctrl+A", "Ctrl+S", "Ctrl+C", "Ctrl+V"], correct: 0},
+                    {question: "What is the default font in MS Word 2019?", options: ["Times New Roman", "Arial", "Calibri", "Verdana"], correct: 2},
+                    {question: "Which option is used to insert page numbers?", options: ["Insert > Page Number", "Home > Page Number", "Layout > Page Number", "Review > Page Number"], correct: 0},
+                    {question: "What does F7 function key do?", options: ["Save document", "Print document", "Spell check", "Find and replace"], correct: 2},
+                    {question: "Which alignment centers text horizontally?", options: ["Left align", "Center align", "Right align", "Justify"], correct: 1},
+                    {question: "What is the shortcut for Copy?", options: ["Ctrl+X", "Ctrl+C", "Ctrl+V", "Ctrl+A"], correct: 1},
+                    {question: "Which view shows the document as it will appear when printed?", options: ["Draft view", "Print Layout view", "Web Layout view", "Outline view"], correct: 1},
+                    {question: "What does double-clicking on a word do?", options: ["Deletes the word", "Selects the word", "Formats the word", "Copies the word"], correct: 1},
+                    {question: "Which menu is used to insert a table?", options: ["Home", "Insert", "Layout", "References"], correct: 1},
+                    {question: "What is the default paper size in MS Word?", options: ["A4", "Letter", "Legal", "A3"], correct: 1},
+                    {question: "Which option is used to change line spacing?", options: ["Font", "Paragraph", "Styles", "Editing"], correct: 1},
+                    {question: "What does Ctrl+P do?", options: ["Paste", "Print", "Page setup", "Paragraph"], correct: 1},
+                    {question: "Which feature automatically corrects common typing errors?", options: ["AutoCorrect", "AutoFormat", "AutoText", "AutoComplete"], correct: 0},
+                    {question: "What is the maximum zoom percentage in MS Word?", options: ["200%", "400%", "500%", "No limit"], correct: 2},
+                    {question: "Which key deletes the character to the left of cursor?", options: ["Delete", "Backspace", "Space", "Enter"], correct: 1},
+                    {question: "What does Ctrl+F do?", options: ["Format", "Font", "Find", "File"], correct: 2},
+                    {question: "Which option shows non-printing characters?", options: ["Show/Hide", "Zoom", "View", "Print Preview"], correct: 0},
+                    {question: "What is the shortcut to open an existing document?", options: ["Ctrl+N", "Ctrl+O", "Ctrl+S", "Ctrl+W"], correct: 1}
+                ]
+            },
+            'B': {
+                title: 'MS Word Question Set B - Intermediate to Advanced',
+                timeLimit: 2100, // 35 minutes
+                passingScore: 60,
+                questions: [
+                    {question: "Which feature allows you to create personalized letters for multiple recipients?", options: ["Mail Merge", "Templates", "Styles", "Macros"], correct: 0},
+                    {question: "What is the purpose of Header and Footer?", options: ["Page decoration", "Information that appears on every page", "Document title", "Table of contents"], correct: 1},
+                    {question: "Which tool is used to create a table of contents?", options: ["Insert > Table", "References > Table of Contents", "Home > Table", "Layout > Table"], correct: 1},
+                    {question: "What does Track Changes feature do?", options: ["Saves document automatically", "Records all edits made to document", "Checks spelling", "Formats text"], correct: 1},
+                    {question: "Which option is used to protect a document with password?", options: ["File > Info > Protect Document", "Home > Protect", "Review > Protect", "Insert > Protect"], correct: 0},
+                    {question: "What is a Style in MS Word?", options: ["A type of font", "Predefined formatting combination", "Document template", "Page layout"], correct: 1},
+                    {question: "Which feature allows comparing two versions of a document?", options: ["Track Changes", "Compare Documents", "Review Comments", "Version History"], correct: 1},
+                    {question: "What is the purpose of Section Breaks?", options: ["To create new pages", "To separate different formatting sections", "To add page numbers", "To insert tables"], correct: 1},
+                    {question: "Which tab contains the Mail Merge options?", options: ["Insert", "Mailings", "Review", "References"], correct: 1},
+                    {question: "What does Ctrl+H do?", options: ["Help", "Header", "Find and Replace", "Highlight"], correct: 2},
+                    {question: "Which feature creates automatic citations and bibliography?", options: ["References > Citations", "Insert > Bibliography", "Home > Citations", "Review > References"], correct: 0},
+                    {question: "What is a Template in MS Word?", options: ["A saved document", "A predefined document format", "A font style", "A page layout"], correct: 1},
+                    {question: "Which option allows inserting images from online sources?", options: ["Insert > Pictures", "Insert > Online Pictures", "Insert > Clip Art", "Insert > Graphics"], correct: 1},
+                    {question: "What is the purpose of Comments in MS Word?", options: ["To add footnotes", "To provide feedback without changing text", "To track changes", "To create bookmarks"], correct: 1},
+                    {question: "Which feature allows automatic text completion?", options: ["AutoText", "AutoCorrect", "AutoComplete", "Smart Tags"], correct: 0},
+                    {question: "What does F4 function key do?", options: ["Save document", "Repeat last action", "Open file", "Print document"], correct: 1},
+                    {question: "Which option is used to insert cross-references?", options: ["Insert > Cross-reference", "References > Cross-reference", "Home > Reference", "Review > Reference"], correct: 1},
+                    {question: "What is the purpose of Building Blocks?", options: ["Document protection", "Reusable content pieces", "Page formatting", "Font management"], correct: 1},
+                    {question: "Which feature allows creating forms in MS Word?", options: ["Insert > Forms", "Developer > Form Controls", "Home > Forms", "Layout > Forms"], correct: 1},
+                    {question: "What does Shift+F3 do?", options: ["Save document", "Change case of selected text", "Open find dialog", "Insert date"], correct: 1},
+                    {question: "Which option creates automatic page numbering?", options: ["Insert > Page Numbers", "Layout > Page Numbers", "References > Page Numbers", "Home > Page Numbers"], correct: 0},
+                    {question: "What is the purpose of Bookmarks?", options: ["To save documents", "To mark specific locations in document", "To add comments", "To track changes"], correct: 1},
+                    {question: "Which feature allows creating an index?", options: ["Insert > Index", "References > Insert Index", "Home > Index", "Review > Index"], correct: 1},
+                    {question: "What is the purpose of Word Count feature?", options: ["To count pages", "To count words, characters, and paragraphs", "To count tables", "To count images"], correct: 1},
+                    {question: "Which option allows inserting mathematical equations?", options: ["Insert > Equation", "Home > Math", "References > Equation", "Layout > Math"], correct: 0}
+                ]
+            },
+            'C': {
+                title: 'MS Word Question Set C - Expert Level Challenge',
+                timeLimit: 2100, // 35 minutes
+                passingScore: 60,
+                questions: [
+                    {question: "Which feature allows recording and playing back a series of commands?", options: ["AutoText", "Macros", "Templates", "Styles"], correct: 1},
+                    {question: "What is the purpose of Master Documents?", options: ["Document templates", "Managing large documents with subdocuments", "Password protection", "Version control"], correct: 1},
+                    {question: "Which option allows creating custom ribbon tabs?", options: ["File > Options > Customize Ribbon", "Home > Customize", "Insert > Ribbon", "View > Customize"], correct: 0},
+                    {question: "What does the Developer tab primarily contain?", options: ["Advanced formatting options", "Form controls and macros", "Page layout tools", "Review features"], correct: 1},
+                    {question: "Which feature allows creating interactive forms?", options: ["Form Controls", "Text Boxes", "Tables", "Templates"], correct: 0},
+                    {question: "What is the purpose of Content Controls?", options: ["Document protection", "Interactive form elements", "Image management", "Table formatting"], correct: 1},
+                    {question: "Which option allows linking to external data sources?", options: ["Insert > Object", "Insert > Text from File", "Mailings > Select Recipients", "References > Manage Sources"], correct: 2},
+                    {question: "What does XML mapping allow in MS Word?", options: ["Document formatting", "Linking document content to XML schema", "Password protection", "Version tracking"], correct: 1},
+                    {question: "Which feature allows collaborative editing in real-time?", options: ["Track Changes", "Comments", "Co-authoring", "Compare Documents"], correct: 2},
+                    {question: "What is the purpose of Document Inspector?", options: ["Spell checking", "Removing hidden data and personal information", "Grammar checking", "Style checking"], correct: 1},
+                    {question: "Which option allows creating custom document properties?", options: ["File > Info > Properties", "Home > Properties", "Insert > Properties", "Review > Properties"], correct: 0},
+                    {question: "What does the Restrict Editing feature allow?", options: ["Password protection only", "Limiting formatting and editing permissions", "Version control", "Document encryption"], correct: 1},
+                    {question: "Which feature allows creating cross-platform compatible documents?", options: ["Save as PDF", "Save as XPS", "Compatibility Mode", "All of the above"], correct: 3},
+                    {question: "What is the purpose of Quick Parts?", options: ["Document templates", "Reusable content building blocks", "Formatting styles", "Page layouts"], correct: 1},
+                    {question: "Which option allows customizing the Quick Access Toolbar?", options: ["File > Options > Quick Access Toolbar", "Home > Customize", "View > Toolbar", "Insert > Toolbar"], correct: 0},
+                    {question: "What does the Compatibility Checker do?", options: ["Checks spelling", "Identifies features not supported in earlier versions", "Checks grammar", "Validates formatting"], correct: 1},
+                    {question: "Which feature allows creating custom keyboard shortcuts?", options: ["File > Options > Customize Ribbon", "File > Options > Customize Commands", "Home > Shortcuts", "Tools > Customize"], correct: 1},
+                    {question: "What is the purpose of Document Themes?", options: ["Document templates", "Coordinated colors, fonts, and effects", "Page layouts", "Paragraph styles"], correct: 1},
+                    {question: "Which option allows inserting ActiveX controls?", options: ["Insert > Object", "Developer > ActiveX Controls", "Home > Controls", "Layout > Controls"], correct: 1},
+                    {question: "What does the Mark as Final feature do?", options: ["Saves the document", "Makes document read-only and marks it as complete", "Prints the document", "Closes the document"], correct: 1},
+                    {question: "Which feature allows creating custom building blocks?", options: ["Insert > Quick Parts > Building Blocks Organizer", "Home > Building Blocks", "References > Building Blocks", "Layout > Building Blocks"], correct: 0},
+                    {question: "What is the purpose of Information Rights Management (IRM)?", options: ["Document formatting", "Controlling access and usage rights", "Version tracking", "Spell checking"], correct: 1},
+                    {question: "Which option allows embedding fonts in a document?", options: ["File > Options > Save", "Home > Font > Embed", "Insert > Font", "Format > Font"], correct: 0},
+                    {question: "What does the Research task pane provide?", options: ["Grammar checking", "Access to reference materials and translation", "Style formatting", "Page layout options"], correct: 1},
+                    {question: "Which feature allows creating custom XML schemas?", options: ["Developer > XML Mapping Pane", "Insert > XML", "References > XML", "Home > XML"], correct: 0}
+                ]
+            },
+            'FINAL': {
+                title: 'Final Comprehensive MS Word Assessment - 40 Questions',
+                timeLimit: 3600, // 60 minutes
+                passingScore: 70,
+                questions: [
+                    // 10 questions from Set A (Basic)
+                    {question: "What is the default file extension for MS Word 2019/2021 documents?", options: [".docx", ".doc", ".txt", ".rtf"], correct: 0},
+                    {question: "Which keyboard shortcut is used to create a new document?", options: ["Ctrl+N", "Ctrl+O", "Ctrl+S", "Ctrl+P"], correct: 0},
+                    {question: "What does Ctrl+S do in MS Word?", options: ["Save document", "Select all", "Copy text", "Search text"], correct: 0},
+                    {question: "Which tab contains the font formatting options?", options: ["Insert", "Home", "Page Layout", "Review"], correct: 1},
+                    {question: "What is the shortcut key for Bold formatting?", options: ["Ctrl+I", "Ctrl+U", "Ctrl+B", "Ctrl+F"], correct: 2},
+                    {question: "What does Ctrl+Z do?", options: ["Redo", "Undo", "Cut", "Copy"], correct: 1},
+                    {question: "Which key combination selects all text in a document?", options: ["Ctrl+A", "Ctrl+S", "Ctrl+C", "Ctrl+V"], correct: 0},
+                    {question: "What is the default font in MS Word 2019?", options: ["Times New Roman", "Arial", "Calibri", "Verdana"], correct: 2},
+                    {question: "What does F7 function key do?", options: ["Save document", "Print document", "Spell check", "Find and replace"], correct: 2},
+                    {question: "Which alignment centers text horizontally?", options: ["Left align", "Center align", "Right align", "Justify"], correct: 1},
+                    
+                    // 8 questions from Set B (Intermediate)
+                    {question: "Which feature allows you to create personalized letters for multiple recipients?", options: ["Mail Merge", "Templates", "Styles", "Macros"], correct: 0},
+                    {question: "What is the purpose of Header and Footer?", options: ["Page decoration", "Information that appears on every page", "Document title", "Table of contents"], correct: 1},
+                    {question: "Which tool is used to create a table of contents?", options: ["Insert > Table", "References > Table of Contents", "Home > Table", "Layout > Table"], correct: 1},
+                    {question: "What does Track Changes feature do?", options: ["Saves document automatically", "Records all edits made to document", "Checks spelling", "Formats text"], correct: 1},
+                    {question: "What is a Style in MS Word?", options: ["A type of font", "Predefined formatting combination", "Document template", "Page layout"], correct: 1},
+                    {question: "Which feature allows comparing two versions of a document?", options: ["Track Changes", "Compare Documents", "Review Comments", "Version History"], correct: 1},
+                    {question: "What does Ctrl+H do?", options: ["Help", "Header", "Find and Replace", "Highlight"], correct: 2},
+                    {question: "What is a Template in MS Word?", options: ["A saved document", "A predefined document format", "A font style", "A page layout"], correct: 1},
+                    
+                    // 7 questions from Set C (Advanced)
+                    {question: "Which feature allows recording and playing back a series of commands?", options: ["AutoText", "Macros", "Templates", "Styles"], correct: 1},
+                    {question: "What is the purpose of Master Documents?", options: ["Document templates", "Managing large documents with subdocuments", "Password protection", "Version control"], correct: 1},
+                    {question: "Which option allows creating custom ribbon tabs?", options: ["File > Options > Customize Ribbon", "Home > Customize", "Insert > Ribbon", "View > Customize"], correct: 0},
+                    {question: "What does the Developer tab primarily contain?", options: ["Advanced formatting options", "Form controls and macros", "Page layout tools", "Review features"], correct: 1},
+                    {question: "Which feature allows creating interactive forms?", options: ["Form Controls", "Text Boxes", "Tables", "Templates"], correct: 0},
+                    {question: "What is the purpose of Content Controls?", options: ["Document protection", "Interactive form elements", "Image management", "Table formatting"], correct: 1},
+                    {question: "Which feature allows collaborative editing in real-time?", options: ["Track Changes", "Comments", "Co-authoring", "Compare Documents"], correct: 2},
+                    
+                    // 15 NEW COMPREHENSIVE QUESTIONS
+                    {question: "What is the purpose of Page Orientation?", options: ["Portrait and Landscape layout", "Page numbering", "Font selection", "Margin settings"], correct: 0},
+                    {question: "Which feature allows inserting symbols and special characters?", options: ["Insert > Symbol", "Home > Character", "Format > Symbol", "Tools > Symbol"], correct: 0},
+                    {question: "What does the Format Painter tool do?", options: ["Changes font color", "Copies formatting from one text to another", "Aligns text", "Inserts pictures"], correct: 1},
+                    {question: "Which option allows setting custom margins?", options: ["Layout > Margins > Custom Margins", "Home > Margins", "Insert > Margins", "File > Margins"], correct: 0},
+                    {question: "What is the purpose of Word Wrap?", options: ["Automatic line breaking", "Text alignment", "Font formatting", "Page numbering"], correct: 0},
+                    {question: "Which feature allows inserting current date and time?", options: ["Insert > Date & Time", "Home > DateTime", "References > Date", "Layout > Time"], correct: 0},
+                    {question: "What does the Thesaurus feature provide?", options: ["Spell checking", "Synonyms and antonyms", "Grammar checking", "Word definitions"], correct: 1},
+                    {question: "Which option allows creating drop caps?", options: ["Insert > Drop Cap", "Home > Drop Cap", "Format > Drop Cap", "Layout > Drop Cap"], correct: 0},
+                    {question: "What is the purpose of Text Wrapping around images?", options: ["Image formatting", "Controlling how text flows around objects", "Image resizing", "Image alignment"], correct: 1},
+                    {question: "Which feature allows creating numbered lists?", options: ["Home > Numbering", "Insert > Numbers", "Format > List", "Layout > Numbering"], correct: 0},
+                    {question: "What does the Zoom feature control?", options: ["Font size", "Document view size", "Page size", "Image size"], correct: 1},
+                    {question: "Which option allows inserting page breaks?", options: ["Insert > Page Break", "Layout > Page Break", "Home > Break", "Format > Break"], correct: 0},
+                    {question: "What is the purpose of Paragraph indentation?", options: ["Text alignment", "Spacing text from margins", "Font formatting", "Line spacing"], correct: 1},
+                    {question: "Which feature allows creating hyperlinks?", options: ["Insert > Hyperlink", "Home > Link", "References > Link", "Format > Hyperlink"], correct: 0},
+                    {question: "What does the Spell Check feature identify?", options: ["Grammar errors only", "Spelling errors only", "Both spelling and basic grammar errors", "Formatting errors"], correct: 2}
+                ]
+            }
+        };
+        
+        // Global variables
+        var currentQuestion = 0;
+        var userAnswers = [];
+        var timeLeft = 2100; // 35 minutes default
+        var timer;
+        var studentId = '';
+        var currentStudentData = null;
+        var examStarted = false;
+        var selectedQuestionSet = 'A';
+        var questions = [];
+        var isDarkMode = false;
+        var isAdminMode = false;
+        var examResults = [];
+        
+        // Final Test Security
+        var finalTestPasswords = ['WORD2024', 'MSWORD2024', 'JYCC@WORD', 'INSTRUCTOR123', 'ADMIN2024'];
+        
+        // Final Exam Score Storage
+        var finalExamScores = JSON.parse(localStorage.getItem('msWordFinalExamScores') || '[]');
+        
+        // Notification System
+        function showNotification(message, type, duration) {
+            var existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(function(n) { n.remove(); });
+            
+            var notification = document.createElement('div');
+            notification.className = 'notification ' + type;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(function() {
+                notification.remove();
+            }, duration || 3000);
+        }
+        
+        // Theme Toggle
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode', isDarkMode);
+            document.getElementById('themeToggle').textContent = isDarkMode ? '☀️ Light' : '🌙 Dark';
+            showNotification('Switched to ' + (isDarkMode ? 'Dark' : 'Light') + ' mode', 'info', 2000);
+        }
+        
+        // Admin Panel Toggle
+        function toggleAdmin() {
+            isAdminMode = !isAdminMode;
+            if (isAdminMode) {
+                hideAllSections();
+                showNotification('Admin panel activated for MS Word system', 'info', 2000);
+            } else {
+                hideAllSections();
+                document.getElementById('homeSection').style.display = 'block';
+                document.getElementById('examHeader').style.display = 'none';
+                showNotification('Returned to main MS Word system', 'info', 2000);
+            }
+        }
+        
+        // Hide all sections
+        function hideAllSections() {
+            var sections = ['homeSection', 'setSelectionSection', 'studentInfoSection', 'examSection', 'resultSection', 'reviewSection'];
+            sections.forEach(function(id) {
+                var element = document.getElementById(id);
+                if (element) element.style.display = 'none';
+            });
+        }
+        
+        // Access test with loading
+        function accessTest() {
+            var code = document.getElementById('studentCode').value.trim().toUpperCase();
+            if (!code) {
+                showNotification('Please enter your Student Code', 'warning');
+                return;
+            }
+            
+            var loadingBar = document.getElementById('loadingBar');
+            var loadingProgress = document.getElementById('loadingProgress');
+            loadingBar.style.display = 'block';
+            
+            var progress = 0;
+            var loadingInterval = setInterval(function() {
+                progress += 10;
+                loadingProgress.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                    loadingBar.style.display = 'none';
+                    
+                    if (!students[code]) {
+                        showNotification('❌ Invalid Student Code! Please check and try again.', 'error');
+                        return;
+                    }
+                    
+                    var student = students[code];
+                    if (eligibleCourses.indexOf(student.course) === -1) {
+                        showNotification('❌ Course Restriction! Your course is not eligible for this exam.', 'error');
+                        return;
+                    }
+                    
+                    // Success
+                    currentStudentData = student;
+                    studentId = code;
+                    
+                    hideAllSections();
+                    document.getElementById('examHeader').style.display = 'block';
+                    document.getElementById('setSelectionSection').style.display = 'block';
+                    
+                    document.getElementById('studentDetailsSet').innerHTML = 
+                        '<p><strong>🎓 Student Name:</strong> ' + student.name + '</p>' +
+                        '<p><strong>🆔 Student Code:</strong> ' + code + '</p>' +
+                        '<p><strong>📚 Course:</strong> ' + student.course + '</p>' +
+                        '<p><strong>📅 Join Date:</strong> ' + (student.joinDate || 'N/A') + '</p>';
+                    
+                    showNotification('Welcome ' + student.name + '! Please select your MS Word question set.', 'success');
+                }
+            }, 100);
+        }
+        
+        // Final test access
+        function requestFinalTestAccess() {
+            document.getElementById('passwordModal').style.display = 'block';
+            document.getElementById('finalTestPassword').focus();
+        }
+        
+        function verifyFinalTestPassword() {
+            var enteredPassword = document.getElementById('finalTestPassword').value.trim();
+            if (!enteredPassword) {
+                showNotification('⚠️ Please enter the password', 'warning');
+                return;
+            }
+            
+            if (finalTestPasswords.indexOf(enteredPassword) !== -1) {
+                document.getElementById('passwordModal').style.display = 'none';
+                document.getElementById('finalTestPassword').value = '';
+                selectQuestionSet('FINAL');
+                showNotification('✅ Final Test Access Granted! Good luck with your comprehensive MS Word assessment!', 'success', 4000);
+            } else {
+                showNotification('❌ Incorrect Password! Contact your instructor for the correct password.', 'error');
+                document.getElementById('finalTestPassword').value = '';
+                document.getElementById('finalTestPassword').focus();
+            }
+        }
+        
+        function closeFinalTestModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('finalTestPassword').value = '';
+        }
+        
+        // Question set selection
+        function selectQuestionSet(setId) {
+            selectedQuestionSet = setId;
+            
+            // Create a new array with proper sequential order
+            var originalQuestions = questionSets[setId].questions;
+            questions = [];
+            
+            for (var i = 0; i < originalQuestions.length; i++) {
+                questions[i] = {
+                    question: originalQuestions[i].question,
+                    options: originalQuestions[i].options.slice(),
+                    correct: originalQuestions[i].correct
+                };
+            }
+            
+            hideAllSections();
+            document.getElementById('studentInfoSection').style.display = 'block';
+            document.getElementById('examHeader').style.display = 'block';
+            
+            var setInfo = questionSets[setId];
+            document.getElementById('selectedSetDisplay').textContent = '📝 Selected: ' + setInfo.title;
+            
+            var timeLimit = setId === 'FINAL' ? '60 minutes' : '35 minutes';
+            var questionCount = setId === 'FINAL' ? '40' : '25';
+            var passingScore = setId === 'FINAL' ? '70%' : '60%';
+            var correctAnswers = setId === 'FINAL' ? '28' : '15';
+            
+            document.getElementById('instructionsList').innerHTML = 
+                '<li>⏰ <strong>Time Limit:</strong> ' + timeLimit + '</li>' +
+                '<li>📊 <strong>Questions:</strong> ' + questionCount + ' Multiple Choice Questions</li>' +
+                '<li>🎯 <strong>Difficulty:</strong> ' + setInfo.title.split(' - ')[1] + '</li>' +
+                '<li>✅ <strong>Passing Score:</strong> ' + passingScore + ' (' + correctAnswers + ' correct answers)</li>' +
+                '<li>⏭️ <strong>Skip Option:</strong> You can skip questions and return later</li>' +
+                '<li>🔄 <strong>Navigation:</strong> Use Previous/Next buttons to move between questions</li>' +
+                '<li>📤 <strong>Auto-Submit:</strong> Exam will auto-submit when time expires</li>' +
+                '<li>🎯 <strong>Smart Features:</strong> Progress tracking, visual feedback, and performance analytics</li>' +
+                '<li>📋 <strong>SEQUENTIAL ORDER:</strong> Questions appear as 1, 2, 3, 4, 5, 6, 7, 8, 9, 10...</li>' +
+                (setId === 'FINAL' ? '<li>🏆 <strong>Final Assessment:</strong> Comprehensive MS Word test covering all modules</li>' : '');
+            
+            document.getElementById('studentDetails').innerHTML = 
+                '<p><strong>🎓 Student Name:</strong> ' + currentStudentData.name + '</p>' +
+                '<p><strong>🆔 Student Code:</strong> ' + studentId + '</p>' +
+                '<p><strong>📚 Course:</strong> ' + currentStudentData.course + '</p>' +
+                '<p><strong>📅 Join Date:</strong> ' + (currentStudentData.joinDate || 'N/A') + '</p>';
+            
+            showNotification('✅ Set ' + setId + ' selected - ' + questionCount + ' questions in STRICT SEQUENCE (1→2→3→4→5...)', 'success');
+        }
+        
+        // Start exam function
+        function startExam() {
+            examStarted = true;
+            
+            hideAllSections();
+            document.getElementById('examSection').style.display = 'block';
+            document.getElementById('examHeader').style.display = 'block';
+            
+            // Initialize user answers array
+            userAnswers = new Array(questions.length);
+            for (var j = 0; j < userAnswers.length; j++) {
+                userAnswers[j] = null;
+            }
+            
+            currentQuestion = 0;
+            timeLeft = questionSets[selectedQuestionSet].timeLimit;
+            
+            document.getElementById('progress').innerHTML = 
+                '<span>📊</span>' +
+                '<span>Question 1 of ' + questions.length + '</span>';
+            
+            timer = setInterval(function() {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    autoSubmitExam();
+                }
+            }, 1000);
+            
+            loadQuestion();
+            showNotification('MS Word exam started! Questions in PERFECT order: 1→2→3→4→5...', 'success', 3000);
+        }
+        
+        // Load question function
+        function loadQuestion() {
+            if (currentQuestion < 0 || currentQuestion >= questions.length) {
+                return;
+            }
+            
+            var question = questions[currentQuestion];
+            var container = document.getElementById('questionContainer');
+            
+            container.style.opacity = '0';
+            
+            setTimeout(function() {
+                var questionHTML = 
+                    '<div class="question">' +
+                        '<strong>' + (currentQuestion + 1) + '. ' + question.question + '</strong>' +
+                    '</div>' +
+                    '<div class="options">';
+                
+                for (var i = 0; i < question.options.length; i++) {
+                    var isSelected = userAnswers[currentQuestion] === i;
+                    questionHTML += 
+                        '<div class="option ' + (isSelected ? 'selected' : '') + '" onclick="selectOption(' + i + ')">' +
+                            '<input type="radio" name="question_' + currentQuestion + '" value="' + i + '" ' + (isSelected ? 'checked' : '') + '>' +
+                            '<span>' + String.fromCharCode(65 + i) + '. ' + question.options[i] + '</span>' +
+                        '</div>';
+                }
+                
+                var isSkipped = userAnswers[currentQuestion] === -1;
+                questionHTML += 
+                    '<div class="option skip-option ' + (isSkipped ? 'selected' : '') + '" onclick="skipQuestion()">' +
+                        '<input type="radio" name="question_' + currentQuestion + '" value="-1" ' + (isSkipped ? 'checked' : '') + '>' +
+                        '<span>⏭️ SKIP (Answer Later)</span>' +
+                    '</div>' +
+                '</div>';
+                
+                container.innerHTML = questionHTML;
+                container.style.opacity = '1';
+                
+                updateProgress();
+                updateNavigation();
+            }, 200);
+        }
+        
+        // Answer selection functions
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestion] = optionIndex;
+            loadQuestion();
+        }
+        
+        function skipQuestion() {
+            userAnswers[currentQuestion] = -1;
+            loadQuestion();
+            showNotification('Question skipped. You can return to it later.', 'warning', 2000);
+        }
+        
+        // Update progress
+        function updateProgress() {
+            var answeredCount = 0;
+            var skippedCount = 0;
+            
+            for (var i = 0; i < userAnswers.length; i++) {
+                if (userAnswers[i] !== null && userAnswers[i] !== -1) {
+                    answeredCount++;
+                } else if (userAnswers[i] === -1) {
+                    skippedCount++;
+                }
+            }
+            
+            document.getElementById('progress').innerHTML = 
+                '<span>📊</span>' +
+                '<span>Question ' + (currentQuestion + 1) + ' of ' + questions.length + '</span>' +
+                '<span style="font-size: 0.9rem; opacity: 0.8;">(' + answeredCount + ' answered, ' + skippedCount + ' skipped)</span>';
+        }
+        
+        // Update navigation
+        function updateNavigation() {
+            var prevBtn = document.getElementById('prevBtn');
+            var nextBtn = document.getElementById('nextBtn');
+            var submitBtn = document.getElementById('submitBtn');
+            
+            if (prevBtn) {
+                prevBtn.disabled = currentQuestion === 0;
+                if (currentQuestion === 0) {
+                    prevBtn.style.opacity = '0.5';
+                    prevBtn.style.cursor = 'not-allowed';
+                } else {
+                    prevBtn.style.opacity = '1';
+                    prevBtn.style.cursor = 'pointer';
+                }
+            }
+            
+            var isLastQuestion = currentQuestion === questions.length - 1;
+            if (nextBtn) {
+                nextBtn.style.display = isLastQuestion ? 'none' : 'inline-flex';
+            }
+            if (submitBtn) {
+                submitBtn.style.display = isLastQuestion ? 'block' : 'none';
+                if (isLastQuestion) {
+                    submitBtn.style.animation = 'pulse 1.5s infinite';
+                }
+            }
+        }
+        
+        // Update timer display
+        function updateTimerDisplay() {
+            var minutes = Math.floor(timeLeft / 60);
+            var seconds = timeLeft % 60;
+            var timeDisplay = minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+            
+            var timerElement = document.getElementById('timer');
+            timerElement.innerHTML = '<span>⏰</span><span>' + timeDisplay + '</span>';
+            
+            if (timeLeft < 120) {
+                timerElement.style.color = '#e53e3e';
+            } else if (timeLeft < 300) {
+                timerElement.style.color = '#d69e2e';
+            }
+            
+            if (timeLeft === 300) {
+                showNotification('⚠️ 5 minutes remaining!', 'warning', 3000);
+            } else if (timeLeft === 60) {
+                showNotification('🚨 1 minute remaining!', 'error', 3000);
+            }
+        }
+        
+        // Navigation functions
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion = currentQuestion - 1;
+                loadQuestion();
+                showNotification('⬅️ Previous question loaded: ' + (currentQuestion + 1), 'info', 1500);
+            }
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion = currentQuestion + 1;
+                loadQuestion();
+                showNotification('➡️ Next question loaded: ' + (currentQuestion + 1), 'info', 1500);
+            }
+        }
+        
+        // Question map
+        function showQuestionMap() {
+            var modal = document.getElementById('questionMapModal');
+            var grid = document.getElementById('questionMapGrid');
+            
+            var mapHTML = '<div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; max-width: 450px; margin: 20px auto; padding: 10px;">';
+            
+            for (var i = 0; i < questions.length; i++) {
+                var bgColor = '#f7fafc';
+                var borderColor = '#e2e8f0';
+                var textColor = '#2d3748';
+                var statusIcon = '❔';
+                
+                if (userAnswers[i] === -1) {
+                    bgColor = '#fed7d7';
+                    borderColor = '#e53e3e';
+                    textColor = '#9c2626';
+                    statusIcon = '⏭️';
+                } else if (userAnswers[i] !== null) {
+                    bgColor = '#dbeafe';
+                    borderColor = '#0078d4';
+                    textColor = '#1e40af';
+                    statusIcon = '✅';
+                }
+                
+                if (i === currentQuestion) {
+                    bgColor = '#bfdbfe';
+                    borderColor = '#0078d4';
+                    textColor = '#1e3a8a';
+                    statusIcon = '👆';
+                }
+                
+                mapHTML += 
+                    '<div onclick="goToQuestion(' + i + '); closeQuestionMap();" ' +
+                         'style="background: ' + bgColor + '; border: 2px solid ' + borderColor + '; ' +
+                                'border-radius: 8px; padding: 8px 4px; text-align: center; cursor: pointer; ' +
+                                'font-weight: bold; font-size: 14px; color: ' + textColor + '; ' +
+                                'min-height: 50px; display: flex; flex-direction: column; ' +
+                                'align-items: center; justify-content: center; ' +
+                                'transition: all 0.3s ease;" ' +
+                         'onmouseover="this.style.transform=\'scale(1.05)\'; this.style.boxShadow=\'0 3px 10px rgba(0,0,0,0.15)\';" ' +
+                         'onmouseout="this.style.transform=\'scale(1)\'; this.style.boxShadow=\'none\';">' +
+                        '<div style="font-size: 16px; font-weight: bold; margin-bottom: 2px;">' + (i + 1) + '</div>' +
+                        '<div style="font-size: 12px;">' + statusIcon + '</div>' +
+                    '</div>';
+            }
+            
+            mapHTML += '</div>';
+            
+            // Add legend
+            mapHTML += '<div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0; font-size: 13px; flex-wrap: wrap;">';
+            mapHTML += '<div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #dbeafe; border: 1px solid #0078d4; border-radius: 3px;"></div><span>Answered</span></div>';
+            mapHTML += '<div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #fed7d7; border: 1px solid #e53e3e; border-radius: 3px;"></div><span>Skipped</span></div>';
+            mapHTML += '<div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 3px;"></div><span>Unanswered</span></div>';
+            mapHTML += '<div style="display: flex; align-items: center; gap: 5px;"><div style="width: 12px; height: 12px; background: #bfdbfe; border: 1px solid #0078d4; border-radius: 3px;"></div><span>Current</span></div>';
+            mapHTML += '</div>';
+            
+            grid.innerHTML = mapHTML;
+            modal.style.display = 'block';
+            showNotification('🗺️ Question map opened - Click any question to navigate', 'info', 2000);
+        }
+        
+        function closeQuestionMap() {
+            document.getElementById('questionMapModal').style.display = 'none';
+            showNotification('🗺️ Question map closed', 'info', 1500);
+        }
+        
+        function goToQuestion(questionIndex) {
+            if (questionIndex >= 0 && questionIndex < questions.length) {
+                currentQuestion = questionIndex;
+                loadQuestion();
+                showNotification('📍 Jumped to question ' + (questionIndex + 1), 'success', 2000);
+            }
+        }
+        
+        // Exam submission
+        function submitExam() {
+            var unansweredCount = 0;
+            var skippedCount = 0;
+            var answeredCount = 0;
+            
+            for (var i = 0; i < userAnswers.length; i++) {
+                if (userAnswers[i] === null) {
+                    unansweredCount++;
+                } else if (userAnswers[i] === -1) {
+                    skippedCount++;
+                } else {
+                    answeredCount++;
+                }
+            }
+            
+            var modalMessage = '';
+            
+            if (unansweredCount > 0 || skippedCount > 0) {
+                modalMessage = '<div style="background: #fed7d7; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">';
+                
+                if (unansweredCount > 0 && skippedCount > 0) {
+                    modalMessage += '<p style="font-weight: bold; color: #c53030; margin-bottom: 1rem;">⚠️ You have incomplete answers!</p>';
+                    modalMessage += '<p>You have <strong>' + unansweredCount + ' unanswered</strong> and <strong>' + skippedCount + ' skipped</strong> questions.</p>';
+                } else if (unansweredCount > 0) {
+                    modalMessage += '<p style="font-weight: bold; color: #c53030; margin-bottom: 1rem;">⚠️ You have unanswered questions!</p>';
+                    modalMessage += '<p>You have <strong>' + unansweredCount + ' unanswered</strong> questions.</p>';
+                } else if (skippedCount > 0) {
+                    modalMessage += '<p style="font-weight: bold; color: #c53030; margin-bottom: 1rem;">⚠️ You have skipped questions!</p>';
+                    modalMessage += '<p>You have <strong>' + skippedCount + ' skipped</strong> questions.</p>';
+                }
+                
+                modalMessage += '<div style="background: white; padding: 1rem; border-radius: 8px; margin: 1rem 0;">';
+                modalMessage += '<h4 style="margin-bottom: 0.5rem;">📊 Summary:</h4>';
+                modalMessage += '<p>✅ <strong>Answered:</strong> ' + answeredCount + '/' + questions.length + '</p>';
+                if (skippedCount > 0) modalMessage += '<p>⏭️ <strong>Skipped:</strong> ' + skippedCount + '</p>';
+                if (unansweredCount > 0) modalMessage += '<p>❓ <strong>Unanswered:</strong> ' + unansweredCount + '</p>';
+                modalMessage += '</div>';
+                
+                modalMessage += '<p style="font-weight: bold; color: #9c2626;">⚠️ Skipped and unanswered questions will be marked as <strong>INCORRECT</strong>.</p>';
+                modalMessage += '</div>';
+                modalMessage += '<p style="margin-top: 1rem; font-size: 1.1rem; color: #2d3748;">Are you sure you want to submit your exam now?</p>';
+                
+            } else {
+                modalMessage = '<div style="background: #dbeafe; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">';
+                modalMessage += '<p style="font-weight: bold; color: #1e40af; margin-bottom: 1rem;">🎉 Excellent work!</p>';
+                modalMessage += '<p>You have answered <strong>all ' + questions.length + ' questions</strong>.</p>';
+                modalMessage += '<div style="background: white; padding: 1rem; border-radius: 8px; margin: 1rem 0;">';
+                modalMessage += '<p>✅ <strong>Completed:</strong> ' + answeredCount + '/' + questions.length + ' questions</p>';
+                modalMessage += '</div>';
+                modalMessage += '</div>';
+                modalMessage += '<p style="margin-top: 1rem; font-size: 1.1rem; color: #2d3748;">Are you ready to submit your MS Word exam?</p>';
+            }
+            
+            document.getElementById('submitModalMessage').innerHTML = modalMessage;
+            document.getElementById('submitModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Confirm submission
+        function confirmSubmission() {
+            document.getElementById('submitModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            if (timer) clearInterval(timer);
+            calculateResults();
+        }
+        
+        // Cancel submission
+        function cancelSubmission() {
+            document.getElementById('submitModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            showNotification('⚠️ Submission cancelled. You can continue answering questions.', 'warning', 3000);
+        }
+        
+        function autoSubmitExam() {
+            showNotification('⏰ Time is up! The exam will be submitted automatically.', 'error', 4000);
+            setTimeout(function() {
+                calculateResults();
+            }, 1000);
+        }
+        
+        // Calculate results
+        function calculateResults() {
+            var correctAnswers = 0;
+            var attemptedQuestions = 0;
+            var skippedQuestions = 0;
+            
+            for (var i = 0; i < questions.length; i++) {
+                if (userAnswers[i] === -1) {
+                    skippedQuestions++;
+                } else if (userAnswers[i] !== null) {
+                    attemptedQuestions++;
+                    if (userAnswers[i] === questions[i].correct) {
+                        correctAnswers++;
+                    }
+                }
+            }
+            
+            var totalQuestions = questions.length;
+            var percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            var passingScore = questionSets[selectedQuestionSet].passingScore;
+            var passed = percentage >= passingScore;
+            
+            // Save result
+            var result = {
+                studentName: currentStudentData.name,
+                studentCode: studentId,
+                course: currentStudentData.course,
+                questionSet: selectedQuestionSet,
+                score: correctAnswers,
+                totalQuestions: totalQuestions,
+                percentage: percentage,
+                passed: passed,
+                date: new Date().toLocaleDateString(),
+                timeTaken: getTimeTaken()
+            };
+            
+            examResults.push(result);
+            
+            // Save Final Exam scores if applicable
+            if (selectedQuestionSet === 'FINAL') {
+                saveFinalExamScore(
+                    {studentCode: studentId, studentName: currentStudentData.name, course: currentStudentData.course},
+                    correctAnswers, totalQuestions, percentage, passed, getTimeTaken()
+                );
+            }
+            
+            // Show results
+            hideAllSections();
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('examHeader').style.display = 'block';
+            
+            updateProgressCircle(percentage);
+            
+            var scoreDisplay = document.getElementById('scoreDisplay');
+            scoreDisplay.textContent = correctAnswers + '/' + totalQuestions + ' (' + percentage + '%)';
+            scoreDisplay.className = 'score ' + (passed ? 'pass' : 'fail');
+            
+            updateAchievementBadges(percentage, passed, selectedQuestionSet);
+            
+            var testType = selectedQuestionSet === 'FINAL' ? 'Final Comprehensive Test' : 'Practice Test Set ' + selectedQuestionSet;
+            document.getElementById('resultMessage').innerHTML = 
+                '<div style="background: ' + (passed ? '#dbeafe' : '#fed7d7') + '; padding: 1.5rem; border-radius: 15px; margin: 1rem 0;">' +
+                    '<p><strong>🎓 Student Name:</strong> ' + currentStudentData.name + '</p>' +
+                    '<p><strong>📚 Course:</strong> ' + currentStudentData.course + '</p>' +
+                    '<p><strong>🆔 Student Code:</strong> ' + studentId + '</p>' +
+                    '<p><strong>📝 Test Type:</strong> ' + testType + '</p>' +
+                    '<p><strong>📊 Status:</strong> ' + (passed ? '✅ PASSED' : '❌ FAILED') + '</p>' +
+                    '<p><strong>🎯 Required Score:</strong> ' + passingScore + '%</p>' +
+                    '<p><strong>🏆 Grade:</strong> ' + getGrade(percentage) + '</p>' +
+                    '<p><strong>📝 Attempted:</strong> ' + attemptedQuestions + '/' + totalQuestions + ' questions</p>' +
+                    '<p><strong>⏭️ Skipped:</strong> ' + skippedQuestions + ' questions</p>' +
+                    '<p><strong>⏱️ Time Taken:</strong> ' + getTimeTaken() + '</p>' +
+                    '<p><strong>📅 Date:</strong> ' + new Date().toLocaleString() + '</p>' +
+                '</div>';
+            
+            if (passed) {
+                showNotification('🎉 Congratulations! You passed MS Word exam with ' + percentage + '%!', 'success', 5000);
+            } else {
+                showNotification('📚 Keep studying MS Word! You scored ' + percentage + '%. Required: ' + passingScore + '%', 'warning', 5000);
+            }
+        }
+        
+        // Helper functions
+        function updateProgressCircle(percentage) {
+            var circle = document.getElementById('progressCircle');
+            var text = document.getElementById('progressText');
+            
+            var color = percentage >= 90 ? '#48bb78' : 
+                       percentage >= 70 ? '#0078d4' : 
+                       percentage >= 60 ? '#d69e2e' : '#e53e3e';
+            
+            circle.style.background = 'conic-gradient(' + color + ' ' + percentage + '%, #e2e8f0 ' + percentage + '%)';
+            text.textContent = percentage + '%';
+            text.style.color = color;
+        }
+        
+        function updateAchievementBadges(percentage, passed, setId) {
+            var badges = document.getElementById('achievementBadges');
+            var badgeHTML = '';
+            
+            if (percentage >= 95) {
+                badgeHTML += '<div class="badge excellent">🏆 EXCELLENCE</div>';
+            } else if (percentage >= 85) {
+                badgeHTML += '<div class="badge excellent">⭐ OUTSTANDING</div>';
+            } else if (percentage >= 75) {
+                badgeHTML += '<div class="badge good">👍 GOOD JOB</div>';
+            } else if (percentage >= 60) {
+                badgeHTML += '<div class="badge average">✅ PASSED</div>';
+            } else {
+                badgeHTML += '<div class="badge poor">📚 STUDY MORE</div>';
+            }
+            
+            if (setId === 'FINAL' && passed) {
+                badgeHTML += '<div class="badge excellent">🎓 MS WORD CERTIFIED</div>';
+            }
+            
+            if (percentage === 100) {
+                badgeHTML += '<div class="badge excellent">💎 PERFECT SCORE</div>';
+            }
+            
+            badges.innerHTML = badgeHTML;
+        }
+        
+        function getGrade(percentage) {
+            if (percentage >= 95) return 'A+';
+            if (percentage >= 90) return 'A';
+            if (percentage >= 85) return 'A-';
+            if (percentage >= 80) return 'B+';
+            if (percentage >= 75) return 'B';
+            if (percentage >= 70) return 'B-';
+            if (percentage >= 65) return 'C+';
+            if (percentage >= 60) return 'C';
+            if (percentage >= 55) return 'C-';
+            if (percentage >= 50) return 'D';
+            return 'F';
+        }
+        
+        function getTimeTaken() {
+            var totalTime = questionSets[selectedQuestionSet].timeLimit;
+            var timeTaken = totalTime - timeLeft;
+            var minutes = Math.floor(timeTaken / 60);
+            var seconds = timeTaken % 60;
+            return minutes + ':' + seconds.toString().padStart(2, '0');
+        }
+        
+        // Function to save Final Exam score
+        function saveFinalExamScore(studentData, score, totalQuestions, percentage, passed, timeTaken) {
+            var scoreRecord = {
+                studentCode: studentData.studentCode,
+                studentName: studentData.studentName,
+                course: studentData.course,
+                score: score,
+                totalQuestions: totalQuestions,
+                percentage: percentage,
+                passed: passed,
+                timeTaken: timeTaken,
+                date: new Date().toLocaleDateString(),
+                timestamp: new Date().toLocaleString(),
+                examType: 'FINAL_MS_WORD'
+            };
+            
+            var existingIndex = finalExamScores.findIndex(function(record) {
+                return record.studentCode === studentData.studentCode;
+            });
+            
+            if (existingIndex !== -1) {
+                var existing = finalExamScores[existingIndex];
+                if (percentage > existing.percentage || confirm('Student already has a Final MS Word Exam record (' + existing.percentage + '%). Do you want to replace it with this attempt (' + percentage + '%)?')) {
+                    finalExamScores[existingIndex] = scoreRecord;
+                    showNotification('📝 Final MS Word Exam score updated for ' + studentData.studentName, 'info', 3000);
+                } else {
+                    showNotification('📝 Previous Final MS Word Exam score retained for ' + studentData.studentName, 'warning', 3000);
+                    return;
+                }
+            } else {
+                finalExamScores.push(scoreRecord);
+                showNotification('📝 Final MS Word Exam score recorded for ' + studentData.studentName, 'success', 3000);
+            }
+            
+            localStorage.setItem('msWordFinalExamScores', JSON.stringify(finalExamScores));
+        }
+        
+        // Review section
+        function showReview() {
+            hideAllSections();
+            document.getElementById('reviewSection').style.display = 'block';
+            document.getElementById('examHeader').style.display = 'block';
+            
+            var reviewHTML = '';
+            for (var i = 0; i < questions.length; i++) {
+                var question = questions[i];
+                var userAnswer = userAnswers[i];
+                var correctAnswer = question.correct;
+                var isCorrect = userAnswer === correctAnswer;
+                var wasSkipped = userAnswer === -1;
+                var wasNotAnswered = userAnswer === null;
+                
+                var statusIcon = wasNotAnswered ? '❌' : wasSkipped ? '⏭️' : isCorrect ? '✅' : '❌';
+                var statusColor = wasNotAnswered ? '#e53e3e' : wasSkipped ? '#d69e2e' : isCorrect ? '#0078d4' : '#e53e3e';
+                var statusText = wasNotAnswered ? 'Not Answered' : wasSkipped ? 'Skipped' : isCorrect ? 'Correct' : 'Incorrect';
+                
+                reviewHTML += 
+                    '<div class="review-question">' +
+                        '<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">' +
+                            '<div class="question">' +
+                                '<strong>' + (i + 1) + '. ' + question.question + '</strong>' +
+                            '</div>' +
+                            '<div style="color: ' + statusColor + '; font-weight: bold; font-size: 1.1rem;">' +
+                                statusIcon + ' ' + statusText +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="options" style="margin-top: 1rem;">';
+                
+                for (var j = 0; j < question.options.length; j++) {
+                    var className = 'option';
+                    var optionIcon = '';
+                    
+                    if (j === correctAnswer) {
+                        className += ' correct';
+                        optionIcon = ' ✓';
+                    }
+                    if (j === userAnswer && !isCorrect && !wasSkipped && !wasNotAnswered) {
+                        className += ' wrong';
+                        optionIcon = ' ✗';
+                    }
+                    
+                    reviewHTML += 
+                        '<div class="' + className + '">' +
+                            String.fromCharCode(65 + j) + '. ' + question.options[j] + optionIcon +
+                        '</div>';
+                }
+                
+                reviewHTML += '</div></div>';
+            }
+            
+            document.getElementById('reviewContainer').innerHTML = reviewHTML;
+        }
+        
+        function goBackToResult() {
+            hideAllSections();
+            document.getElementById('resultSection').style.display = 'block';
+            document.getElementById('examHeader').style.display = 'block';
+        }
+        
+        // Helper function to ensure buttons work
+        function handleRestartClick() {
+            restartExam();
+        }
+        
+        function handleReviewClick() {
+            showReview();
+        }
+        
+        // Restart exam function
+        function restartExam() {
+            try {
+                if (timer) {
+                    clearInterval(timer);
+                    timer = null;
+                }
+                
+                examStarted = false;
+                currentQuestion = 0;
+                userAnswers = [];
+                timeLeft = 2100;
+                selectedQuestionSet = 'A';
+                questions = [];
+                
+                var questionContainer = document.getElementById('questionContainer');
+                if (questionContainer) {
+                    questionContainer.innerHTML = '';
+                }
+                
+                var progressElement = document.getElementById('progress');
+                if (progressElement) {
+                    progressElement.innerHTML = 
+                        '<span>📊</span>' +
+                        '<span>Question 1 of 25</span>';
+                }
+                
+                var timerElement = document.getElementById('timer');
+                if (timerElement) {
+                    timerElement.innerHTML = 
+                        '<span>⏰</span>' +
+                        '<span>35:00</span>';
+                    timerElement.style.color = '#e53e3e';
+                }
+                
+                var sections = ['homeSection', 'setSelectionSection', 'studentInfoSection', 'examSection', 'resultSection', 'reviewSection'];
+                sections.forEach(function(sectionId) {
+                    var element = document.getElementById(sectionId);
+                    if (element) {
+                        element.style.display = 'none';
+                    }
+                });
+                
+                var examHeader = document.getElementById('examHeader');
+                var setSelectionSection = document.getElementById('setSelectionSection');
+                
+                if (examHeader) examHeader.style.display = 'block';
+                if (setSelectionSection) setSelectionSection.style.display = 'block';
+                
+                if (currentStudentData && studentId) {
+                    var studentDetailsElement = document.getElementById('studentDetailsSet');
+                    if (studentDetailsElement) {
+                        studentDetailsElement.innerHTML = 
+                            '<p><strong>🎓 Student Name:</strong> ' + currentStudentData.name + '</p>' +
+                            '<p><strong>🆔 Student Code:</strong> ' + studentId + '</p>' +
+                            '<p><strong>📚 Course:</strong> ' + currentStudentData.course + '</p>' +
+                            '<p><strong>📅 Join Date:</strong> ' + (currentStudentData.joinDate || 'N/A') + '</p>';
+                    }
+                }
+                
+                var submitBtn = document.getElementById('submitBtn');
+                if (submitBtn) {
+                    submitBtn.style.display = 'none';
+                    submitBtn.style.animation = 'none';
+                }
+                
+                var prevBtn = document.getElementById('prevBtn');
+                var nextBtn = document.getElementById('nextBtn');
+                if (prevBtn) {
+                    prevBtn.disabled = true;
+                    prevBtn.style.opacity = '0.5';
+                }
+                if (nextBtn) {
+                    nextBtn.style.display = 'inline-flex';
+                }
+                
+                showNotification('🔄 Ready for new MS Word exam! Please select a question set.', 'success', 3000);
+                
+            } catch (error) {
+                showNotification('❌ Error restarting exam. Refreshing the page...', 'error', 3000);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 2000);
+            }
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            var studentCodeInput = document.getElementById('studentCode');
+            if (studentCodeInput) {
+                studentCodeInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        accessTest();
+                    }
+                });
+            }
+            
+            var finalTestPasswordInput = document.getElementById('finalTestPassword');
+            if (finalTestPasswordInput) {
+                finalTestPasswordInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        verifyFinalTestPassword();
+                    }
+                });
+            }
+            
+            window.onclick = function(event) {
+                var passwordModal = document.getElementById('passwordModal');
+                var questionMapModal = document.getElementById('questionMapModal');
+                
+                if (event.target === passwordModal) {
+                    closeFinalTestModal();
+                }
+                if (event.target === questionMapModal) {
+                    closeQuestionMap();
+                }
+            };
+            
+            showNotification('🎓 Advanced MS Word MCQ System Ready! Questions will appear in PERFECT sequence: 1→2→3→4→5...', 'info', 4000);
+        });
+        
+        // Prevent cheating during exam
+        document.addEventListener('contextmenu', function(e) {
+            if (examStarted) {
+                e.preventDefault();
+                showNotification('Right-click disabled during MS Word exam', 'warning', 2000);
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (examStarted) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.key === 'u')) {
+                    e.preventDefault();
+                    showNotification('Developer tools disabled during exam', 'warning', 2000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
