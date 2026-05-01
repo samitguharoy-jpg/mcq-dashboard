@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grammar MCQ - Spoken English Beginners - JYCC</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-gradient: linear-gradient(135deg, #b5451b 0%, #e07b39 100%);
+            --success-color: #48bb78;
+            --error-color: #e53e3e;
+            --dark-card: #2d3748;
+            --dark-text: #e2e8f0;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--primary-gradient); min-height: 100vh; padding: 20px; transition: all 0.3s ease; }
+        body.dark-mode { background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%); color: var(--dark-text); }
+        .container { background: white; border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); padding: 2rem; max-width: 1000px; margin: 0 auto; min-height: 75vh; transition: all 0.3s ease; }
+        body.dark-mode .container { background: var(--dark-card); color: var(--dark-text); }
+        .theme-toggle { position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(255,255,255,0.2); border: none; border-radius: 50px; padding: 12px 20px; cursor: pointer; font-size: 16px; backdrop-filter: blur(10px); transition: all 0.3s ease; color: white; font-weight: 600; }
+        .theme-toggle:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
+        .admin-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: linear-gradient(135deg, #9f7aea 0%, #805ad5 100%); color: white; border: none; border-radius: 50px; padding: 15px 20px; cursor: pointer; font-size: 14px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(159,122,234,0.3); }
+        .admin-toggle:hover { transform: scale(1.05); }
+        .home-section { text-align: center; }
+        .institute-logo { font-size: 5rem; margin-bottom: 1rem; }
+        .institute-name { font-size: 1.8rem; font-weight: 800; color: #b5451b; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        body.dark-mode .institute-name { color: #e07b39; }
+        .institute-subtitle { font-size: 1rem; color: #666; margin-bottom: 2rem; }
+        body.dark-mode .institute-subtitle { color: #a0aec0; }
+        .exam-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .exam-subtitle { font-size: 0.95rem; color: #888; margin-bottom: 2rem; }
+        body.dark-mode .exam-subtitle { color: #a0aec0; }
+        .access-card { background: linear-gradient(135deg, #fff8f5, #fff); border: 2px solid #fdd5b8; border-radius: 15px; padding: 2rem; max-width: 500px; margin: 0 auto 2rem; }
+        body.dark-mode .access-card { background: linear-gradient(135deg, #2d3748, #4a5568); border-color: #b5451b; }
+        .access-title { font-size: 1.2rem; font-weight: 700; color: #b5451b; margin-bottom: 1rem; }
+        body.dark-mode .access-title { color: var(--dark-text); }
+        .input-group { margin-bottom: 1rem; }
+        .input-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #444; font-size: 0.9rem; }
+        body.dark-mode .input-group label { color: var(--dark-text); }
+        .input-group input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; transition: all 0.3s ease; background: white; color: #333; }
+        body.dark-mode .input-group input { background: #4a5568; border-color: #718096; color: var(--dark-text); }
+        .input-group input:focus { outline: none; border-color: #b5451b; box-shadow: 0 0 0 3px rgba(181,69,27,0.1); }
+        .btn-primary { width: 100%; padding: 14px; background: var(--primary-gradient); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(181,69,27,0.3); }
+        .student-info-card { background: linear-gradient(135deg, #fff8f5, #fff); border: 2px solid #fdd5b8; border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; text-align: left; }
+        body.dark-mode .student-info-card { background: linear-gradient(135deg, #2d3748, #4a5568); border-color: #b5451b; }
+        .student-info-card h3 { color: #b5451b; font-size: 1.1rem; margin-bottom: 1rem; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .info-item { font-size: 0.9rem; }
+        .info-label { font-weight: 600; color: #555; }
+        body.dark-mode .info-label { color: #a0aec0; }
+        .info-value { color: #b5451b; font-weight: 700; }
+        .question-sets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .set-card { background: white; border: 2px solid #e2e8f0; border-radius: 15px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s ease; }
+        body.dark-mode .set-card { background: #4a5568; border-color: #718096; }
+        .set-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(181,69,27,0.2); border-color: #b5451b; }
+        .set-card.selected { border-color: #b5451b; background: linear-gradient(135deg, #fff8f5, #fff); box-shadow: 0 10px 30px rgba(181,69,27,0.2); }
+        body.dark-mode .set-card.selected { background: linear-gradient(135deg, #2d3748, #4a5568); }
+        .set-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .set-name { font-weight: 700; font-size: 1rem; color: #b5451b; }
+        .set-info { font-size: 0.8rem; color: #888; margin-top: 0.3rem; }
+        body.dark-mode .set-info { color: #a0aec0; }
+        .final-test-badge { background: linear-gradient(135deg, #f6d365, #fda085); color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #e2e8f0; flex-wrap: wrap; gap: 1rem; }
+        body.dark-mode .quiz-header { border-bottom-color: #4a5568; }
+        .quiz-title { font-size: 1.1rem; font-weight: 700; color: #b5451b; }
+        .quiz-meta { display: flex; gap: 1rem; align-items: center; }
+        .timer-box { background: var(--primary-gradient); color: white; padding: 8px 16px; border-radius: 10px; font-weight: 700; font-size: 1.1rem; }
+        .timer-box.warning { background: linear-gradient(135deg, #f6d365, #fda085); animation: pulse 1s infinite; }
+        .timer-box.danger { background: linear-gradient(135deg, #f093fb, #f5576c); animation: pulse 0.5s infinite; }
+        @keyframes pulse { 0%,100%{transform:scale(1);}50%{transform:scale(1.05);} }
+        .progress-bar { width: 100%; height: 8px; background: #e2e8f0; border-radius: 10px; margin-bottom: 2rem; overflow: hidden; }
+        body.dark-mode .progress-bar { background: #4a5568; }
+        .progress-fill { height: 100%; background: var(--primary-gradient); border-radius: 10px; transition: width 0.3s ease; }
+        .question-number { font-size: 0.85rem; color: #888; margin-bottom: 0.5rem; }
+        body.dark-mode .question-number { color: #a0aec0; }
+        .question-text { font-size: 1.2rem; font-weight: 600; margin-bottom: 1.5rem; color: #2d3748; line-height: 1.5; }
+        body.dark-mode .question-text { color: var(--dark-text); }
+        .options-grid { display: grid; gap: 0.75rem; margin-bottom: 2rem; }
+        .option-btn { padding: 14px 20px; border: 2px solid #e2e8f0; border-radius: 12px; background: white; cursor: pointer; text-align: left; font-size: 1rem; transition: all 0.3s ease; color: #333; display: flex; align-items: center; gap: 12px; }
+        body.dark-mode .option-btn { background: #4a5568; border-color: #718096; color: var(--dark-text); }
+        .option-btn:hover:not(:disabled) { border-color: #b5451b; background: #fff8f5; transform: translateX(4px); }
+        body.dark-mode .option-btn:hover:not(:disabled) { background: #2d3748; }
+        .option-btn.selected { border-color: #b5451b; background: linear-gradient(135deg, #fff8f5, #fff); }
+        body.dark-mode .option-btn.selected { background: linear-gradient(135deg, #2d3748, #4a5568); }
+        .option-btn.correct { border-color: var(--success-color); background: #f0fff4; color: #276749; }
+        .option-btn.incorrect { border-color: var(--error-color); background: #fff5f5; color: #742a2a; }
+        .option-letter { width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+        .option-btn.selected .option-letter { background: #b5451b; color: white; }
+        .option-btn.correct .option-letter { background: var(--success-color); color: white; }
+        .option-btn.incorrect .option-letter { background: var(--error-color); color: white; }
+        .nav-buttons { display: flex; gap: 1rem; justify-content: space-between; }
+        .btn-nav { padding: 12px 24px; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .btn-prev { background: #e2e8f0; color: #444; }
+        body.dark-mode .btn-prev { background: #4a5568; color: var(--dark-text); }
+        .btn-prev:hover { background: #cbd5e0; }
+        .btn-next { background: var(--primary-gradient); color: white; }
+        .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(181,69,27,0.3); }
+        .btn-submit { background: linear-gradient(135deg, #48bb78, #38a169); color: white; flex: 1; }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(72,187,120,0.3); }
+        .results-section { text-align: center; }
+        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: var(--primary-gradient); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 2rem; color: white; box-shadow: 0 20px 40px rgba(181,69,27,0.3); }
+        .score-circle.passed { background: linear-gradient(135deg, #48bb78, #38a169); box-shadow: 0 20px 40px rgba(72,187,120,0.3); }
+        .score-circle.failed { background: linear-gradient(135deg, #fc8181, #e53e3e); box-shadow: 0 20px 40px rgba(229,62,62,0.3); }
+        .score-number { font-size: 3rem; font-weight: 900; }
+        .score-label { font-size: 0.9rem; opacity: 0.9; }
+        .result-badge { display: inline-block; padding: 8px 24px; border-radius: 50px; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+        .result-badge.passed { background: #f0fff4; color: #276749; border: 2px solid #48bb78; }
+        .result-badge.failed { background: #fff5f5; color: #742a2a; border: 2px solid #e53e3e; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 2rem 0; }
+        .stat-card { background: #f7fafc; border-radius: 12px; padding: 1rem; text-align: center; }
+        body.dark-mode .stat-card { background: #4a5568; }
+        .stat-num { font-size: 2rem; font-weight: 800; color: #b5451b; }
+        .stat-lbl { font-size: 0.8rem; color: #888; }
+        body.dark-mode .stat-lbl { color: #a0aec0; }
+        .review-section { text-align: left; margin-top: 2rem; }
+        .review-item { border: 1px solid #e2e8f0; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
+        body.dark-mode .review-item { border-color: #4a5568; }
+        .review-item.correct { border-left: 4px solid var(--success-color); }
+        .review-item.incorrect { border-left: 4px solid var(--error-color); }
+        .review-q { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .review-a { font-size: 0.85rem; margin-top: 0.3rem; }
+        .review-a.correct-a { color: var(--success-color); }
+        .review-a.wrong-a { color: var(--error-color); }
+        .admin-panel { display: none; }
+        .admin-panel.active { display: block; }
+        .admin-header { background: var(--primary-gradient); color: white; padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .admin-table th { background: var(--primary-gradient); color: white; padding: 10px; text-align: left; }
+        .admin-table td { padding: 10px; border-bottom: 1px solid #e2e8f0; }
+        body.dark-mode .admin-table td { border-color: #4a5568; }
+        .admin-table tr:hover { background: #f7fafc; }
+        body.dark-mode .admin-table tr:hover { background: #4a5568; }
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .badge-pass { background: #f0fff4; color: #276749; }
+        .badge-fail { background: #fff5f5; color: #742a2a; }
+        .badge-set { background: #ebf8ff; color: #2b6cb0; }
+        .notification { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 15px 30px; border-radius: 50px; color: white; font-weight: 600; z-index: 9999; font-size: 0.95rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards; }
+        @keyframes slideIn { from{top:-50px;opacity:0;}to{top:20px;opacity:1;} }
+        @keyframes fadeOut { from{opacity:1;}to{opacity:0;} }
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: white; border-radius: 20px; padding: 2rem; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        body.dark-mode .modal { background: #2d3748; }
+        .modal h3 { font-size: 1.3rem; margin-bottom: 1rem; color: #b5451b; }
+        .home-btn { margin-top: 2rem; padding: 14px 32px; background: var(--primary-gradient); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+        .home-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(181,69,27,0.3); }
+        @media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr;}.info-grid{grid-template-columns:1fr;}.question-sets-grid{grid-template-columns:1fr 1fr;}}
+    </style>
+</head>
+<body>
+<button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+<button class="admin-toggle" onclick="toggleAdmin()">👨‍💼 Admin</button>
+
+<div class="modal-overlay" id="passwordModal">
+    <div class="modal">
+        <h3>🔐 Final Test Access</h3>
+        <p style="color:#888;margin-bottom:1.5rem;font-size:0.9rem;">Enter password to unlock Final Test</p>
+        <div class="input-group"><input type="password" id="finalTestPassword" placeholder="Enter password" style="margin-bottom:1rem;"></div>
+        <button class="btn-primary" onclick="verifyFinalTestPassword()">🔓 Unlock</button>
+        <button onclick="closePasswordModal()" style="margin-top:1rem;background:none;border:none;color:#888;cursor:pointer;">Cancel</button>
+    </div>
+</div>
+
+<div class="container">
+    <div id="homeSection" class="home-section">
+        <div class="institute-logo">📖</div>
+        <div class="institute-name">JYCC — English Grammar</div>
+        <div class="institute-subtitle">Jatiya Yuva Computer Centre | Spoken English — Beginners Series</div>
+        <div class="exam-title">English Grammar MCQ Exam System</div>
+        <div class="exam-subtitle">Specially designed for Spoken English Beginners — 4 Question Sets | 589 Students Registered</div>
+        <div class="access-card">
+            <div class="access-title">🎓 Student Login</div>
+            <div class="input-group">
+                <label>Student ID Code</label>
+                <input type="text" id="studentCode" placeholder="Enter your Student Code (e.g. JYCSM-55)" style="text-transform:uppercase;">
+            </div>
+            <button class="btn-primary" onclick="accessTest()">🚀 Access My Tests</button>
+        </div>
+    </div>
+
+    <div id="studentDashboard" style="display:none;">
+        <div class="student-info-card">
+            <h3>👤 Student Profile</h3>
+            <div class="info-grid">
+                <div class="info-item"><span class="info-label">Name: </span><span class="info-value" id="studentName"></span></div>
+                <div class="info-item"><span class="info-label">Code: </span><span class="info-value" id="studentCodeDisplay"></span></div>
+                <div class="info-item"><span class="info-label">Course: </span><span class="info-value" id="studentCourse"></span></div>
+                <div class="info-item"><span class="info-label">Joined: </span><span class="info-value" id="studentJoinDate"></span></div>
+            </div>
+        </div>
+        <div class="exam-title" style="text-align:center;margin-bottom:1rem;">📚 Select Question Set</div>
+        <div class="question-sets-grid" id="questionSetsGrid"></div>
+        <button class="btn-primary" id="startBtn" onclick="startExam()" style="display:none;">▶️ Start Selected Test</button>
+    </div>
+
+    <div id="quizSection" style="display:none;">
+        <div class="quiz-header">
+            <div class="quiz-title" id="quizTitle"></div>
+            <div class="quiz-meta">
+                <div class="timer-box" id="timerBox">⏱️ 40:00</div>
+                <div style="font-size:0.85rem;color:#888;" id="questionCounter">Q 1/35</div>
+            </div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="question-number" id="questionNum"></div>
+        <div class="question-text" id="questionText"></div>
+        <div class="options-grid" id="optionsGrid"></div>
+        <div class="nav-buttons">
+            <button class="btn-nav btn-prev" onclick="prevQuestion()">← Previous</button>
+            <button class="btn-nav btn-next" onclick="nextQuestion()" id="nextBtn">Next →</button>
+            <button class="btn-nav btn-submit" onclick="confirmSubmit()" id="submitBtn" style="display:none;">✅ Submit Test</button>
+        </div>
+    </div>
+
+    <div id="resultsSection" style="display:none;">
+        <div class="results-section">
+            <div class="score-circle" id="scoreCircle"><div class="score-number" id="scoreNumber">0%</div><div class="score-label">Score</div></div>
+            <div class="result-badge" id="resultBadge"></div>
+            <h2 id="resultTitle" style="margin-bottom:0.5rem;"></h2>
+            <p id="resultMessage" style="color:#888;margin-bottom:1.5rem;"></p>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-num" id="correctCount">0</div><div class="stat-lbl">✅ Correct</div></div>
+                <div class="stat-card"><div class="stat-num" id="wrongCount">0</div><div class="stat-lbl">❌ Wrong</div></div>
+                <div class="stat-card"><div class="stat-num" id="timeTaken">0:00</div><div class="stat-lbl">⏱️ Time Taken</div></div>
+            </div>
+            <button class="home-btn" onclick="goHome()">🏠 Back to Home</button>
+            <button class="home-btn" onclick="reviewAnswers()" style="background:linear-gradient(135deg,#667eea,#764ba2);margin-left:1rem;">📋 Review Answers</button>
+        </div>
+        <div class="review-section" id="reviewSection" style="display:none;">
+            <h3 style="margin-bottom:1rem;color:#b5451b;">📋 Answer Review</h3>
+            <div id="reviewItems"></div>
+        </div>
+    </div>
+
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-header"><h2>👨‍💼 Admin Dashboard — English Grammar MCQ</h2><p style="opacity:0.85;font-size:0.9rem;">Total Results: <span id="totalResults">0</span></p></div>
+        <div style="overflow-x:auto;">
+            <table class="admin-table">
+                <thead><tr><th>#</th><th>Student</th><th>Code</th><th>Set</th><th>Score</th><th>Result</th><th>Time</th></tr></thead>
+                <tbody id="adminTableBody"></tbody>
+            </table>
+        </div>
+        <button class="home-btn" onclick="toggleAdmin()" style="margin-top:1rem;">← Back</button>
+    </div>
+</div>
+
+<script>
+        // ===== STUDENT DATABASE =====
+var students = {
+            'JYCSM-55': {name: 'TIYASHA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-64': {name: 'SOUNAK DAS(ADCA)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-65': {name: 'PAYAL DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-74': {name: 'ANIKET PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-79': {name: 'SRIJA SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-80': {name: 'SUBHADIP ROY (COURSE)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-82': {name: 'RAJRANI BHARTI', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-83': {name: 'YUBRAJ SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-84': {name: 'SURYA CHANDRA SINGHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-91': {name: 'SURYA SAHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-92': {name: 'SANCHAYITA PANDA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-93': {name: 'PRIYA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-101': {name: 'SUSHREE MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-105': {name: 'BARNALI MANDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-107': {name: 'TAMAL DEBNATH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-112': {name: 'BRISTI MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-113': {name: 'SNEHA SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-116': {name: 'PRITAM DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-119': {name: 'ANMOL BARI', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-125': {name: 'RITU MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-130': {name: 'ANANDA SAHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-134': {name: 'BRISTEE DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-135': {name: 'DIPA BEHERA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-141': {name: 'SANDIPA SEAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-147': {name: 'NILANJANA CHAKRABORTY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-154': {name: 'PRIYA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-156': {name: 'JAYETA SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-158': {name: 'SAHALI DEY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-159': {name: 'ANUSHKA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-164': {name: 'TANIA PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-174': {name: 'ASMITA BHOWMICK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-177': {name: 'TRISHA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-179': {name: 'SOMDATTA GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-203': {name: 'AKHORA CHATTERJEE', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-208': {name: 'ANTARA GOLDER', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-209': {name: 'SAMPRITA BHOWMICK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-210': {name: 'SRIJA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-214': {name: 'SK IMRAN HOSSEN', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-228': {name: 'ANINDITA AUDDYA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-241': {name: 'ANINDITA ADDYA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-313': {name: 'DEBONITA GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-314': {name: 'JAYSREE ACHARYA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-318': {name: 'SUMAN DUTTA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-320': {name: 'DEBASISH MALIK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-322': {name: 'RITTICKA SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-338': {name: 'PAPIYA PRAMANIK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-347': {name: 'DEBOLINA BERA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-357': {name: 'SAYANIKA MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-374': {name: 'ANKITA GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-375': {name: 'SHANU GHOSH(FREE)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-378': {name: 'KAJAL BISWAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-404': {name: 'ISHAN MALLICK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-405': {name: 'SARMISTHA DEB', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-408': {name: 'MD:MOHSIM', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-426': {name: 'RAJAT ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-447': {name: 'KUHELI DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-456': {name: 'OM RAJBANSHI', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-486': {name: 'AKASH KUMAR CHOWDHURY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-489': {name: 'BISWAJIT DAS( NEW)', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-501': {name: 'SAJALI MAZUMDER', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-558': {name: 'AYUSH MAHATO', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-588': {name: 'ANAMIKA PANDA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-618': {name: 'RIMA POREL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-634': {name: 'SANDIMA SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-635': {name: 'DEB HORE', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-637': {name: 'ROHAN SARKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-639': {name: 'ROHIT SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-642': {name: 'SRIJA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-644': {name: 'RAIMA PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-649': {name: 'DHRUV PRASAD', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-658': {name: 'KOYEL DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-661': {name: 'ANWESHA MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-665': {name: 'MADHUMITA MALAKAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-674': {name: 'ARGHYA KAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-675': {name: 'RUPAM DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-680': {name: 'DEB NAYAK', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-685': {name: 'JAYITA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-689': {name: 'SUKARNA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-690': {name: 'SOMA SAHA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-697': {name: 'TITI HALDAR', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-699': {name: 'SHRABANI GHOSH', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-701': {name: 'PRIYANKA PAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-705': {name: 'SANCHITA SANTRA', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-707': {name: 'GITANJALI CHOUDHARY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-709': {name: 'SANDIPAN DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-712': {name: 'RINTU PALIT', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-714': {name: 'AHINDRITA DAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-718': {name: 'NEHA BISWAS', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-721': {name: 'BITANGKO SEN', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-730': {name: 'SANJANA SHAW', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-738': {name: 'SAMIR BANSFORE', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-739': {name: 'PRONUSH MONDAL', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-748': {name: 'BRISTY DEY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-749': {name: 'AHANA ROY', course: 'ADCA', joinDate: '2025-04-30'},
+            'JYCSM-615': {name: 'JEETANGSU CHATTERJEE', course: 'ADCA+COMA', joinDate: '2025-04-30'},
+            'JYCSM-25': {name: 'SWASTIKA BISWAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-122': {name: 'CHANCHALA KUMARI PRASAD', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-123': {name: 'PRIYANKA KUMARI SINGH', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-155': {name: 'SHATARUPA KARMAKAR', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-157': {name: 'ANWESHA BISWAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-161': {name: 'BIJAY GAIN', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-171': {name: 'PRATIM SEN', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-180': {name: 'DEBOJIT JODDER', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-196': {name: 'DEBADYUTI DAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-213': {name: 'AKASH DUTTA', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-257': {name: 'SUSANTA DEBNATH', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-448': {name: 'SAIKAT BHADRA', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-537': {name: 'SUBHAM DHALI', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-632': {name: 'SOUMYA DAS', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-636': {name: 'ARNAB DHALI', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-659': {name: 'DEEP HALDER', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-742': {name: 'ARKAPRABHO CHATTERJEE', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-753': {name: 'ARIJEET PAL', course: 'ADIT', joinDate: '2025-04-30'},
+            'JYCSM-38': {name: 'SRIJA KUNDU', course: 'ADIT+COMS', joinDate: '2025-04-30'},
+            'JYCSM-220': {name: 'PROGATA DUTTA', course: 'ADIT+COMS', joinDate: '2025-04-30'},
+            'JYCSM-671': {name: 'ISHITA DAS(ON LINE)', course: 'ADVANCE EXCEL', joinDate: '2025-04-30'},
+            'JYCSM-272': {name: 'MOUSUMI DAS', course: 'BASIC', joinDate: '2025-04-30'},
+            'JYCSM-13': {name: 'IPSHITA SAMANTA', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-95': {name: 'MADHUSMITA GHOSH', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-146': {name: 'SUBHODEEP DAS', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-227': {name: 'ANIK HALDER', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-260': {name: 'ARPITA DAS', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-290': {name: 'SOUVICK NANDI', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-301': {name: 'ARITRA PAL', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-348': {name: 'PREYOSHI DAW', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-531': {name: 'SUPARNA PAUL', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-569': {name: 'AYUSH SHAW', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-578': {name: 'RAJAT SAIN', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-648': {name: 'SUBHAM SINGHA ROY', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-654': {name: 'MOUPRIYA KUNDU', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-676': {name: 'ARPITA KARMAKAR', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-679': {name: 'AYON PAL', course: 'CA', joinDate: '2025-04-30'},
+            'JYCSM-439': {name: 'ANKIT SAHA(DIPYENDU)', course: 'CCA', joinDate: '2025-04-30'},
+            'JYCSM-710': {name: 'ARATI PODDAR', course: 'CCA', joinDate: '2025-04-30'},
+            'JYCSM-746': {name: 'SUDIPA SAMANTA(DIPYENDU)', course: 'CFA', joinDate: '2025-04-30'},
+            'JYCSM-747': {name: 'ANKITA SANTRA(DIPYENDU)', course: 'CFA', joinDate: '2025-04-30'},
+            'JYCSM-89': {name: 'SANCHITA DAS (XI)', course: 'COMA', joinDate: '2025-04-30'},
+            'JYCSM-609': {name: 'SUROJIT SAHA', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-613': {name: 'SOUGATA CHAKRABORTY', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-686': {name: 'DEBOSMITA KUNDU', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-698': {name: 'KABERI MONDAL', course: 'DATA ANALYTICS', joinDate: '2025-04-30'},
+            'JYCSM-144': {name: 'ADRIJA DUTTA', course: 'DCA', joinDate: '2025-04-30'},
+            'JYCSM-503': {name: 'SUSMITA ROY', course: 'DCA', joinDate: '2025-04-30'},
+            'JYCSM-695': {name: 'TRISHA HALDAR', course: 'DCA', joinDate: '2025-04-30'},
+            'JYCSM-713': {name: 'MOUSUMI SAHA', course: 'DDA', joinDate: '2025-04-30'},
+            'JYCSM-740': {name: 'DEEPAK SHAW', course: 'DDA', joinDate: '2025-04-30'},
+            'JYCSM-12': {name: 'PREETAM CHAKRABORTY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-14': {name: 'SUBRATA MALIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-28': {name: 'SUCHARITA PATRA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-41': {name: 'SUBHADIP SEAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-49': {name: 'AYAN GHOSH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-52': {name: 'PRANAB PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-67': {name: 'KAUSHIK MANDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-103': {name: 'SHARMISTHA MALIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-104': {name: 'DIPANNITA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-108': {name: 'TRISHNA MAJUMDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-126': {name: 'MOUMITA GHOSH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-128': {name: 'MEGHNA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-142': {name: 'RIYA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-172': {name: 'SUPARNA BISWAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-178': {name: 'DEBAYAN SAHA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-181': {name: 'SHARANYA MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-182': {name: 'PRIYANKA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-190': {name: 'SUPRIYA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-197': {name: 'SHAYANI MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-207': {name: 'INDRANIL TAMBULI', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-212': {name: 'NILIMA SINGH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-240': {name: 'SIMA ROY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-269': {name: 'BARSHA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-309': {name: 'BRISTI THANDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-312': {name: 'SUROJIT PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-360': {name: 'SUBHANJANA BANERJEE', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-361': {name: 'SHREYA MAITRA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-385': {name: 'KAUSHIK PANDIT', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-391': {name: 'SANGITA PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-407': {name: 'JEET DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-430': {name: 'ANAMIKA ROY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-432': {name: 'ANIRUDDHA MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-433': {name: 'DEBANNITA HALDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-459': {name: 'BISHAL CHOWDHARY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-473': {name: 'KOUSHALI DEBNATH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-497': {name: 'SRABONI MALIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-499': {name: 'BISWAJIT DAS(DFA)', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-510': {name: 'BITANKA PARIAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-517': {name: 'RIKTA GHOSH ANTE', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-522': {name: 'RIYA BISWAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-533': {name: 'BUBUN PAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-538': {name: 'DEBASISH DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-539': {name: 'SNEHA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-550': {name: 'ARGHYA ROY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-565': {name: 'AKASH PODDER', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-566': {name: 'ANKITA GHOSH', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-567': {name: 'NEHA AGARWAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-568': {name: 'DEBANGAN BANERJEE', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-571': {name: 'AYAN ACHARYA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-614': {name: 'SAYAN DHALI', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-616': {name: 'SUMIT DHAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-662': {name: 'MADHUMITA BAIDYA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-668': {name: 'AKASH BALA(3 MONTH)', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-669': {name: 'DEBASISH MONDAL', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-694': {name: 'PRANAB CHAKRABORTY', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-696': {name: 'SANDIPAN BHATTACHARYA', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-708': {name: 'PINKI BHOWMIK', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-722': {name: 'VIDYA KUMARI SHAW', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-725': {name: 'RAHUL SHAW', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-729': {name: 'SWARNAV DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-731': {name: 'DEEPIKA PRASAD', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-735': {name: 'PAYEL DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-736': {name: 'SNEHA BISWAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-737': {name: 'RIYA DAS', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-741': {name: 'SHANKAR MANJHI', course: 'DFA', joinDate: '2025-04-30'},
+            'JYCSM-380': {name: 'RUPAM RAY CHAWDHURY', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-650': {name: 'ABHISHIKTA SARKAR', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-653': {name: 'ANUSUA MAJUMDAR', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-655': {name: 'AMRITA SAHA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-663': {name: 'SOUNAK PANDA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-664': {name: 'SANTANU MONDAL', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-682': {name: 'SAYANTIKA SEN', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-692': {name: 'SUPARNA SAHA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-726': {name: 'ANANYA DAS', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-744': {name: 'MONALISA DUTTA', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-745': {name: 'BINITA BISWAS', course: 'DMCA', joinDate: '2025-04-30'},
+            'JYCSM-339': {name: 'GANESH PRADHAN', course: 'MS OFFICE 2013', joinDate: '2025-04-30'},
+            'JYCSM-268': {name: 'ARPITA SAHA', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-570': {name: 'SNEHA DAS', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-672': {name: 'TANDRA BOSE(3MONTH)', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-703': {name: 'SUBHAS DAS', course: 'NON COURSE', joinDate: '2025-04-30'},
+            'JYCSM-727': {name: 'NAMITA PANDIT(4MONTH)', course: 'PYTHON', joinDate: '2025-04-30'},
+            'JYCSM-2': {name: 'RICK SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-4': {name: 'PRITAM SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-18': {name: 'PAROMITA PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-19': {name: 'SAYAN GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-24': {name: 'ROHINEE CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-47': {name: 'SNEHA DUTTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-53': {name: 'DEBOSMITA BANERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-54': {name: 'SIDDHARTHA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-56': {name: 'ANKIT ADHIKARY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-58': {name: 'SAMPRITI BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-60': {name: 'MOUSUMI SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-61': {name: 'ADRITA KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-66': {name: 'SUVAJIT MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-68': {name: 'RENUKA MAHATO', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-78': {name: 'RIDHI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-94': {name: 'SOUMYADIP MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-96': {name: 'SAYAN BAIDYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-97': {name: 'ARGHOJIT BANDYOPADHYAY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-98': {name: 'TIYASHA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-99': {name: 'ANWESHA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-100': {name: 'SAYAN MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-102': {name: 'PRITAM DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-109': {name: 'SUDIPTA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-111': {name: 'SEEMANA NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-118': {name: 'MAINAK MAJI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-124': {name: 'ARIN CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-139': {name: 'TRISHAN KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-140': {name: 'RAMEET BHATTACHARJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-151': {name: 'PRIYAM PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-152': {name: 'PARIJAAT DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-153': {name: 'DIPANWITA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-160': {name: 'AYANTIKA BODAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-165': {name: 'KINGSHUK DAS PRAMANIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-166': {name: 'SOUMYADEB BARMAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-187': {name: 'RITIKA CHAKRABARTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-189': {name: 'SRIJIT DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-191': {name: 'ABIR MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-192': {name: 'SUBHAM ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-193': {name: 'ACROMIC KHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-194': {name: 'AHIR SINGHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-200': {name: 'ARNAB RAJAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-201': {name: 'SUBHAM DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-206': {name: 'DIPTIVA GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-217': {name: 'FIZA KHATUN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-219': {name: 'SUPRITY MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-221': {name: 'ANURUP PITURI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-224': {name: 'ADWITIYA BAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-229': {name: 'DISHITA MRIDHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-233': {name: 'RAJDIP ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-248': {name: 'SAMRIDDHA BANERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-303': {name: 'DIPAYAN SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-304': {name: 'MANISH CHOUDHARY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-305': {name: 'SAWAN DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-306': {name: 'AYAN CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-307': {name: 'ANNESHA BANIK BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-311': {name: 'PRIYANGSHU SOUMITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-315': {name: 'ANISH BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-316': {name: 'BARSHAN DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-317': {name: 'SAMPRITI GUHA ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-319': {name: 'ISHITA CHAKRABARTI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-321': {name: 'LOVELY DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-324': {name: 'DEBOSMITA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-325': {name: 'ANYASWA DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-326': {name: 'TIYASHA MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-327': {name: 'ANUSHKA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-328': {name: 'AAYAN GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-330': {name: 'AVIRAJ DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-332': {name: 'SMITAKSHI TALUKDAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-336': {name: 'SAGNIK GANGULY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-337': {name: 'TIOM DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-340': {name: 'GOURAV DAS(CLASS-5)', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-341': {name: 'BAISAKHI DUTTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-342': {name: 'ANWESHA MALLIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-343': {name: 'ADRIJA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-344': {name: 'SREEJA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-345': {name: 'TANMOY DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-346': {name: 'KINJAL ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-349': {name: 'KRISHNENDU GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-350': {name: 'SHIVANI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-352': {name: 'ISHIKA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-353': {name: 'MOUMITA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-354': {name: 'SREEMAYEE DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-355': {name: 'SAYANI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-358': {name: 'SHREYASHREE DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-359': {name: 'ANKUSH MISTRY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-362': {name: 'SAPTARSHI GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-363': {name: 'SWOSTIKA PARIDA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-365': {name: 'DEBRAJ BAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-366': {name: 'PORI KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-367': {name: 'TIYASHA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-369': {name: 'SHUVAM PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-394': {name: 'ANIK MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-400': {name: 'SOUMILI PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-402': {name: 'SUVAJIT DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-403': {name: 'DEEP MAHATO', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-406': {name: 'HRIDHAAN BANERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-409': {name: 'SANCHITA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-410': {name: 'SAIKAT SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-412': {name: 'SUCHANDAN MITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-414': {name: 'RIVAAN BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-417': {name: 'TORSHA DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-418': {name: 'DEBMALYA BHOWMICK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-419': {name: 'PRIYAM KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-420': {name: 'ANKIT MITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-423': {name: 'DEEPTANU DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-427': {name: 'NILADRA PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-434': {name: 'ARYA BARMAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-442': {name: 'RUPKATHA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-443': {name: 'AYAN MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-444': {name: 'ISHIKA KHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-445': {name: 'PRITHVIJIT CHATTERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-446': {name: 'SRIYA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-449': {name: 'ASHMI BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-452': {name: 'AYUSHMAAN MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-453': {name: 'ANKITA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-457': {name: 'RIDDHIJIT MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-466': {name: 'SAIKAT MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-474': {name: 'ISHIKA RAUTH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-475': {name: 'ADHYA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-476': {name: 'SWARNALI MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-477': {name: 'SOUMILI MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-479': {name: 'MEHUL DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-500': {name: 'AARISH BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-502': {name: 'SUBHRANIL DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-505': {name: 'ARPITA BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-506': {name: 'AADITYA KARAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-508': {name: 'PALAK CHOWHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-509': {name: 'SAYAN SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-511': {name: 'DEEP SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-512': {name: 'DIYA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-513': {name: 'ADRITO DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-514': {name: 'DAKSH JAISWAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-515': {name: 'SAGNIK ADAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-519': {name: 'SHARANYA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-520': {name: 'DEEPAN KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-521': {name: 'SOUMILI KAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-524': {name: 'SOUMYOJIT NAYAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-525': {name: 'TORSA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-532': {name: 'SOUMYAJIT PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-534': {name: 'ADITYA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-535': {name: 'SATYAKI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-546': {name: 'SHUVASHREE PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-547': {name: 'PUSAN SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-548': {name: 'PUJAN SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-549': {name: 'ANKIT GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-551': {name: 'PRIYANSHU BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-553': {name: 'ARADHYA ROY (NEW)', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-554': {name: 'AYUSH ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-555': {name: 'PRIYASHREE NAYAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-556': {name: 'RIYANKA NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-557': {name: 'RIDDHIYANKA NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-559': {name: 'RANBIR BANDYOPADHYAY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-560': {name: 'ANKIT NASKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-561': {name: 'OM BIDYA BARMAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-563': {name: 'TITIKSHA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-564': {name: 'DIP GHORUI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-572': {name: 'AISHIK SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-573': {name: 'PRIYANSU SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-574': {name: 'SOUMYADEEP SAHA(V)', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-575': {name: 'ARITYA DHARA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-576': {name: 'SOHAM DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-579': {name: 'ADRIJA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-580': {name: 'ARADHYA PANDA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-581': {name: 'SNIGDHADEEP CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-583': {name: 'SAYAN BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-584': {name: 'KRITIKA SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-585': {name: 'RUPAM GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-586': {name: 'KUSHAN GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-587': {name: 'SURYA BASAK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-589': {name: 'AYUSH MISHRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-590': {name: 'ANANYA DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-591': {name: 'ALEKHYA SENGUPTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-592': {name: 'SHUBHAYAN PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-593': {name: 'AVIRUP MALIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-594': {name: 'SAPTAK GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-595': {name: 'ANIK HALDER', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-596': {name: 'SAYAN PATRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-597': {name: 'PIYUSH MALICK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-598': {name: 'MINISHA KARMAKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-599': {name: 'RAJ KUMAR GAYEN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-600': {name: 'SNEHADITYA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-601': {name: 'KHEYALI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-602': {name: 'NAMRATA GHOSHAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-603': {name: 'SUBHASREE BHATTACHARJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-604': {name: 'SMITA GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-605': {name: 'SOUMAJIT PRAMANIK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-606': {name: 'PRIYANKSU SANTRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-607': {name: 'TRISHAN DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-608': {name: 'NILADRI CHAKRABORTY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-610': {name: 'RITTIKA DEBNATH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-611': {name: 'TULIKA ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-612': {name: 'RAJDEEP DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-617': {name: 'ISHIKA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-619': {name: 'SRIJAN PATRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-620': {name: 'ANUJ SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-621': {name: 'SUCHITRA SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-622': {name: 'ISHAN SIKDAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-623': {name: 'MUKTA PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-624': {name: 'SAMRIDDHI DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-625': {name: 'ANKAN KHANTA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-626': {name: 'ANGSHU MALICK', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-627': {name: 'AYUSH PAUL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-628': {name: 'SANDIP DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-629': {name: 'TIYASA MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-630': {name: 'MANISHA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-631': {name: 'SOWMODEEP SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-638': {name: 'AYUSH SINGH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-643': {name: 'PRIYA BHATTACHARYA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-645': {name: 'SUBHASHREE GANGULY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-646': {name: 'RUPSA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-647': {name: 'SHRABANTI KHAN', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-656': {name: 'SHREYA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-657': {name: 'SUJAY SARKAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-660': {name: 'ADRISA HALDAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-666': {name: 'DIBYENDU DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-667': {name: 'ARINJOY KONPAI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-670': {name: 'AHANA SINGHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-673': {name: 'TANUSKA MANNA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-677': {name: 'AJAY CHAND PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-678': {name: 'RUDRA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-681': {name: 'SUPARNA PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-683': {name: 'PRIYAM GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-684': {name: 'PRIYANGSHU GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-687': {name: 'RUPKOTHA DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-688': {name: 'DEBJEET SAHOO', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-691': {name: 'SHREEYANEE DAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-693': {name: 'SANKET MITRA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-700': {name: 'RITAM TAMBULI', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-702': {name: 'PRITHWISH BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-704': {name: 'ANSH KUMAR', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-706': {name: 'RITESH PAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-711': {name: 'SHUVASREE NAG', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-715': {name: 'ARGHA MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-716': {name: 'ARGHA ROY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-717': {name: 'KIRAN KUMARI SHAW', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-719': {name: 'AYUSH KUMAR PANDIT', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-720': {name: 'DEBATRI ASH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-723': {name: 'KOUSHANI MONDAL', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-724': {name: 'MRITWIKA DEY', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-728': {name: 'HIMAGHNA GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-732': {name: 'TAMOJIT SAHA', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-733': {name: 'GUNJAN GOLDER', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-734': {name: 'PRAPTI MUKHERJEE', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-743': {name: 'AYUSH GHOSH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-750': {name: 'SOHAM SINGH', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-751': {name: 'RAJIB RUIDAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-752': {name: 'PIJUS BISWAS', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-754': {name: 'ARPITA KUNDU', course: 'SCHOOL SYLLABUS', joinDate: '2025-04-30'},
+            'JYCSM-3': {name: 'ABHISHIKTA CHATTERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-8': {name: 'PABITRA CHOWDHURY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-11': {name: 'SUBHODIPA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-15': {name: 'PALLABI DEBNATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-16': {name: 'MOHANA DEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-17': {name: 'BARNALI BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-20': {name: 'SONALI SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-22': {name: 'SAYAN NATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-26': {name: 'ANANYA BYAPARI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-27': {name: 'AVIJIT DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-29': {name: 'SHREYAN COOMAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-30': {name: 'ADRISH GUHAROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-31': {name: 'MOUMITA DEBNATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-32': {name: 'SOUMODEEP RAY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-33': {name: 'ARADHYA RAY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-35': {name: 'DIPAYAN BARMAN', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-36': {name: 'BITAN GHOSAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-48': {name: 'RUPREKHA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-50': {name: 'SHREYA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-57': {name: 'MAYUKHEE MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-59': {name: 'SUMANA ROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-62': {name: 'SUSMITA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-70': {name: 'ASHMI SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-72': {name: 'PRIYANKA PRAMANIK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-73': {name: 'TRISHA TAMBULI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-76': {name: 'SHANTANU DULEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-87': {name: 'NAINIKA KANRAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-106': {name: 'ARUNAKSHA BERA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-114': {name: 'AGNEESH GOSWAMI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-115': {name: 'ANSHUMAN BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-120': {name: 'INDRAJIT SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-121': {name: 'ANKUSH GHOSH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-131': {name: 'SRIJIT SEAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-145': {name: 'ARADHA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-150': {name: 'AHAN DEBNATH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-162': {name: 'ANIK BERA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-163': {name: 'SAYAN PAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-167': {name: 'SHUBHAYAN GHOSH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-168': {name: 'BARSAN SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-170': {name: 'SHRISTI KARMKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-176': {name: 'SHUBHOSMITA BAYEN', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-188': {name: 'DIPAYAN DEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-199': {name: 'SHANKHADIP PATRA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-202': {name: 'SHREYAM MUKHERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-204': {name: 'PRANJWAL PAUL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-211': {name: 'PRAYOSI MAZUMDER', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-216': {name: 'SANANDA MAITY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-222': {name: 'SUPROBHO KUMAR BAIRAGI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-223': {name: 'SWAGATO KUMAR BAIRAGI', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-225': {name: 'SHRIJA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-226': {name: 'SUBHOJIT SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-234': {name: 'SOUMIK GHOSH', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-235': {name: 'RUDRANIL BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-236': {name: 'BINIT HALDER', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-237': {name: 'MAINAK BALA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-238': {name: 'SNEHA SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-239': {name: 'NINAD BANERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-242': {name: 'KUHELI DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-243': {name: 'RISHITA MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-244': {name: 'AVIRUP SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-245': {name: 'BISWARUP SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-246': {name: 'JHANGKRITA BARURY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-247': {name: 'Tuhin Das', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-249': {name: 'ANJISHNU SAHA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-250': {name: 'SUJAN MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-251': {name: 'ANUSHRI BISWAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-254': {name: 'SOUMEN RUIDAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-255': {name: 'SHUBHAM DHAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-256': {name: 'DEBMALYA BHATTACHARYA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-258': {name: 'ARGHYA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-259': {name: 'SHABARI DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-262': {name: 'SWASTIKA DEY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-263': {name: 'SHREYA SAMADDAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-264': {name: 'DIYA SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-265': {name: 'AYUSH DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-266': {name: 'SUMANA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-267': {name: 'ISHITA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-271': {name: 'PRIYANKA PAUL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-274': {name: 'SHUVRANSHU SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-275': {name: 'JOYEETA ROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-276': {name: 'SOUMYAJIT DATTA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-277': {name: 'NIDHI BARMAN', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-278': {name: 'TULIKA PRAMANIK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-279': {name: 'DEBASHIS RAJAK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-280': {name: 'SOUMODIP ADHIKARY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-282': {name: 'RAJDIP ROY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-283': {name: 'ASWINI KUMAR NAYAK', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-284': {name: 'DHITIK MUKHERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-285': {name: 'SOURI MITRA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-287': {name: 'NABAMITA HALDER', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-289': {name: 'DEBAYAN BANERJEE', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-291': {name: 'SOMASHREE KARMAKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-292': {name: 'MAYUKH SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-296': {name: 'ARYA MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-297': {name: 'SOURICK SARKAR', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-300': {name: 'PURBITA CHAKRABORTY', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-372': {name: 'ANKAN DHAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-373': {name: 'SUPRITI DUTTA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-379': {name: 'SNIGDHA DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-383': {name: 'SAYAN DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-384': {name: 'SOUGATA SANTRA', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-389': {name: 'ANISH DAS', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-393': {name: 'MEGHLA KUNDU', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-413': {name: 'ABHI MONDAL', course: 'SCHOOL SYLLABUS A', joinDate: '2025-04-30'},
+            'JYCSM-37': {name: 'DIP SADHUKHAN', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-42': {name: 'ARIJIT PRAMANICK', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-528': {name: 'ABHISEKH CHATTERJEE', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-562': {name: 'SUVAJIT SANTRA', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-640': {name: 'SUPRIYO POREL', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-641': {name: 'MRINALIKA BISWAS', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-651': {name: 'SOUNAK MAJHI', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-652': {name: 'ANKANA MONDAL', course: 'TALLY WITH GST', joinDate: '2025-04-30'},
+            'JYCSM-450': {name: 'ANJALI MISHRA', course: 'TYPING COURSE', joinDate: '2025-04-30'},
+            'TEST001': {name: 'TEST STUDENT', course: 'ADCA', joinDate: '2024-01-01'},
+            'ADMIN001': {name: 'SYSTEM ADMIN', course: 'ADMIN', joinDate: '2024-01-01'}
+        };
+
+        // ===== ENGLISH GRAMMAR QUESTION SETS =====
+        // SET A: 35 Questions — Nouns, Pronouns, Articles, Prepositions
+        // SET B: 35 Questions — Verbs, Tenses, Adjectives, Adverbs
+        // SET C: 35 Questions — Sentences, Questions, Conjunctions, Punctuation
+        // FINAL: 60 Questions — Complete Assessment
+        var questionSets = {
+            'A': {
+                title: 'English Grammar Set A - Nouns, Pronouns, Articles & Prepositions',
+                timeLimit: 2400, passingScore: 50,
+                questions: [
+                    // NOUNS (10 questions)
+                    {question: "Which of these is a noun?", options: ["Run", "Beautiful", "Table", "Quickly"], correct: 2},
+                    {question: "Which word is a proper noun?", options: ["city", "river", "India", "mountain"], correct: 2},
+                    {question: "The word 'happiness' is a ___ noun.", options: ["Common", "Proper", "Abstract", "Collective"], correct: 2},
+                    {question: "Which is a collective noun?", options: ["Dog", "Flock", "Stone", "Love"], correct: 1},
+                    {question: "What is the plural of 'child'?", options: ["Childs", "Children", "Childes", "Childern"], correct: 1},
+                    {question: "What is the plural of 'tooth'?", options: ["Tooths", "Toothes", "Teeth", "Teeths"], correct: 2},
+                    {question: "Which sentence has a noun?", options: ["She runs fast.", "The book is red.", "He sings well.", "They play outside."], correct: 1},
+                    {question: "A noun that can be counted is called a ___ noun.", options: ["Abstract", "Countable", "Uncountable", "Collective"], correct: 1},
+                    {question: "Which of these is an uncountable noun?", options: ["Apple", "Chair", "Water", "Car"], correct: 2},
+                    {question: "The word 'team' in 'The team played well' is a ___ noun.", options: ["Proper", "Abstract", "Collective", "Common"], correct: 2},
+                    // PRONOUNS (8 questions)
+                    {question: "Which word is a pronoun?", options: ["Book", "She", "Tall", "Run"], correct: 1},
+                    {question: "Choose the correct pronoun: '___ is my friend.'", options: ["Him", "Her", "He", "His"], correct: 2},
+                    {question: "Which pronoun replaces 'Ravi and I'?", options: ["They", "We", "He", "Us"], correct: 1},
+                    {question: "Choose the correct pronoun: 'This pen belongs to ___.'", options: ["I", "me", "my", "mine"], correct: 1},
+                    {question: "Which is a possessive pronoun?", options: ["He", "Him", "His", "Himself"], correct: 2},
+                    {question: "Choose the correct pronoun: '___ are my books.'", options: ["This", "That", "These", "It"], correct: 2},
+                    {question: "Which pronoun is used for a thing?", options: ["He", "She", "It", "They"], correct: 2},
+                    {question: "Choose: 'The teacher asked ___ to sit down.'", options: ["we", "us", "our", "ours"], correct: 1},
+                    // ARTICLES (9 questions)
+                    {question: "Which article is used before a vowel sound?", options: ["A", "An", "The", "No article"], correct: 1},
+                    {question: "Choose: '___ apple a day keeps the doctor away.'", options: ["A", "An", "The", "None"], correct: 1},
+                    {question: "Choose: 'He is ___ honest man.'", options: ["a", "an", "the", "none"], correct: 1},
+                    {question: "Choose: '___ Sun rises in the east.'", options: ["A", "An", "The", "None"], correct: 2},
+                    {question: "Choose: 'She wants to be ___ doctor.'", options: ["a", "an", "the", "none"], correct: 0},
+                    {question: "Choose: 'I have ___ umbrella.'", options: ["a", "an", "the", "none"], correct: 1},
+                    {question: "When do we NOT use an article?", options: ["Before names of rivers", "Before proper nouns like names", "Before unique things", "Before mountains"], correct: 1},
+                    {question: "Choose: '___ milk is good for health.'", options: ["A", "An", "The", "No article"], correct: 3},
+                    {question: "Choose: 'He plays ___ guitar.'", options: ["a", "an", "the", "none"], correct: 2},
+                    // PREPOSITIONS (8 questions)
+                    {question: "Which word is a preposition?", options: ["Run", "On", "Happy", "Sing"], correct: 1},
+                    {question: "Choose: 'The book is ___ the table.'", options: ["at", "on", "in", "by"], correct: 1},
+                    {question: "Choose: 'She lives ___ Mumbai.'", options: ["on", "at", "in", "by"], correct: 2},
+                    {question: "Choose: 'The meeting is ___ 9 o'clock.'", options: ["in", "on", "at", "by"], correct: 2},
+                    {question: "Choose: 'We go to school ___ Monday.'", options: ["in", "on", "at", "by"], correct: 1},
+                    {question: "Choose: 'He came ___ the back door.'", options: ["through", "in", "on", "at"], correct: 0},
+                    {question: "Choose: 'She is sitting ___ me.'", options: ["beside", "at", "on", "in"], correct: 0},
+                    {question: "Choose: 'The cat jumped ___ the wall.'", options: ["in", "at", "over", "on"], correct: 2}
+                ]
+            },
+            'B': {
+                title: 'English Grammar Set B - Verbs, Tenses, Adjectives & Adverbs',
+                timeLimit: 2400, passingScore: 50,
+                questions: [
+                    // VERBS (10 questions)
+                    {question: "Which word is a verb?", options: ["Beautiful", "Quickly", "Run", "Table"], correct: 2},
+                    {question: "Identify the verb: 'She sings beautifully.'", options: ["She", "sings", "beautifully", "None"], correct: 1},
+                    {question: "Which is a helping verb?", options: ["Run", "Is", "Happy", "Book"], correct: 1},
+                    {question: "Choose the correct verb: 'He ___ to school every day.'", options: ["go", "goes", "going", "gone"], correct: 1},
+                    {question: "Choose the correct verb: 'They ___ playing cricket now.'", options: ["is", "are", "was", "were"], correct: 1},
+                    {question: "What is the past tense of 'go'?", options: ["Goed", "Gone", "Went", "Goes"], correct: 2},
+                    {question: "What is the past tense of 'eat'?", options: ["Eated", "Ate", "Eaten", "Eats"], correct: 1},
+                    {question: "What is the past tense of 'write'?", options: ["Writed", "Written", "Wrote", "Writes"], correct: 2},
+                    {question: "Choose: 'She ___ a letter yesterday.'", options: ["write", "writes", "wrote", "written"], correct: 2},
+                    {question: "Which of these is a linking verb?", options: ["Run", "Jump", "Am", "Eat"], correct: 2},
+                    // TENSES (10 questions)
+                    {question: "Which sentence is in Simple Present Tense?", options: ["She played tennis.", "She plays tennis.", "She will play tennis.", "She is playing tennis."], correct: 1},
+                    {question: "Which sentence is in Simple Past Tense?", options: ["He eats rice.", "He is eating rice.", "He ate rice.", "He will eat rice."], correct: 2},
+                    {question: "Which sentence is in Simple Future Tense?", options: ["I go to school.", "I went to school.", "I will go to school.", "I am going to school."], correct: 2},
+                    {question: "Which sentence is in Present Continuous Tense?", options: ["She sings.", "She sang.", "She is singing.", "She will sing."], correct: 2},
+                    {question: "Choose the correct tense form: 'I ___ my homework now.'", options: ["do", "did", "am doing", "will do"], correct: 2},
+                    {question: "Choose: 'They ___ to the market yesterday.'", options: ["go", "goes", "went", "will go"], correct: 2},
+                    {question: "Choose: 'She ___ a book tomorrow.'", options: ["reads", "read", "is reading", "will read"], correct: 3},
+                    {question: "Which is the correct Past Continuous form?", options: ["She sings", "She was singing", "She will sing", "She has sung"], correct: 1},
+                    {question: "Choose: 'He ___ here since morning.'", options: ["is", "was", "has been", "will be"], correct: 2},
+                    {question: "Identify the tense: 'We were watching TV when she called.'", options: ["Simple Past", "Past Continuous", "Present Continuous", "Future"], correct: 1},
+                    // ADJECTIVES (8 questions)
+                    {question: "Which word is an adjective?", options: ["Run", "Beautiful", "Quickly", "Sing"], correct: 1},
+                    {question: "Identify the adjective: 'She has a red dress.'", options: ["She", "has", "red", "dress"], correct: 2},
+                    {question: "What is the comparative form of 'tall'?", options: ["Tallest", "Taller", "More tall", "Most tall"], correct: 1},
+                    {question: "What is the superlative form of 'good'?", options: ["Gooder", "Goodest", "Better", "Best"], correct: 3},
+                    {question: "Choose: 'She is ___ than her sister.'", options: ["tall", "taller", "tallest", "most tall"], correct: 1},
+                    {question: "Which is a correct use of adjective?", options: ["She sings beautiful.", "She is beautiful.", "She runs beautiful.", "Beautiful she is."], correct: 1},
+                    {question: "What is the comparative of 'good'?", options: ["Gooder", "More good", "Better", "Best"], correct: 2},
+                    {question: "Choose: 'This is the ___ book I have read.'", options: ["good", "better", "best", "more good"], correct: 2},
+                    // ADVERBS (7 questions)
+                    {question: "Which word is an adverb?", options: ["Happy", "Quickly", "Run", "Book"], correct: 1},
+                    {question: "Identify the adverb: 'She sings beautifully.'", options: ["She", "sings", "beautifully", "None"], correct: 2},
+                    {question: "An adverb usually modifies a ___.", options: ["Noun", "Pronoun", "Verb", "Article"], correct: 2},
+                    {question: "Choose the adverb: 'He ran very fast.'", options: ["He", "ran", "very", "fast"], correct: 2},
+                    {question: "Which is an adverb of time?", options: ["Quickly", "Yesterday", "Beautifully", "Very"], correct: 1},
+                    {question: "Which is an adverb of place?", options: ["Slowly", "Tomorrow", "Here", "Happily"], correct: 2},
+                    {question: "Choose: 'She speaks English ___.'", options: ["good", "well", "better", "best"], correct: 1}
+                ]
+            },
+            'C': {
+                title: 'English Grammar Set C - Sentences, Questions, Conjunctions & Punctuation',
+                timeLimit: 2400, passingScore: 50,
+                questions: [
+                    // TYPES OF SENTENCES (8 questions)
+                    {question: "Which is a declarative sentence?", options: ["Are you happy?", "Come here!", "She is happy.", "What a day!"], correct: 2},
+                    {question: "Which is an interrogative sentence?", options: ["She is tall.", "Is she tall?", "How tall she is!", "Be tall."], correct: 1},
+                    {question: "Which is an imperative sentence?", options: ["She runs fast.", "Does she run fast?", "Please sit down.", "How fast she runs!"], correct: 2},
+                    {question: "Which is an exclamatory sentence?", options: ["He is happy.", "Is he happy?", "Be happy.", "What a beautiful day!"], correct: 3},
+                    {question: "A sentence must have a ___ and a ___.", options: ["Noun and Verb", "Subject and Predicate", "Article and Noun", "Adjective and Adverb"], correct: 1},
+                    {question: "Identify the subject: 'The tall boy ran fast.'", options: ["tall", "boy", "The tall boy", "ran fast"], correct: 2},
+                    {question: "Identify the predicate: 'She sings a lovely song.'", options: ["She", "sings", "sings a lovely song", "lovely song"], correct: 2},
+                    {question: "Which is a negative sentence?", options: ["She is happy.", "She is not happy.", "Is she happy?", "How happy she is!"], correct: 1},
+                    // QUESTION FORMATION (8 questions)
+                    {question: "Which is the correct question form?", options: ["She is where?", "Where she is?", "Where is she?", "She where is?"], correct: 2},
+                    {question: "Choose the correct question: 'He plays cricket.' ___", options: ["Does he plays cricket?", "Do he play cricket?", "Does he play cricket?", "Did he plays cricket?"], correct: 2},
+                    {question: "What type of question is: 'Do you like tea?'", options: ["Wh-question", "Yes/No question", "Tag question", "Rhetorical question"], correct: 1},
+                    {question: "Complete the tag question: 'She is beautiful, ___ ?'", options: ["is she", "isn't she", "was she", "wasn't she"], correct: 1},
+                    {question: "Choose: '___ does she live?'", options: ["What", "When", "Where", "Who"], correct: 2},
+                    {question: "Choose: '___ did you go to school?'", options: ["Where", "Why", "When", "What"], correct: 2},
+                    {question: "Choose: '___ is your name?'", options: ["Where", "When", "What", "Who"], correct: 2},
+                    {question: "Complete: 'He came late, ___ ?'", options: ["did he", "didn't he", "does he", "doesn't he"], correct: 1},
+                    // CONJUNCTIONS (9 questions)
+                    {question: "Which word is a conjunction?", options: ["Run", "And", "Beautiful", "On"], correct: 1},
+                    {question: "Choose the correct conjunction: 'I like tea ___ coffee.'", options: ["but", "or", "and", "so"], correct: 2},
+                    {question: "Choose: 'She is poor ___ she is happy.'", options: ["and", "or", "but", "so"], correct: 2},
+                    {question: "Choose: 'Hurry up ___ you will miss the train.'", options: ["and", "but", "or", "because"], correct: 2},
+                    {question: "Choose: 'He did not come ___ he was ill.'", options: ["and", "but", "because", "or"], correct: 2},
+                    {question: "Choose: 'She works hard ___ she wants to succeed.'", options: ["but", "or", "because", "and"], correct: 2},
+                    {question: "Which is a subordinating conjunction?", options: ["And", "But", "Although", "Or"], correct: 2},
+                    {question: "Choose: '___ he is rich, he is not happy.'", options: ["Because", "Although", "And", "Or"], correct: 1},
+                    {question: "Choose: 'I will call you ___ I reach home.'", options: ["but", "when", "and", "or"], correct: 1},
+                    // PUNCTUATION (10 questions)
+                    {question: "Which punctuation ends a statement?", options: ["?", "!", ".", ","], correct: 2},
+                    {question: "Which punctuation ends a question?", options: [".", "!", "?", ","], correct: 2},
+                    {question: "Which punctuation shows strong feeling?", options: [".", ",", "?", "!"], correct: 3},
+                    {question: "A comma is used to ___.", options: ["End a sentence", "Show surprise", "Separate items in a list", "Ask a question"], correct: 2},
+                    {question: "Which is correctly punctuated?", options: ["she is tall", "She is tall.", "She is tall!", "she is tall?"], correct: 1},
+                    {question: "Which is correct?", options: ["i am happy.", "I am happy.", "i am happy!", "I am happy"], correct: 1},
+                    {question: "An apostrophe in 'don't' shows ___.", options: ["Possession", "Plural", "Contraction — do not", "Question"], correct: 2},
+                    {question: "Which is correct?", options: ["Ram's book", "Rams book", "Ram book's", "Rams' book"], correct: 0},
+                    {question: "A colon (:) is used to ___.", options: ["End a sentence", "Introduce a list or explanation", "Show surprise", "Show possession"], correct: 1},
+                    {question: "Which sentence uses capital letters correctly?", options: ["my name is ram.", "My name is Ram.", "my Name is ram.", "My Name Is Ram."], correct: 1}
+                ]
+            },
+            'FINAL': {
+                title: 'Final Comprehensive English Grammar Assessment - 60 Questions',
+                timeLimit: 4200, passingScore: 60,
+                questions: [
+                    // NOUNS (8)
+                    {question: "Which of these is a noun?", options: ["Run", "Beautiful", "Table", "Quickly"], correct: 2},
+                    {question: "Which word is a proper noun?", options: ["city", "river", "India", "mountain"], correct: 2},
+                    {question: "The word 'happiness' is a ___ noun.", options: ["Common", "Proper", "Abstract", "Collective"], correct: 2},
+                    {question: "Which is a collective noun?", options: ["Dog", "Flock", "Stone", "Love"], correct: 1},
+                    {question: "What is the plural of 'child'?", options: ["Childs", "Children", "Childes", "Childern"], correct: 1},
+                    {question: "What is the plural of 'tooth'?", options: ["Tooths", "Toothes", "Teeth", "Teeths"], correct: 2},
+                    {question: "Which of these is an uncountable noun?", options: ["Apple", "Chair", "Water", "Car"], correct: 2},
+                    {question: "A noun that can be counted is called a ___ noun.", options: ["Abstract", "Countable", "Uncountable", "Collective"], correct: 1},
+                    // PRONOUNS (6)
+                    {question: "Which word is a pronoun?", options: ["Book", "She", "Tall", "Run"], correct: 1},
+                    {question: "Choose: '___ is my friend.'", options: ["Him", "Her", "He", "His"], correct: 2},
+                    {question: "Which pronoun replaces 'Ravi and I'?", options: ["They", "We", "He", "Us"], correct: 1},
+                    {question: "Which is a possessive pronoun?", options: ["He", "Him", "His", "Himself"], correct: 2},
+                    {question: "Which pronoun is used for a thing?", options: ["He", "She", "It", "They"], correct: 2},
+                    {question: "Choose: 'The teacher asked ___ to sit down.'", options: ["we", "us", "our", "ours"], correct: 1},
+                    // ARTICLES (6)
+                    {question: "Which article is used before a vowel sound?", options: ["A", "An", "The", "No article"], correct: 1},
+                    {question: "Choose: '___ apple a day keeps the doctor away.'", options: ["A", "An", "The", "None"], correct: 1},
+                    {question: "Choose: '___ Sun rises in the east.'", options: ["A", "An", "The", "None"], correct: 2},
+                    {question: "Choose: 'She wants to be ___ doctor.'", options: ["a", "an", "the", "none"], correct: 0},
+                    {question: "Choose: 'I have ___ umbrella.'", options: ["a", "an", "the", "none"], correct: 1},
+                    {question: "Choose: '___ milk is good for health.'", options: ["A", "An", "The", "No article"], correct: 3},
+                    // PREPOSITIONS (6)
+                    {question: "Choose: 'The book is ___ the table.'", options: ["at", "on", "in", "by"], correct: 1},
+                    {question: "Choose: 'She lives ___ Mumbai.'", options: ["on", "at", "in", "by"], correct: 2},
+                    {question: "Choose: 'The meeting is ___ 9 o'clock.'", options: ["in", "on", "at", "by"], correct: 2},
+                    {question: "Choose: 'We go to school ___ Monday.'", options: ["in", "on", "at", "by"], correct: 1},
+                    {question: "Choose: 'She is sitting ___ me.'", options: ["beside", "at", "on", "in"], correct: 0},
+                    {question: "Choose: 'The cat jumped ___ the wall.'", options: ["in", "at", "over", "on"], correct: 2},
+                    // VERBS (6)
+                    {question: "Choose the correct verb: 'He ___ to school every day.'", options: ["go", "goes", "going", "gone"], correct: 1},
+                    {question: "What is the past tense of 'go'?", options: ["Goed", "Gone", "Went", "Goes"], correct: 2},
+                    {question: "What is the past tense of 'eat'?", options: ["Eated", "Ate", "Eaten", "Eats"], correct: 1},
+                    {question: "What is the past tense of 'write'?", options: ["Writed", "Written", "Wrote", "Writes"], correct: 2},
+                    {question: "Choose: 'She ___ a letter yesterday.'", options: ["write", "writes", "wrote", "written"], correct: 2},
+                    {question: "Which of these is a linking verb?", options: ["Run", "Jump", "Am", "Eat"], correct: 2},
+                    // TENSES (8)
+                    {question: "Which sentence is in Simple Present Tense?", options: ["She played tennis.", "She plays tennis.", "She will play tennis.", "She is playing tennis."], correct: 1},
+                    {question: "Which sentence is in Simple Past Tense?", options: ["He eats rice.", "He is eating rice.", "He ate rice.", "He will eat rice."], correct: 2},
+                    {question: "Which sentence is in Simple Future Tense?", options: ["I go.", "I went.", "I will go.", "I am going."], correct: 2},
+                    {question: "Choose: 'I ___ my homework now.'", options: ["do", "did", "am doing", "will do"], correct: 2},
+                    {question: "Choose: 'They ___ to the market yesterday.'", options: ["go", "goes", "went", "will go"], correct: 2},
+                    {question: "Choose: 'She ___ a book tomorrow.'", options: ["reads", "read", "is reading", "will read"], correct: 3},
+                    {question: "Choose: 'He ___ here since morning.'", options: ["is", "was", "has been", "will be"], correct: 2},
+                    {question: "Identify: 'We were watching TV when she called.'", options: ["Simple Past", "Past Continuous", "Present Continuous", "Future"], correct: 1},
+                    // ADJECTIVES & ADVERBS (6)
+                    {question: "What is the comparative form of 'tall'?", options: ["Tallest", "Taller", "More tall", "Most tall"], correct: 1},
+                    {question: "What is the superlative form of 'good'?", options: ["Gooder", "Goodest", "Better", "Best"], correct: 3},
+                    {question: "What is the comparative of 'good'?", options: ["Gooder", "More good", "Better", "Best"], correct: 2},
+                    {question: "Choose: 'She speaks English ___.'", options: ["good", "well", "better", "best"], correct: 1},
+                    {question: "Which is an adverb of time?", options: ["Quickly", "Yesterday", "Beautifully", "Very"], correct: 1},
+                    {question: "Which is an adverb of place?", options: ["Slowly", "Tomorrow", "Here", "Happily"], correct: 2},
+                    // SENTENCES & QUESTIONS (8)
+                    {question: "Which is a declarative sentence?", options: ["Are you happy?", "Come here!", "She is happy.", "What a day!"], correct: 2},
+                    {question: "Which is an interrogative sentence?", options: ["She is tall.", "Is she tall?", "How tall she is!", "Be tall."], correct: 1},
+                    {question: "Which is an imperative sentence?", options: ["She runs fast.", "Does she run fast?", "Please sit down.", "How fast she runs!"], correct: 2},
+                    {question: "Which is correct: 'He plays cricket.' ___", options: ["Does he plays cricket?", "Do he play cricket?", "Does he play cricket?", "Did he plays cricket?"], correct: 2},
+                    {question: "Complete the tag: 'She is beautiful, ___ ?'", options: ["is she", "isn't she", "was she", "wasn't she"], correct: 1},
+                    {question: "Choose: '___ is your name?'", options: ["Where", "When", "What", "Who"], correct: 2},
+                    {question: "A sentence must have a ___ and a ___.", options: ["Noun and Verb", "Subject and Predicate", "Article and Noun", "Adjective and Adverb"], correct: 1},
+                    {question: "Which is a negative sentence?", options: ["She is happy.", "She is not happy.", "Is she happy?", "How happy!"], correct: 1},
+                    // CONJUNCTIONS & PUNCTUATION (6)
+                    {question: "Choose: 'I like tea ___ coffee.'", options: ["but", "or", "and", "so"], correct: 2},
+                    {question: "Choose: 'She is poor ___ she is happy.'", options: ["and", "or", "but", "so"], correct: 2},
+                    {question: "Choose: 'He did not come ___ he was ill.'", options: ["and", "but", "because", "or"], correct: 2},
+                    {question: "Which punctuation ends a question?", options: [".", "!", "?", ","], correct: 2},
+                    {question: "An apostrophe in 'don't' shows ___.", options: ["Possession", "Plural", "Contraction — do not", "Question"], correct: 2},
+                    {question: "Which sentence is correctly written?", options: ["she is tall.", "She is tall.", "She is tall", "she Is tall."], correct: 1}
+                ]
+            }
+        };
+
+        var currentQuestion=0,userAnswers=[],timeLeft=2400,timer;
+        var studentId='',currentStudentData=null,selectedQuestionSet='A',questions=[];
+        var isDarkMode=false,isAdminMode=false,examStartTime=null;
+        var finalTestPasswords=['ENG2024','JYCC@ENG','JYCC@SPOKEN','INSTRUCTOR123','ADMIN2024'];
+        var finalExamScores=JSON.parse(localStorage.getItem('engFinalExamScores')||'[]');
+
+        function escapeHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
+        function showNotification(msg,type,dur){var e=document.querySelectorAll('.notification');e.forEach(function(n){n.remove();});var colors={success:'#48bb78',error:'#e53e3e',info:'#4299e1',warning:'#d69e2e'};var n=document.createElement('div');n.className='notification';n.textContent=msg;n.style.background=colors[type]||colors.info;document.body.appendChild(n);setTimeout(function(){n.remove();},dur||3000);}
+        function toggleTheme(){isDarkMode=!isDarkMode;document.body.classList.toggle('dark-mode',isDarkMode);document.querySelector('.theme-toggle').textContent=isDarkMode?'☀️ Light Mode':'🌙 Dark Mode';}
+        function toggleAdmin(){isAdminMode=!isAdminMode;document.getElementById('homeSection').style.display=isAdminMode?'none':'block';document.getElementById('adminPanel').classList.toggle('active',isAdminMode);if(isAdminMode)renderAdminTable();}
+        function renderAdminTable(){var tbody=document.getElementById('adminTableBody');document.getElementById('totalResults').textContent=finalExamScores.length;if(!finalExamScores.length){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:#888;padding:2rem;">No results yet</td></tr>';return;}tbody.innerHTML=finalExamScores.map(function(r,i){return '<tr><td>'+(i+1)+'</td><td>'+r.name+'</td><td>'+r.code+'</td><td><span class="badge badge-set">Set '+r.set+'</span></td><td><strong>'+r.score+'%</strong></td><td><span class="badge '+(r.passed?'badge-pass':'badge-fail')+'">'+(r.passed?'✅ Pass':'❌ Fail')+'</span></td><td>'+r.time+'</td></tr>';}).join('');}
+        function accessTest(){var code=document.getElementById('studentCode').value.trim().toUpperCase();if(!code){showNotification('Please enter your Student Code!','error');return;}if(!students[code]){showNotification('❌ Student ID not found! Contact your instructor.','error');return;}var student=students[code];studentId=code;currentStudentData=student;document.getElementById('studentName').textContent=student.name;document.getElementById('studentCodeDisplay').textContent=code;document.getElementById('studentCourse').textContent=student.course;document.getElementById('studentJoinDate').textContent=student.joinDate;document.getElementById('homeSection').style.display='none';document.getElementById('studentDashboard').style.display='block';renderQuestionSets();showNotification('✅ Welcome, '+student.name+'!','success');}
+        function renderQuestionSets(){var grid=document.getElementById('questionSetsGrid');var sets=[
+            {key:'A',icon:'📗',label:'Set A',desc:'Nouns, Pronouns, Articles & Prepositions',info:'35 Qs • 40 min • Pass 50%'},
+            {key:'B',icon:'📘',label:'Set B',desc:'Verbs, Tenses, Adjectives & Adverbs',info:'35 Qs • 40 min • Pass 50%'},
+            {key:'C',icon:'📙',label:'Set C',desc:'Sentences, Questions & Punctuation',info:'35 Qs • 40 min • Pass 50%'},
+            {key:'FINAL',icon:'🏆',label:'Final Test',desc:'Complete Grammar Assessment',info:'60 Qs • 70 min • Pass 60%',isFinal:true}
+        ];grid.innerHTML=sets.map(function(s){return '<div class="set-card" id="setCard_'+s.key+'" onclick="selectSet(\''+s.key+'\')">'+'<div class="set-icon">'+s.icon+'</div>'+'<div class="set-name">'+s.label+' '+(s.isFinal?'<span class="final-test-badge">🔐 Final</span>':'')+'</div>'+'<div style="font-size:0.82rem;color:#b5451b;font-weight:600;">'+s.desc+'</div>'+'<div class="set-info">'+s.info+'</div></div>';}).join('');}
+        function selectSet(key){selectedQuestionSet=key;document.querySelectorAll('.set-card').forEach(function(c){c.classList.remove('selected');});document.getElementById('setCard_'+key).classList.add('selected');document.getElementById('startBtn').style.display='block';document.getElementById('startBtn').textContent=key==='FINAL'?'🔐 Unlock & Start Final Test':'▶️ Start '+key+' Test';}
+        function startExam(){if(!selectedQuestionSet){showNotification('Please select a question set!','error');return;}if(selectedQuestionSet==='FINAL'){document.getElementById('passwordModal').classList.add('active');return;}launchExam(selectedQuestionSet);}
+        function verifyFinalTestPassword(){var pwd=document.getElementById('finalTestPassword').value.trim();if(finalTestPasswords.indexOf(pwd)!==-1){closePasswordModal();launchExam('FINAL');}else{showNotification('❌ Incorrect password!','error');}}
+        function closePasswordModal(){document.getElementById('passwordModal').classList.remove('active');document.getElementById('finalTestPassword').value='';}
+        function launchExam(setKey){var set=questionSets[setKey];questions=set.questions.slice();userAnswers=new Array(questions.length).fill(null);currentQuestion=0;timeLeft=set.timeLimit;examStartTime=new Date();document.getElementById('studentDashboard').style.display='none';document.getElementById('quizSection').style.display='block';document.getElementById('quizTitle').textContent=set.title;renderQuestion();startTimer();showNotification('🚀 Exam started! Good luck!','success');}
+        function renderQuestion(){var q=questions[currentQuestion],total=questions.length;document.getElementById('questionNum').textContent='Question '+(currentQuestion+1)+' of '+total;document.getElementById('questionCounter').textContent='Q '+(currentQuestion+1)+'/'+total;document.getElementById('questionText').textContent=q.question;document.getElementById('progressFill').style.width=((currentQuestion+1)/total*100)+'%';var letters=['A','B','C','D'];document.getElementById('optionsGrid').innerHTML=q.options.map(function(opt,i){var cls='option-btn'+(userAnswers[currentQuestion]===i?' selected':'');return '<button class="'+cls+'" onclick="selectAnswer('+i+')">'+'<span class="option-letter">'+letters[i]+'</span>'+escapeHtml(opt)+'</button>';}).join('');document.getElementById('nextBtn').style.display=currentQuestion<total-1?'block':'none';document.getElementById('submitBtn').style.display=currentQuestion===total-1?'block':'none';}
+        function selectAnswer(idx){userAnswers[currentQuestion]=idx;document.querySelectorAll('.option-btn').forEach(function(b,i){b.classList.toggle('selected',i===idx);var l=b.querySelector('.option-letter');l.style.background=i===idx?'#b5451b':'';l.style.color=i===idx?'white':'';});}
+        function nextQuestion(){if(currentQuestion<questions.length-1){currentQuestion++;renderQuestion();}}
+        function prevQuestion(){if(currentQuestion>0){currentQuestion--;renderQuestion();}}
+        function confirmSubmit(){var u=userAnswers.filter(function(a){return a===null;}).length;if(u>0){if(!confirm('You have '+u+' unanswered question(s). Submit anyway?'))return;}submitExam();}
+        function submitExam(){clearInterval(timer);var correct=0;userAnswers.forEach(function(ans,i){if(ans===questions[i].correct)correct++;});var total=questions.length,score=Math.round((correct/total)*100);var set=questionSets[selectedQuestionSet],passed=score>=set.passingScore;var elapsed=Math.floor((new Date()-examStartTime)/1000);var timeStr=Math.floor(elapsed/60)+':'+(elapsed%60<10?'0':'')+elapsed%60;finalExamScores.push({name:currentStudentData.name,code:studentId,set:selectedQuestionSet,score:score,passed:passed,time:timeStr,date:new Date().toLocaleDateString()});localStorage.setItem('engFinalExamScores',JSON.stringify(finalExamScores));document.getElementById('quizSection').style.display='none';document.getElementById('resultsSection').style.display='block';var circle=document.getElementById('scoreCircle');circle.className='score-circle '+(passed?'passed':'failed');document.getElementById('scoreNumber').textContent=score+'%';var badge=document.getElementById('resultBadge');badge.className='result-badge '+(passed?'passed':'failed');badge.textContent=passed?'🎉 PASSED!':'😞 FAILED';document.getElementById('resultTitle').textContent=passed?'Congratulations, '+currentStudentData.name+'!':'Keep practising, you can do it!';document.getElementById('resultMessage').textContent='You scored '+score+'% (Pass mark: '+set.passingScore+'%)';document.getElementById('correctCount').textContent=correct;document.getElementById('wrongCount').textContent=total-correct-userAnswers.filter(function(a){return a===null;}).length;document.getElementById('timeTaken').textContent=timeStr;}
+        function reviewAnswers(){var section=document.getElementById('reviewSection');section.style.display=section.style.display==='none'?'block':'none';if(section.style.display==='none')return;var letters=['A','B','C','D'];document.getElementById('reviewItems').innerHTML=questions.map(function(q,i){var ua=userAnswers[i],isCorrect=ua===q.correct;return '<div class="review-item '+(isCorrect?'correct':'incorrect')+'">'+'<div class="review-q">'+(i+1)+'. '+escapeHtml(q.question)+'</div>'+'<div class="review-a '+(isCorrect?'correct-a':'wrong-a')+'">'+(ua!==null?'📝 Your answer: '+letters[ua]+'. '+escapeHtml(q.options[ua]):'⚪ Not answered')+'</div>'+(!isCorrect?'<div class="review-a correct-a">✅ Correct: '+letters[q.correct]+'. '+escapeHtml(q.options[q.correct])+'</div>':'')+'</div>';}).join('');}
+        function startTimer(){updateTimerDisplay();timer=setInterval(function(){timeLeft--;updateTimerDisplay();if(timeLeft<=0){clearInterval(timer);showNotification('⏰ Time is up!','error');submitExam();}},1000);}
+        function updateTimerDisplay(){var mm=Math.floor(timeLeft/60),ss=timeLeft%60;var box=document.getElementById('timerBox');box.textContent='⏱️ '+mm+':'+(ss<10?'0':'')+ss;box.className='timer-box'+(timeLeft<=300?' danger':timeLeft<=600?' warning':'');}
+        function goHome(){document.getElementById('resultsSection').style.display='none';document.getElementById('homeSection').style.display='block';document.getElementById('studentCode').value='';}
+        document.getElementById('studentCode').addEventListener('keypress',function(e){if(e.key==='Enter')accessTest();});
+        document.getElementById('finalTestPassword').addEventListener('keypress',function(e){if(e.key==='Enter')verifyFinalTestPassword();});
+        window.addEventListener('click',function(event){var modal=document.getElementById('passwordModal');if(event.target===modal)closePasswordModal();});
+</script>
+</body>
+</html>
