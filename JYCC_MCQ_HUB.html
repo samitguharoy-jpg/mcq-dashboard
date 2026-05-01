@@ -6,498 +6,167 @@
 <title>JYCC MCQ Hub — Jatiya Yuva Computer Centre</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0a0f;
-    --card-bg: #12121a;
-    --border: rgba(255,255,255,0.07);
-    --text: #f0eee8;
-    --muted: #7a7a8a;
-    --excel: #1a7a4a;
-    --excel-light: #2ecc71;
-    --python: #2b5ba8;
-    --python-light: #4a9eff;
-    --word: #1a4fa8;
-    --word-light: #5b9bd5;
-    --tally: #8a1a1a;
-    --tally-light: #e74c3c;
-    --gold: #c9a84c;
-  }
+  :root{--bg:#0a0a0f;--card-bg:#12121a;--border:rgba(255,255,255,0.07);--text:#f0eee8;--muted:#7a7a8a;--gold:#c9a84c;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(42,90,180,0.07) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(26,122,74,0.07) 0%,transparent 60%);pointer-events:none;z-index:0;}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+  .container{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:60px 24px 80px;}
+  .header{text-align:center;margin-bottom:60px;animation:fadeDown 0.8s ease both;}
+  .institute-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);border-radius:50px;padding:8px 20px;font-size:0.78rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+  .institute-badge::before{content:'🏫';font-size:1rem;}
+  .header h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,6vw,3.8rem);font-weight:900;line-height:1.1;background:linear-gradient(135deg,#f0eee8 30%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;}
+  .header p{color:var(--muted);font-size:1.05rem;font-weight:300;}
+  .stats-row{display:flex;justify-content:center;gap:40px;margin-top:32px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);display:block;}
+  .stat-label{font-size:0.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+  .divider{width:1px;height:40px;background:var(--border);align-self:center;}
+  .section-label{font-size:0.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:32px;}
+  .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;}
+  @media(max-width:900px){.cards-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.cards-grid{grid-template-columns:1fr;}}
+  .card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:26px 22px;position:relative;overflow:hidden;transition:transform 0.3s ease,box-shadow 0.3s ease,border-color 0.3s ease;text-decoration:none;display:block;animation:fadeUp 0.7s ease both;}
+  .card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s ease;border-radius:18px;}
+  .card:hover{transform:translateY(-5px);}
+  .card:hover::before{opacity:1;}
+  .card-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:12px;}
+  .card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;box-shadow:0 8px 20px rgba(0,0,0,0.3);}
+  .card-meta{flex:1;}
+  .card-tag{display:inline-block;font-size:0.63rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:50px;margin-bottom:5px;}
+  .card h2{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--text);line-height:1.2;}
+  .card p{color:var(--muted);font-size:0.8rem;line-height:1.5;margin-bottom:14px;font-weight:300;}
+  .card-details{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+  .detail-item{display:flex;align-items:center;gap:4px;font-size:0.72rem;color:var(--muted);}
+  .btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:10px 14px;border:none;border-radius:10px;color:white;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;transition:opacity 0.2s,transform 0.2s;text-decoration:none;}
+  .btn:hover{opacity:0.9;transform:scale(1.01);}
+  .btn::after{content:'→';font-size:0.9rem;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* Animated background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 20%, rgba(42,90,180,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(26,122,74,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Grid pattern */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 24px 80px;
-  }
-
-  /* Header */
-  .header {
-    text-align: center;
-    margin-bottom: 70px;
-    animation: fadeDown 0.8s ease both;
-  }
-
-  .institute-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 50px;
-    padding: 8px 20px;
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 28px;
-  }
-
-  .institute-badge::before {
-    content: '🏫';
-    font-size: 1rem;
-  }
-
-  .header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 6vw, 4rem);
-    font-weight: 900;
-    line-height: 1.1;
-    background: linear-gradient(135deg, #f0eee8 30%, var(--gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 16px;
-  }
-
-  .header p {
-    color: var(--muted);
-    font-size: 1.05rem;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  }
-
-  .stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 32px;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    text-align: center;
-  }
-
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold);
-    display: block;
-  }
-
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .divider {
-    width: 1px;
-    height: 40px;
-    background: var(--border);
-    align-self: center;
-  }
-
-  /* Section label */
-  .section-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  /* Cards Grid */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-bottom: 48px;
-  }
-
-  @media (max-width: 640px) {
-    .cards-grid { grid-template-columns: 1fr; }
-  }
-
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 36px 32px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    text-decoration: none;
-    display: block;
-    animation: fadeUp 0.7s ease both;
-  }
-
-  .card:nth-child(1) { animation-delay: 0.1s; }
-  .card:nth-child(2) { animation-delay: 0.2s; }
-  .card:nth-child(3) { animation-delay: 0.3s; }
-  .card:nth-child(4) { animation-delay: 0.4s; }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 20px;
-  }
-
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-  }
-
-  .card:hover::before { opacity: 1; }
-
-  /* Excel card */
-  .card-excel { border-color: rgba(46,204,113,0.15); }
-  .card-excel::before { background: radial-gradient(ellipse at top left, rgba(46,204,113,0.08), transparent 70%); }
-  .card-excel:hover { border-color: rgba(46,204,113,0.4); box-shadow: 0 24px 60px rgba(46,204,113,0.12); }
-  .card-excel .card-icon { background: linear-gradient(135deg, var(--excel), var(--excel-light)); }
-  .card-excel .card-tag { background: rgba(46,204,113,0.12); color: var(--excel-light); }
-  .card-excel .btn { background: linear-gradient(135deg, var(--excel), var(--excel-light)); }
-
-  /* Python card */
-  .card-python { border-color: rgba(74,158,255,0.15); }
-  .card-python::before { background: radial-gradient(ellipse at top left, rgba(74,158,255,0.08), transparent 70%); }
-  .card-python:hover { border-color: rgba(74,158,255,0.4); box-shadow: 0 24px 60px rgba(74,158,255,0.12); }
-  .card-python .card-icon { background: linear-gradient(135deg, var(--python), var(--python-light)); }
-  .card-python .card-tag { background: rgba(74,158,255,0.12); color: var(--python-light); }
-  .card-python .btn { background: linear-gradient(135deg, var(--python), var(--python-light)); }
-
-  /* Word card */
-  .card-word { border-color: rgba(91,155,213,0.15); }
-  .card-word::before { background: radial-gradient(ellipse at top left, rgba(91,155,213,0.08), transparent 70%); }
-  .card-word:hover { border-color: rgba(91,155,213,0.4); box-shadow: 0 24px 60px rgba(91,155,213,0.12); }
-  .card-word .card-icon { background: linear-gradient(135deg, var(--word), var(--word-light)); }
-  .card-word .card-tag { background: rgba(91,155,213,0.12); color: var(--word-light); }
-  .card-word .btn { background: linear-gradient(135deg, var(--word), var(--word-light)); }
-
-  /* Tally card */
-  .card-tally { border-color: rgba(231,76,60,0.15); }
-  .card-tally::before { background: radial-gradient(ellipse at top left, rgba(231,76,60,0.08), transparent 70%); }
-  .card-tally:hover { border-color: rgba(231,76,60,0.4); box-shadow: 0 24px 60px rgba(231,76,60,0.12); }
-  .card-tally .card-icon { background: linear-gradient(135deg, var(--tally), var(--tally-light)); }
-  .card-tally .card-tag { background: rgba(231,76,60,0.12); color: var(--tally-light); }
-  .card-tally .btn { background: linear-gradient(135deg, var(--tally), var(--tally-light)); }
-
-  .card-top {
-    display: flex;
-    align-items: flex-start;
-    gap: 18px;
-    margin-bottom: 20px;
-  }
-
-  .card-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    flex-shrink: 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  }
-
-  .card-meta { flex: 1; }
-
-  .card-tag {
-    display: inline-block;
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 50px;
-    margin-bottom: 8px;
-  }
-
-  .card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.45rem;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.2;
-  }
-
-  .card p {
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.6;
-    margin-bottom: 24px;
-    font-weight: 300;
-  }
-
-  .card-details {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-  }
-
-  .detail-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  .detail-item span:first-child { font-size: 0.9rem; }
-
-  .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 13px 20px;
-    border: none;
-    border-radius: 12px;
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 0.3px;
-    transition: opacity 0.2s, transform 0.2s;
-    text-decoration: none;
-  }
-
-  .btn:hover { opacity: 0.9; transform: scale(1.01); }
-  .btn::after { content: '→'; font-size: 1rem; }
-
-  /* Coming soon card */
-  .card-coming {
-    border: 1px dashed rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.02);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 12px;
-    min-height: 200px;
-    cursor: default;
-    animation: fadeUp 0.7s 0.5s ease both;
-  }
-
-  .card-coming:hover { transform: none; box-shadow: none; }
-
-  .coming-icon { font-size: 2.5rem; opacity: 0.3; }
-  .coming-text { font-size: 0.85rem; color: var(--muted); letter-spacing: 1px; }
-
-  /* Info bar */
-  .info-bar {
-    background: rgba(201,168,76,0.06);
-    border: 1px solid rgba(201,168,76,0.15);
-    border-radius: 14px;
-    padding: 20px 28px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    animation: fadeUp 0.8s 0.5s ease both;
-  }
-
-  .info-bar-icon { font-size: 1.4rem; flex-shrink: 0; }
-
-  .info-bar-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-
-  .info-bar-text strong { color: var(--gold); font-weight: 600; }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    margin-top: 60px;
-    padding-top: 28px;
-    border-top: 1px solid var(--border);
-    font-size: 0.78rem;
-    color: var(--muted);
-    letter-spacing: 0.5px;
-    animation: fadeUp 0.8s 0.6s ease both;
-  }
-
-  /* Animations */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  /* Card Themes */
+  .card-excel{border-color:rgba(46,204,113,0.15)}.card-excel::before{background:radial-gradient(ellipse at top left,rgba(46,204,113,0.07),transparent 70%)}.card-excel:hover{border-color:rgba(46,204,113,0.4);box-shadow:0 20px 50px rgba(46,204,113,0.10)}.card-excel .card-icon{background:linear-gradient(135deg,#1a7a4a,#2ecc71)}.card-excel .card-tag{background:rgba(46,204,113,0.12);color:#2ecc71}.card-excel .btn{background:linear-gradient(135deg,#1a7a4a,#2ecc71)}
+  .card-python{border-color:rgba(74,158,255,0.15)}.card-python::before{background:radial-gradient(ellipse at top left,rgba(74,158,255,0.07),transparent 70%)}.card-python:hover{border-color:rgba(74,158,255,0.4);box-shadow:0 20px 50px rgba(74,158,255,0.10)}.card-python .card-icon{background:linear-gradient(135deg,#2b5ba8,#4a9eff)}.card-python .card-tag{background:rgba(74,158,255,0.12);color:#4a9eff}.card-python .btn{background:linear-gradient(135deg,#2b5ba8,#4a9eff)}
+  .card-word{border-color:rgba(91,155,213,0.15)}.card-word::before{background:radial-gradient(ellipse at top left,rgba(91,155,213,0.07),transparent 70%)}.card-word:hover{border-color:rgba(91,155,213,0.4);box-shadow:0 20px 50px rgba(91,155,213,0.10)}.card-word .card-icon{background:linear-gradient(135deg,#1a4fa8,#5b9bd5)}.card-word .card-tag{background:rgba(91,155,213,0.12);color:#5b9bd5}.card-word .btn{background:linear-gradient(135deg,#1a4fa8,#5b9bd5)}
+  .card-tally{border-color:rgba(231,76,60,0.15)}.card-tally::before{background:radial-gradient(ellipse at top left,rgba(231,76,60,0.07),transparent 70%)}.card-tally:hover{border-color:rgba(231,76,60,0.4);box-shadow:0 20px 50px rgba(231,76,60,0.10)}.card-tally .card-icon{background:linear-gradient(135deg,#8a1a1a,#e74c3c)}.card-tally .card-tag{background:rgba(231,76,60,0.12);color:#e74c3c}.card-tally .btn{background:linear-gradient(135deg,#8a1a1a,#e74c3c)}
+  .card-html{border-color:rgba(241,101,41,0.15)}.card-html::before{background:radial-gradient(ellipse at top left,rgba(241,101,41,0.07),transparent 70%)}.card-html:hover{border-color:rgba(241,101,41,0.4);box-shadow:0 20px 50px rgba(241,101,41,0.10)}.card-html .card-icon{background:linear-gradient(135deg,#e44d26,#f16529)}.card-html .card-tag{background:rgba(241,101,41,0.12);color:#f16529}.card-html .btn{background:linear-gradient(135deg,#e44d26,#f16529)}
+  .card-css{border-color:rgba(101,118,241,0.15)}.card-css::before{background:radial-gradient(ellipse at top left,rgba(101,118,241,0.07),transparent 70%)}.card-css:hover{border-color:rgba(101,118,241,0.4);box-shadow:0 20px 50px rgba(101,118,241,0.10)}.card-css .card-icon{background:linear-gradient(135deg,#264de4,#2965f1)}.card-css .card-tag{background:rgba(101,118,241,0.12);color:#6576f1}.card-css .btn{background:linear-gradient(135deg,#264de4,#2965f1)}
+  .card-ppt{border-color:rgba(210,71,38,0.15)}.card-ppt::before{background:radial-gradient(ellipse at top left,rgba(210,71,38,0.07),transparent 70%)}.card-ppt:hover{border-color:rgba(210,71,38,0.4);box-shadow:0 20px 50px rgba(210,71,38,0.10)}.card-ppt .card-icon{background:linear-gradient(135deg,#B7472A,#D24726)}.card-ppt .card-tag{background:rgba(210,71,38,0.12);color:#D24726}.card-ppt .btn{background:linear-gradient(135deg,#B7472A,#D24726)}
+  .card-cf{border-color:rgba(39,174,96,0.15)}.card-cf::before{background:radial-gradient(ellipse at top left,rgba(39,174,96,0.07),transparent 70%)}.card-cf:hover{border-color:rgba(39,174,96,0.4);box-shadow:0 20px 50px rgba(39,174,96,0.10)}.card-cf .card-icon{background:linear-gradient(135deg,#1a6b3c,#27ae60)}.card-cf .card-tag{background:rgba(39,174,96,0.12);color:#27ae60}.card-cf .btn{background:linear-gradient(135deg,#1a6b3c,#27ae60)}
+  .card-access{border-color:rgba(155,89,182,0.15)}.card-access::before{background:radial-gradient(ellipse at top left,rgba(155,89,182,0.07),transparent 70%)}.card-access:hover{border-color:rgba(155,89,182,0.4);box-shadow:0 20px 50px rgba(155,89,182,0.10)}.card-access .card-icon{background:linear-gradient(135deg,#6b2fa0,#9b59b6)}.card-access .card-tag{background:rgba(155,89,182,0.12);color:#9b59b6}.card-access .btn{background:linear-gradient(135deg,#6b2fa0,#9b59b6)}
+  .card-net{border-color:rgba(0,180,216,0.15)}.card-net::before{background:radial-gradient(ellipse at top left,rgba(0,180,216,0.07),transparent 70%)}.card-net:hover{border-color:rgba(0,180,216,0.4);box-shadow:0 20px 50px rgba(0,180,216,0.10)}.card-net .card-icon{background:linear-gradient(135deg,#0077b6,#00b4d8)}.card-net .card-tag{background:rgba(0,180,216,0.12);color:#00b4d8}.card-net .btn{background:linear-gradient(135deg,#0077b6,#00b4d8)}
+  .card-eng{border-color:rgba(224,123,57,0.15)}.card-eng::before{background:radial-gradient(ellipse at top left,rgba(224,123,57,0.07),transparent 70%)}.card-eng:hover{border-color:rgba(224,123,57,0.4);box-shadow:0 20px 50px rgba(224,123,57,0.10)}.card-eng .card-icon{background:linear-gradient(135deg,#b5451b,#e07b39)}.card-eng .card-tag{background:rgba(224,123,57,0.12);color:#e07b39}.card-eng .btn{background:linear-gradient(135deg,#b5451b,#e07b39)}
+  .card-coming{border:1px dashed rgba(255,255,255,0.08);background:rgba(255,255,255,0.015);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;min-height:180px;cursor:default;}
+  .card-coming:hover{transform:none;box-shadow:none;}
+  .coming-icon{font-size:2rem;opacity:0.25;}
+  .coming-text{font-size:0.8rem;color:var(--muted);letter-spacing:1px;}
+  .info-bar{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:14px;padding:20px 28px;display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+  .info-bar-icon{font-size:1.4rem;flex-shrink:0;}
+  .info-bar-text{font-size:0.84rem;color:var(--muted);line-height:1.6;}
+  .info-bar-text strong{color:var(--gold);font-weight:600;}
+  .footer{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);font-size:0.76rem;color:var(--muted);}
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .card:nth-child(1){animation-delay:0.05s}.card:nth-child(2){animation-delay:0.10s}.card:nth-child(3){animation-delay:0.15s}.card:nth-child(4){animation-delay:0.20s}.card:nth-child(5){animation-delay:0.25s}.card:nth-child(6){animation-delay:0.30s}.card:nth-child(7){animation-delay:0.35s}.card:nth-child(8){animation-delay:0.40s}.card:nth-child(9){animation-delay:0.45s}.card:nth-child(10){animation-delay:0.50s}.card:nth-child(11){animation-delay:0.55s}.card:nth-child(12){animation-delay:0.60s}
 </style>
 </head>
 <body>
-
 <div class="container">
 
-  <!-- Header -->
   <div class="header">
     <div class="institute-badge">Jatiya Yuva Computer Centre</div>
     <h1>MCQ Test Hub</h1>
     <p>Select a subject below to start your practice test</p>
     <div class="stats-row">
-      <div class="stat">
-        <span class="stat-num">589</span>
-        <span class="stat-label">Students</span>
-      </div>
+      <div class="stat"><span class="stat-num">589</span><span class="stat-label">Students</span></div>
       <div class="divider"></div>
-      <div class="stat">
-        <span class="stat-num">4</span>
-        <span class="stat-label">Subjects</span>
-      </div>
+      <div class="stat"><span class="stat-num">11</span><span class="stat-label">Subjects</span></div>
       <div class="divider"></div>
-      <div class="stat">
-        <span class="stat-num">400+</span>
-        <span class="stat-label">Questions</span>
-      </div>
+      <div class="stat"><span class="stat-num">1400+</span><span class="stat-label">Questions</span></div>
       <div class="divider"></div>
-      <div class="stat">
-        <span class="stat-num">Free</span>
-        <span class="stat-label">Always</span>
-      </div>
+      <div class="stat"><span class="stat-num">Free</span><span class="stat-label">Always</span></div>
     </div>
   </div>
 
-  <!-- Section Label -->
   <div class="section-label">Choose Your Subject</div>
 
-  <!-- Cards Grid -->
   <div class="cards-grid">
 
-    <!-- MS Excel -->
     <a class="card card-excel" href="ALL_FINAL_BRAND_-_MS_EXCEL.html" target="_blank">
-      <div class="card-top">
-        <div class="card-icon">📊</div>
-        <div class="card-meta">
-          <span class="card-tag">Spreadsheet</span>
-          <h2>MS Excel</h2>
-        </div>
-      </div>
-      <p>Formulas, functions, charts, pivot tables, data analysis and advanced Excel features.</p>
-      <div class="card-details">
-        <div class="detail-item"><span>📝</span><span>4 Question Sets</span></div>
-        <div class="detail-item"><span>⏱️</span><span>35 / 60 min</span></div>
-        <div class="detail-item"><span>✅</span><span>Pass: 60% / 70%</span></div>
-      </div>
+      <div class="card-top"><div class="card-icon">📊</div><div class="card-meta"><span class="card-tag">Spreadsheet</span><h2>MS Excel</h2></div></div>
+      <p>Formulas, functions, charts, pivot tables and advanced Excel features.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
       <div class="btn">Start MS Excel Test</div>
     </a>
 
-    <!-- Python -->
     <a class="card card-python" href="python_mcq_dashboard.html" target="_blank">
-      <div class="card-top">
-        <div class="card-icon">🐍</div>
-        <div class="card-meta">
-          <span class="card-tag">Programming</span>
-          <h2>Python</h2>
-        </div>
-      </div>
-      <p>Basic to advanced Python — data types, loops, functions, OOP, modules and more.</p>
-      <div class="card-details">
-        <div class="detail-item"><span>📝</span><span>4 Question Sets</span></div>
-        <div class="detail-item"><span>⏱️</span><span>35 / 60 min</span></div>
-        <div class="detail-item"><span>✅</span><span>Pass: 60% / 70%</span></div>
-      </div>
+      <div class="card-top"><div class="card-icon">🐍</div><div class="card-meta"><span class="card-tag">Programming</span><h2>Python</h2></div></div>
+      <p>Data types, loops, functions, OOP, modules and advanced Python.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
       <div class="btn">Start Python Test</div>
     </a>
 
-    <!-- MS Word -->
     <a class="card card-word" href="ms-word-mcq-dashboard.html" target="_blank">
-      <div class="card-top">
-        <div class="card-icon">📝</div>
-        <div class="card-meta">
-          <span class="card-tag">Word Processing</span>
-          <h2>MS Word</h2>
-        </div>
-      </div>
-      <p>Formatting, tables, mail merge, styles, headers, footers and document management.</p>
-      <div class="card-details">
-        <div class="detail-item"><span>📝</span><span>4 Question Sets</span></div>
-        <div class="detail-item"><span>⏱️</span><span>35 / 60 min</span></div>
-        <div class="detail-item"><span>✅</span><span>Pass: 60% / 70%</span></div>
-      </div>
+      <div class="card-top"><div class="card-icon">📝</div><div class="card-meta"><span class="card-tag">Word Processing</span><h2>MS Word</h2></div></div>
+      <p>Formatting, tables, mail merge, styles and document management.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
       <div class="btn">Start MS Word Test</div>
     </a>
 
-    <!-- Tally -->
     <a class="card card-tally" href="fixed_tally_mcq_06_07_2025_FINAL.html" target="_blank">
-      <div class="card-top">
-        <div class="card-icon">🧾</div>
-        <div class="card-meta">
-          <span class="card-tag">Accounting</span>
-          <h2>Tally Prime</h2>
-        </div>
-      </div>
-      <p>Accounting entries, GST, vouchers, ledgers, balance sheet and Tally Prime operations.</p>
-      <div class="card-details">
-        <div class="detail-item"><span>📝</span><span>4 Question Sets</span></div>
-        <div class="detail-item"><span>⏱️</span><span>35 / 60 min</span></div>
-        <div class="detail-item"><span>✅</span><span>Pass: 60% / 70%</span></div>
-      </div>
+      <div class="card-top"><div class="card-icon">🧾</div><div class="card-meta"><span class="card-tag">Accounting</span><h2>Tally Prime</h2></div></div>
+      <p>GST, vouchers, ledgers, balance sheet and Tally Prime operations.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
       <div class="btn">Start Tally Test</div>
     </a>
 
-    <!-- Coming Soon -->
+    <a class="card card-html" href="html_mcq_dashboard.html" target="_blank">
+      <div class="card-top"><div class="card-icon">🌐</div><div class="card-meta"><span class="card-tag">Web Development</span><h2>HTML</h2></div></div>
+      <p>Tags, attributes, forms, tables and HTML5 semantic elements.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
+      <div class="btn">Start HTML Test</div>
+    </a>
+
+    <a class="card card-css" href="css_mcq_dashboard.html" target="_blank">
+      <div class="card-top"><div class="card-icon">🎨</div><div class="card-meta"><span class="card-tag">Web Styling</span><h2>CSS</h2></div></div>
+      <p>Selectors, box model, flexbox, grid, animations and responsive design.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
+      <div class="btn">Start CSS Test</div>
+    </a>
+
+    <a class="card card-ppt" href="ppt_mcq_dashboard.html" target="_blank">
+      <div class="card-top"><div class="card-icon">📽️</div><div class="card-meta"><span class="card-tag">Presentation</span><h2>MS PowerPoint</h2></div></div>
+      <p>Slides, animations, transitions, themes and Slide Master design tools.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
+      <div class="btn">Start PowerPoint Test</div>
+    </a>
+
+    <a class="card card-cf" href="cf_mcq_dashboard.html" target="_blank">
+      <div class="card-top"><div class="card-icon">🖥️</div><div class="card-meta"><span class="card-tag">Foundation</span><h2>Computer Fundamentals</h2></div></div>
+      <p>Hardware, software, OS, networks and basic computing concepts.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
+      <div class="btn">Start Fundamentals Test</div>
+    </a>
+
+    <a class="card card-access" href="access_mcq_dashboard.html" target="_blank">
+      <div class="card-top"><div class="card-icon">🗄️</div><div class="card-meta"><span class="card-tag">Database</span><h2>MS Access</h2></div></div>
+      <p>Tables, queries, forms, reports, relationships and SQL basics.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
+      <div class="btn">Start MS Access Test</div>
+    </a>
+
+    <a class="card card-net" href="internet_email_mcq_dashboard.html" target="_blank">
+      <div class="card-top"><div class="card-icon">📡</div><div class="card-meta"><span class="card-tag">Digital Communication</span><h2>Internet & Email</h2></div></div>
+      <p>Web browsing, email, online communication, cybersecurity and cloud.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 115 Qs</span></div><div class="detail-item"><span>⏱️</span><span>35/60 min</span></div><div class="detail-item"><span>✅</span><span>60%/70%</span></div></div>
+      <div class="btn">Start Internet Test</div>
+    </a>
+
+    <a class="card card-eng" href="english_grammar_mcq_dashboard.html" target="_blank">
+      <div class="card-top"><div class="card-icon">📖</div><div class="card-meta"><span class="card-tag">Spoken English</span><h2>English Grammar</h2></div></div>
+      <p>Nouns, pronouns, tenses, verbs, sentences and punctuation for beginners.</p>
+      <div class="card-details"><div class="detail-item"><span>📝</span><span>4 Sets • 165 Qs</span></div><div class="detail-item"><span>⏱️</span><span>40/70 min</span></div><div class="detail-item"><span>✅</span><span>50%/60%</span></div></div>
+      <div class="btn">Start English Test</div>
+    </a>
+
     <div class="card card-coming">
       <div class="coming-icon">🔜</div>
       <div class="coming-text">More Subjects Coming Soon...</div>
@@ -505,20 +174,20 @@
 
   </div>
 
-  <!-- Info Bar -->
   <div class="info-bar">
     <div class="info-bar-icon">🔑</div>
     <div class="info-bar-text">
-      <strong>How to login:</strong> Enter your Student Code (e.g. <strong>JYCSM-55</strong>) on the test page to begin. For the Final Test, ask your instructor for the password. All <strong>589 students</strong> are registered across all 4 dashboards.
+      <strong>How to login:</strong> Enter your Student Code (e.g. <strong>JYCSM-55</strong>) on any test page to begin. All <strong>589 students</strong> are registered across all 11 dashboards. Each subject opens in a new tab — you can take multiple tests!
     </div>
   </div>
 
-  <!-- Footer -->
+
+
   <div class="footer">
-    © 2025 Jatiya Yuva Computer Centre &nbsp;·&nbsp; samitguharoy-jpg &nbsp;·&nbsp; All Rights Reserved
+    © 2025 Jatiya Yuva Computer Centre &nbsp;·&nbsp; samitguharoy-jpg &nbsp;·&nbsp; All Rights Reserved<br>
+    11 Subjects &nbsp;|&nbsp; 589 Students &nbsp;|&nbsp; 1400+ Questions &nbsp;|&nbsp; Free Forever
   </div>
 
 </div>
-
 </body>
 </html>
