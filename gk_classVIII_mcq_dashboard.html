@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Knowledge MCQ Exam System - JYCC</title>
+    <title>General Knowledge MCQ — Class VIII - JYCC</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary-gradient: linear-gradient(135deg, #7b4f00 0%, #c9851a 100%);
+            --primary-gradient: linear-gradient(135deg, #1d7874 0%, #27b6a0 100%);
             --success-color: #48bb78;
             --error-color: #e53e3e;
             --dark-card: #2d3748;
@@ -23,47 +23,47 @@
         .admin-toggle:hover { transform: scale(1.05); }
         .home-section { text-align: center; }
         .institute-logo { font-size: 5rem; margin-bottom: 1rem; }
-        .institute-name { font-size: 1.8rem; font-weight: 800; color: #7b4f00; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 2px; }
-        body.dark-mode .institute-name { color: #c9851a; }
+        .institute-name { font-size: 1.8rem; font-weight: 800; color: #1d7874; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        body.dark-mode .institute-name { color: #27b6a0; }
         .institute-subtitle { font-size: 1rem; color: #666; margin-bottom: 2rem; }
         body.dark-mode .institute-subtitle { color: #a0aec0; }
         .exam-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .exam-subtitle { font-size: 0.95rem; color: #888; margin-bottom: 2rem; }
         body.dark-mode .exam-subtitle { color: #a0aec0; }
         .access-card { background: linear-gradient(135deg, #f0fff4, #fff); border: 2px solid #c6f6d5; border-radius: 15px; padding: 2rem; max-width: 500px; margin: 0 auto 2rem; }
-        body.dark-mode .access-card { background: linear-gradient(135deg, #2d3748, #4a5568); border-color: #7b4f00; }
-        .access-title { font-size: 1.2rem; font-weight: 700; color: #7b4f00; margin-bottom: 1rem; }
+        body.dark-mode .access-card { background: linear-gradient(135deg, #2d3748, #4a5568); border-color: #1d7874; }
+        .access-title { font-size: 1.2rem; font-weight: 700; color: #1d7874; margin-bottom: 1rem; }
         body.dark-mode .access-title { color: var(--dark-text); }
         .input-group { margin-bottom: 1rem; }
         .input-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #444; font-size: 0.9rem; }
         body.dark-mode .input-group label { color: var(--dark-text); }
         .input-group input { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; transition: all 0.3s ease; background: white; color: #333; }
         body.dark-mode .input-group input { background: #4a5568; border-color: #718096; color: var(--dark-text); }
-        .input-group input:focus { outline: none; border-color: #7b4f00; box-shadow: 0 0 0 3px rgba(201,133,26,0.1); }
+        .input-group input:focus { outline: none; border-color: #1d7874; box-shadow: 0 0 0 3px rgba(39,182,160,0.1); }
         .btn-primary { width: 100%; padding: 14px; background: var(--primary-gradient); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,133,26,0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(39,182,160,0.3); }
         .student-info-card { background: linear-gradient(135deg, #f0fff4, #fff); border: 2px solid #c6f6d5; border-radius: 15px; padding: 1.5rem; margin-bottom: 2rem; text-align: left; }
-        body.dark-mode .student-info-card { background: linear-gradient(135deg, #2d3748, #4a5568); border-color: #7b4f00; }
-        .student-info-card h3 { color: #7b4f00; font-size: 1.1rem; margin-bottom: 1rem; }
+        body.dark-mode .student-info-card { background: linear-gradient(135deg, #2d3748, #4a5568); border-color: #1d7874; }
+        .student-info-card h3 { color: #1d7874; font-size: 1.1rem; margin-bottom: 1rem; }
         .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
         .info-item { font-size: 0.9rem; }
         .info-label { font-weight: 600; color: #555; }
         body.dark-mode .info-label { color: #a0aec0; }
-        .info-value { color: #7b4f00; font-weight: 700; }
+        .info-value { color: #1d7874; font-weight: 700; }
         .question-sets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-bottom: 2rem; }
         .set-card { background: white; border: 2px solid #e2e8f0; border-radius: 15px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s ease; }
         body.dark-mode .set-card { background: #4a5568; border-color: #718096; }
-        .set-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(201,133,26,0.2); border-color: #7b4f00; }
-        .set-card.selected { border-color: #7b4f00; background: linear-gradient(135deg, #f0fff4, #fff); box-shadow: 0 10px 30px rgba(201,133,26,0.2); }
+        .set-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(39,182,160,0.2); border-color: #1d7874; }
+        .set-card.selected { border-color: #1d7874; background: linear-gradient(135deg, #f0fff4, #fff); box-shadow: 0 10px 30px rgba(39,182,160,0.2); }
         body.dark-mode .set-card.selected { background: linear-gradient(135deg, #2d3748, #4a5568); }
         .set-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .set-name { font-weight: 700; font-size: 1rem; color: #7b4f00; }
+        .set-name { font-weight: 700; font-size: 1rem; color: #1d7874; }
         .set-info { font-size: 0.8rem; color: #888; margin-top: 0.3rem; }
         body.dark-mode .set-info { color: #a0aec0; }
         .final-test-badge { background: linear-gradient(135deg, #f6d365, #fda085); color: white; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
         .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid #e2e8f0; flex-wrap: wrap; gap: 1rem; }
         body.dark-mode .quiz-header { border-bottom-color: #4a5568; }
-        .quiz-title { font-size: 1.1rem; font-weight: 700; color: #7b4f00; }
+        .quiz-title { font-size: 1.1rem; font-weight: 700; color: #1d7874; }
         .quiz-meta { display: flex; gap: 1rem; align-items: center; }
         .timer-box { background: var(--primary-gradient); color: white; padding: 8px 16px; border-radius: 10px; font-weight: 700; font-size: 1.1rem; }
         .timer-box.warning { background: linear-gradient(135deg, #f6d365, #fda085); animation: pulse 1s infinite; }
@@ -79,14 +79,14 @@
         .options-grid { display: grid; gap: 0.75rem; margin-bottom: 2rem; }
         .option-btn { padding: 14px 20px; border: 2px solid #e2e8f0; border-radius: 12px; background: white; cursor: pointer; text-align: left; font-size: 1rem; transition: all 0.3s ease; color: #333; display: flex; align-items: center; gap: 12px; }
         body.dark-mode .option-btn { background: #4a5568; border-color: #718096; color: var(--dark-text); }
-        .option-btn:hover:not(:disabled) { border-color: #7b4f00; background: #f0fff4; transform: translateX(4px); }
+        .option-btn:hover:not(:disabled) { border-color: #1d7874; background: #f0fff4; transform: translateX(4px); }
         body.dark-mode .option-btn:hover:not(:disabled) { background: #2d3748; }
-        .option-btn.selected { border-color: #7b4f00; background: linear-gradient(135deg, #f0fff4, #fff); }
+        .option-btn.selected { border-color: #1d7874; background: linear-gradient(135deg, #f0fff4, #fff); }
         body.dark-mode .option-btn.selected { background: linear-gradient(135deg, #2d3748, #4a5568); }
         .option-btn.correct { border-color: var(--success-color); background: #f0fff4; color: #276749; }
         .option-btn.incorrect { border-color: var(--error-color); background: #fff5f5; color: #742a2a; }
         .option-letter { width: 32px; height: 32px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
-        .option-btn.selected .option-letter { background: #7b4f00; color: white; }
+        .option-btn.selected .option-letter { background: #1d7874; color: white; }
         .option-btn.correct .option-letter { background: var(--success-color); color: white; }
         .option-btn.incorrect .option-letter { background: var(--error-color); color: white; }
         .nav-buttons { display: flex; gap: 1rem; justify-content: space-between; }
@@ -95,11 +95,11 @@
         body.dark-mode .btn-prev { background: #4a5568; color: var(--dark-text); }
         .btn-prev:hover { background: #cbd5e0; }
         .btn-next { background: var(--primary-gradient); color: white; }
-        .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,133,26,0.3); }
+        .btn-next:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(39,182,160,0.3); }
         .btn-submit { background: linear-gradient(135deg, #48bb78, #38a169); color: white; flex: 1; }
         .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(72,187,120,0.3); }
         .results-section { text-align: center; }
-        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: var(--primary-gradient); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 2rem; color: white; box-shadow: 0 20px 40px rgba(201,133,26,0.3); }
+        .score-circle { width: 180px; height: 180px; border-radius: 50%; background: var(--primary-gradient); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 2rem; color: white; box-shadow: 0 20px 40px rgba(39,182,160,0.3); }
         .score-circle.passed { background: linear-gradient(135deg, #48bb78, #38a169); box-shadow: 0 20px 40px rgba(72,187,120,0.3); }
         .score-circle.failed { background: linear-gradient(135deg, #fc8181, #e53e3e); box-shadow: 0 20px 40px rgba(229,62,62,0.3); }
         .score-number { font-size: 3rem; font-weight: 900; }
@@ -110,7 +110,7 @@
         .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 2rem 0; }
         .stat-card { background: #f7fafc; border-radius: 12px; padding: 1rem; text-align: center; }
         body.dark-mode .stat-card { background: #4a5568; }
-        .stat-num { font-size: 2rem; font-weight: 800; color: #7b4f00; }
+        .stat-num { font-size: 2rem; font-weight: 800; color: #1d7874; }
         .stat-lbl { font-size: 0.8rem; color: #888; }
         body.dark-mode .stat-lbl { color: #a0aec0; }
         .review-section { text-align: left; margin-top: 2rem; }
@@ -142,9 +142,9 @@
         .modal-overlay.active { display: flex; }
         .modal { background: white; border-radius: 20px; padding: 2rem; max-width: 450px; width: 90%; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
         body.dark-mode .modal { background: #2d3748; }
-        .modal h3 { font-size: 1.3rem; margin-bottom: 1rem; color: #7b4f00; }
+        .modal h3 { font-size: 1.3rem; margin-bottom: 1rem; color: #1d7874; }
         .home-btn { margin-top: 2rem; padding: 14px 32px; background: var(--primary-gradient); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
-        .home-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,133,26,0.3); }
+        .home-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(39,182,160,0.3); }
         @media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr;}.info-grid{grid-template-columns:1fr;}.question-sets-grid{grid-template-columns:1fr 1fr;}}
     </style>
 </head>
@@ -164,11 +164,11 @@
 
 <div class="container">
     <div id="homeSection" class="home-section">
-        <div class="institute-logo">🌍</div>
-        <div class="institute-name">JYCC — General Knowledge</div>
-        <div class="institute-subtitle">Jatiya Yuva Computer Centre | Class X Level</div>
-        <div class="exam-title">General Knowledge MCQ Exam System</div>
-        <div class="exam-subtitle">Science, History, Geography, Civics, Sports & Arts — 4 Sets | 100 Questions | 589 Students</div>
+        <div class="institute-logo">📗</div>
+        <div class="institute-name">JYCC — GK Class VIII</div>
+        <div class="institute-subtitle">Jatiya Yuva Computer Centre | Class VIII Level</div>
+        <div class="exam-title">General Knowledge MCQ — Class VIII</div>
+        <div class="exam-subtitle">Science, History, Geography, Civics & More — 100 Questions | Class VIII Level</div>
         <div class="access-card">
             <div class="access-title">🎓 Student Login</div>
             <div class="input-group">
@@ -228,13 +228,13 @@
             <button class="home-btn" onclick="reviewAnswers()" style="background:linear-gradient(135deg,#667eea,#764ba2);margin-left:1rem;">📋 Review Answers</button>
         </div>
         <div class="review-section" id="reviewSection" style="display:none;">
-            <h3 style="margin-bottom:1rem;color:#7b4f00;">📋 Answer Review</h3>
+            <h3 style="margin-bottom:1rem;color:#1d7874;">📋 Answer Review</h3>
             <div id="reviewItems"></div>
         </div>
     </div>
 
     <div id="adminPanel" class="admin-panel">
-        <div class="admin-header"><h2>👨‍💼 Admin Dashboard — GK MCQ</h2><p style="opacity:0.85;font-size:0.9rem;">Total Results: <span id="totalResults">0</span></p></div>
+        <div class="admin-header"><h2>👨‍💼 Admin Dashboard — GK Class VIII MCQ</h2><p style="opacity:0.85;font-size:0.9rem;">Total Results: <span id="totalResults">0</span></p></div>
         <div style="overflow-x:auto;">
             <table class="admin-table">
                 <thead><tr><th>#</th><th>Student</th><th>Code</th><th>Set</th><th>Score</th><th>Result</th><th>Time</th></tr></thead>
@@ -841,139 +841,139 @@ var students = {
             'ADMIN001': {name: 'SYSTEM ADMIN', course: 'ADMIN', joinDate: '2024-01-01'}
         };
 
-        // ===== GK QUESTION SETS — 100 Questions Total (Class X Level) =====
+        // ===== GK CLASS VIII QUESTION SETS =====
         var questionSets = {
             'A': {
-                title: 'GK Set A — Science & Technology (25 Questions)',
+                title: 'GK Set A — Class VIII — Science & Technology',
                 timeLimit: 1800, passingScore: 50,
                 questions: [
-                    {question: "What is the chemical symbol for gold?", options: ["Go", "Gd", "Au", "Ag"], correct: 2},
-                    {question: "Which planet is known as the Red Planet?", options: ["Venus", "Jupiter", "Saturn", "Mars"], correct: 3},
-                    {question: "What is the speed of light in vacuum?", options: ["3 x 10^8 m/s", "3 x 10^6 m/s", "3 x 10^10 m/s", "3 x 10^4 m/s"], correct: 0},
-                    {question: "Which gas is most abundant in Earth's atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], correct: 2},
-                    {question: "What is the powerhouse of the cell?", options: ["Nucleus", "Ribosome", "Mitochondria", "Chloroplast"], correct: 2},
-                    {question: "Which blood group is known as the universal donor?", options: ["A", "B", "AB", "O"], correct: 3},
-                    {question: "What is the SI unit of electric current?", options: ["Volt", "Watt", "Ampere", "Ohm"], correct: 2},
-                    {question: "Which planet is the largest in our solar system?", options: ["Saturn", "Jupiter", "Uranus", "Neptune"], correct: 1},
-                    {question: "DNA stands for ___.", options: ["Deoxyribonucleic Acid", "Deoxyribose Nucleic Acid", "Diribonucleic Acid", "Double Nucleic Acid"], correct: 0},
-                    {question: "Which is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Platinum"], correct: 2},
-                    {question: "What is the boiling point of water at sea level?", options: ["90 degree C", "95 degree C", "100 degree C", "105 degree C"], correct: 2},
-                    {question: "Which organ produces insulin in the human body?", options: ["Liver", "Kidney", "Pancreas", "Stomach"], correct: 2},
-                    {question: "What is the chemical formula of common salt?", options: ["KCl", "NaCl", "CaCl2", "MgCl2"], correct: 1},
-                    {question: "Which planet has the most moons?", options: ["Jupiter", "Saturn", "Uranus", "Neptune"], correct: 1},
-                    {question: "What is the unit of frequency?", options: ["Watt", "Joule", "Hertz", "Newton"], correct: 2},
-                    {question: "Which gas do plants absorb during photosynthesis?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"], correct: 2},
-                    {question: "Who invented the telephone?", options: ["Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "James Watt"], correct: 1},
-                    {question: "What is the full form of LED?", options: ["Light Emitting Diode", "Light Emitting Device", "Light Energy Display", "Low Energy Diode"], correct: 0},
-                    {question: "What is the atomic number of Carbon?", options: ["4", "6", "8", "12"], correct: 1},
-                    {question: "Which vitamin is produced when skin is exposed to sunlight?", options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"], correct: 3},
-                    {question: "What is the nearest star to Earth?", options: ["Sirius", "Proxima Centauri", "The Sun", "Alpha Centauri"], correct: 2},
-                    {question: "Which scientist gave the law of gravity?", options: ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Stephen Hawking"], correct: 1},
-                    {question: "What is the chemical symbol for iron?", options: ["Ir", "In", "Fe", "Fo"], correct: 2},
-                    {question: "Human body has how many bones in adults?", options: ["196", "206", "216", "226"], correct: 1},
-                    {question: "Which part of the plant conducts photosynthesis mainly?", options: ["Root", "Stem", "Leaf", "Flower"], correct: 2}
+                    {question: "Who is known as the father of modern chemistry?", options: ["Newton", "Einstein", "Antoine Lavoisier", "Faraday"], correct: 2},
+                    {question: "What is the SI unit of energy?", options: ["Watt", "Newton", "Joule", "Pascal"], correct: 2},
+                    {question: "The chemical formula of carbon dioxide is ___.", options: ["CO", "CO2", "C2O", "CO3"], correct: 1},
+                    {question: "Which scientist discovered penicillin?", options: ["Marie Curie", "Louis Pasteur", "Alexander Fleming", "Edward Jenner"], correct: 2},
+                    {question: "What is the atomic number of hydrogen?", options: ["0", "1", "2", "3"], correct: 1},
+                    {question: "The study of earthquakes is called ___.", options: ["Geology", "Seismology", "Ecology", "Meteorology"], correct: 1},
+                    {question: "What is the speed of light in vacuum?", options: ["3x10^6 m/s", "3x10^8 m/s", "3x10^10 m/s", "3x10^4 m/s"], correct: 1},
+                    {question: "Which planet has the Great Red Spot?", options: ["Mars", "Saturn", "Jupiter", "Neptune"], correct: 2},
+                    {question: "Newton's first law is also called the law of ___.", options: ["Gravity", "Motion", "Inertia", "Friction"], correct: 2},
+                    {question: "The process of conversion of water into steam is called ___.", options: ["Condensation", "Evaporation", "Freezing", "Sublimation"], correct: 1},
+                    {question: "Which acid is present in vinegar?", options: ["Hydrochloric acid", "Sulphuric acid", "Nitric acid", "Acetic acid"], correct: 3},
+                    {question: "The human heart beats approximately ___ times per minute.", options: ["40-50", "60-80", "90-100", "110-120"], correct: 1},
+                    {question: "What is the chemical symbol for sodium?", options: ["So", "Sd", "Na", "Ni"], correct: 2},
+                    {question: "Which part of the eye controls the amount of light?", options: ["Retina", "Cornea", "Iris", "Lens"], correct: 2},
+                    {question: "Rusting of iron is a ___ change.", options: ["Physical", "Chemical", "Nuclear", "Biological"], correct: 1},
+                    {question: "The atomic mass of carbon is ___.", options: ["6", "8", "12", "14"], correct: 2},
+                    {question: "Which disease is caused by deficiency of Vitamin C?", options: ["Rickets", "Scurvy", "Night blindness", "Beri-beri"], correct: 1},
+                    {question: "What is the full form of CPU?", options: ["Central Power Unit", "Central Processing Unit", "Computer Personal Unit", "Core Processing Unit"], correct: 1},
+                    {question: "Which gas is used in electric bulbs?", options: ["Oxygen", "Neon", "Argon", "Nitrogen"], correct: 2},
+                    {question: "The freezing point of water is ___.", options: ["0°F", "32°F", "0°C", "Both B and C"], correct: 3},
+                    {question: "Which is the hardest natural substance?", options: ["Gold", "Iron", "Diamond", "Platinum"], correct: 2},
+                    {question: "The Milky Way is a ___.", options: ["Star", "Planet", "Galaxy", "Constellation"], correct: 2},
+                    {question: "Which scientist gave E=mc2?", options: ["Newton", "Bohr", "Einstein", "Faraday"], correct: 2},
+                    {question: "Blood is pumped from the heart to the body through ___.", options: ["Veins", "Arteries", "Capillaries", "Plasma"], correct: 1},
+                    {question: "The branch of biology dealing with heredity is called ___.", options: ["Ecology", "Taxonomy", "Genetics", "Physiology"], correct: 2},
                 ]
             },
             'B': {
-                title: 'GK Set B — History & Geography (25 Questions)',
+                title: 'GK Set B — Class VIII — History & Freedom Struggle',
                 timeLimit: 1800, passingScore: 50,
                 questions: [
-                    {question: "Who was the first Prime Minister of India?", options: ["Sardar Patel", "Dr. B.R. Ambedkar", "Jawaharlal Nehru", "Mahatma Gandhi"], correct: 2},
-                    {question: "In which year did India gain independence?", options: ["1945", "1946", "1947", "1948"], correct: 2},
-                    {question: "Which is the largest continent in the world?", options: ["Africa", "North America", "Europe", "Asia"], correct: 3},
-                    {question: "Which river is the longest in the world?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], correct: 1},
-                    {question: "Who is known as the Father of the Nation in India?", options: ["Nehru", "Bose", "Mahatma Gandhi", "Ambedkar"], correct: 2},
-                    {question: "Which is the smallest country in the world?", options: ["Monaco", "San Marino", "Vatican City", "Liechtenstein"], correct: 2},
-                    {question: "The capital of Australia is ___.", options: ["Sydney", "Melbourne", "Canberra", "Perth"], correct: 2},
-                    {question: "Which country is called the Land of the Rising Sun?", options: ["China", "South Korea", "Japan", "Thailand"], correct: 2},
-                    {question: "Mount Everest is located on the border of ___.", options: ["India and China", "China and Tibet", "India and Nepal", "Nepal and China"], correct: 3},
-                    {question: "Who built the Taj Mahal?", options: ["Akbar", "Shah Jahan", "Aurangzeb", "Humayun"], correct: 1},
-                    {question: "Which is the largest ocean in the world?", options: ["Atlantic", "Indian", "Arctic", "Pacific"], correct: 3},
-                    {question: "The First World War took place in which years?", options: ["1910 to 1914", "1914 to 1918", "1918 to 1922", "1912 to 1916"], correct: 1},
-                    {question: "Who discovered America?", options: ["Vasco da Gama", "Columbus", "Magellan", "Marco Polo"], correct: 1},
-                    {question: "Which is the national animal of India?", options: ["Lion", "Elephant", "Bengal Tiger", "Leopard"], correct: 2},
-                    {question: "Which is the largest desert in the world?", options: ["Sahara", "Arabian", "Gobi", "Antarctic"], correct: 3},
-                    {question: "India's Constitution came into effect on ___.", options: ["15 August 1947", "26 January 1950", "26 November 1949", "2 October 1949"], correct: 1},
-                    {question: "Which Indian state has the largest area?", options: ["Maharashtra", "Madhya Pradesh", "Uttar Pradesh", "Rajasthan"], correct: 3},
-                    {question: "Who was the first woman Prime Minister of India?", options: ["Sarojini Naidu", "Vijaya Lakshmi Pandit", "Indira Gandhi", "Pratibha Patil"], correct: 2},
-                    {question: "Mahabharata was written by ___.", options: ["Valmiki", "Tulsidas", "Vyasa", "Kalidasa"], correct: 2},
-                    {question: "Which is the capital of France?", options: ["Rome", "Berlin", "London", "Paris"], correct: 3},
-                    {question: "Which country is called the Land of the Rising Sun?", options: ["China", "Vietnam", "Japan", "South Korea"], correct: 2},
-                    {question: "Who was the first President of the USA?", options: ["Abraham Lincoln", "Thomas Jefferson", "George Washington", "John Adams"], correct: 2},
-                    {question: "Which river is called the Ganga of South India?", options: ["Krishna", "Kaveri", "Godavari", "Tungabhadra"], correct: 2},
-                    {question: "In which year did the Second World War end?", options: ["1943", "1944", "1945", "1946"], correct: 2},
-                    {question: "The Great Wall of China was built during the reign of ___.", options: ["Qin Shi Huang", "Kublai Khan", "Genghis Khan", "Emperor Wu"], correct: 0}
+                    {question: "The Indian National Congress was founded in ___.", options: ["1883", "1885", "1887", "1890"], correct: 1},
+                    {question: "Who led the Salt March (Dandi March) in 1930?", options: ["Nehru", "Subhas Bose", "Mahatma Gandhi", "Bhagat Singh"], correct: 2},
+                    {question: "The Sepoy Mutiny took place in ___.", options: ["1847", "1857", "1867", "1877"], correct: 1},
+                    {question: "Who gave the slogan Swaraj is my birthright?", options: ["Gandhi", "Bal Gangadhar Tilak", "Nehru", "Bose"], correct: 1},
+                    {question: "The Battle of Plassey was fought in ___.", options: ["1747", "1757", "1767", "1777"], correct: 1},
+                    {question: "Who founded the Azad Hind Fauj?", options: ["Gandhi", "Nehru", "Subhas Chandra Bose", "Bhagat Singh"], correct: 2},
+                    {question: "The Jallianwala Bagh massacre occurred in ___.", options: ["1915", "1917", "1919", "1921"], correct: 2},
+                    {question: "Who was the Viceroy of India during the Quit India Movement?", options: ["Curzon", "Mountbatten", "Wavell", "Linlithgow"], correct: 3},
+                    {question: "The Non-Cooperation Movement was launched in ___.", options: ["1918", "1919", "1920", "1921"], correct: 2},
+                    {question: "Who wrote the book Discovery of India?", options: ["Gandhi", "Patel", "Nehru", "Ambedkar"], correct: 2},
+                    {question: "The Partition of Bengal happened in ___.", options: ["1903", "1905", "1907", "1910"], correct: 1},
+                    {question: "Who was the last Viceroy of British India?", options: ["Wavell", "Curzon", "Mountbatten", "Linlithgow"], correct: 2},
+                    {question: "The Rowlatt Act was passed in ___.", options: ["1917", "1918", "1919", "1920"], correct: 2},
+                    {question: "Who gave the slogan Do or Die?", options: ["Bose", "Tilak", "Nehru", "Gandhi"], correct: 3},
+                    {question: "The Champaran Satyagraha was related to ___.", options: ["Salt", "Indigo", "Cotton", "Rice"], correct: 1},
+                    {question: "Who is known as the Frontier Gandhi?", options: ["Gandhi", "Khan Abdul Ghaffar Khan", "Bose", "Nehru"], correct: 1},
+                    {question: "The Cabinet Mission Plan came in ___.", options: ["1944", "1945", "1946", "1947"], correct: 2},
+                    {question: "Who was the first Governor General of independent India?", options: ["Nehru", "Rajagopalachari", "Mountbatten", "Rajendra Prasad"], correct: 2},
+                    {question: "Bhagat Singh was executed in ___.", options: ["1929", "1930", "1931", "1932"], correct: 2},
+                    {question: "The Indian Constitution was adopted on ___.", options: ["15 Aug 1947", "26 Jan 1950", "26 Nov 1949", "2 Oct 1950"], correct: 2},
+                    {question: "Who was the first woman President of the Indian National Congress?", options: ["Sarojini Naidu", "Annie Besant", "Indira Gandhi", "Vijaya Lakshmi"], correct: 1},
+                    {question: "The Civil Disobedience Movement began in ___.", options: ["1928", "1929", "1930", "1931"], correct: 2},
+                    {question: "Who founded the Servants of India Society?", options: ["Tilak", "Gokhale", "Gandhi", "Nehru"], correct: 1},
+                    {question: "The Khilafat Movement was launched in ___.", options: ["1918", "1919", "1920", "1921"], correct: 2},
+                    {question: "Who designed the national flag of India?", options: ["Gandhi", "Nehru", "Pingali Venkayya", "Ambedkar"], correct: 2},
                 ]
             },
             'C': {
-                title: 'GK Set C — Civics, Sports & Arts (25 Questions)',
+                title: 'GK Set C — Class VIII — Geography & Current Affairs',
                 timeLimit: 1800, passingScore: 50,
                 questions: [
-                    {question: "How many members are there in the Lok Sabha?", options: ["543", "545", "552", "550"], correct: 0},
-                    {question: "Who is the Supreme Commander of the Indian Armed Forces?", options: ["Prime Minister", "President", "Defence Minister", "Army Chief"], correct: 1},
-                    {question: "Which article of the Indian Constitution abolishes untouchability?", options: ["Article 14", "Article 15", "Article 17", "Article 21"], correct: 2},
-                    {question: "ICC Cricket World Cup 2011 was won by ___.", options: ["Australia", "Sri Lanka", "India", "Pakistan"], correct: 2},
-                    {question: "Who holds the record for most runs in Test cricket?", options: ["Ricky Ponting", "Jacques Kallis", "Sachin Tendulkar", "Brian Lara"], correct: 2},
-                    {question: "The Olympic Games are held every ___ years.", options: ["2", "3", "4", "5"], correct: 2},
-                    {question: "India's national game is ___.", options: ["Cricket", "Hockey", "Football", "Kabaddi"], correct: 1},
-                    {question: "Which is the highest civilian award in India?", options: ["Padma Shri", "Padma Bhushan", "Padma Vibhushan", "Bharat Ratna"], correct: 3},
-                    {question: "Who wrote the Indian National Anthem?", options: ["Bankim Chandra Chatterjee", "Rabindranath Tagore", "Sarojini Naidu", "Subramania Bharati"], correct: 1},
-                    {question: "Who painted the Mona Lisa?", options: ["Michelangelo", "Raphael", "Leonardo da Vinci", "Van Gogh"], correct: 2},
-                    {question: "Which is the highest court in India?", options: ["High Court", "District Court", "Supreme Court", "Sessions Court"], correct: 2},
-                    {question: "The Preamble of the Indian Constitution begins with ___.", options: ["We the Citizens", "We the People", "We the Indians", "We the Nation"], correct: 1},
-                    {question: "Who was the first Indian to win an individual Olympic gold medal?", options: ["P.T. Usha", "Milkha Singh", "Abhinav Bindra", "Leander Paes"], correct: 2},
-                    {question: "Rabindranath Tagore won the Nobel Prize for which work?", options: ["Gitanjali", "Gora", "Ghare-Baire", "Chokher Bali"], correct: 0},
-                    {question: "Which day is celebrated as Republic Day in India?", options: ["15 August", "26 January", "2 October", "26 November"], correct: 1},
-                    {question: "Who is the author of Wings of Fire?", options: ["Jawaharlal Nehru", "A.P.J. Abdul Kalam", "Narendra Modi", "Sachin Tendulkar"], correct: 1},
-                    {question: "FIFA World Cup 2022 was won by ___.", options: ["Brazil", "France", "Argentina", "Croatia"], correct: 2},
-                    {question: "The Rajya Sabha is also known as ___.", options: ["Lower House", "Upper House", "People's House", "State House"], correct: 1},
-                    {question: "Saina Nehwal is associated with which sport?", options: ["Tennis", "Table Tennis", "Squash", "Badminton"], correct: 3},
-                    {question: "The National Song of India is ___.", options: ["Jana Gana Mana", "Vande Mataram", "Sare Jahan Se Achha", "Jai Hind"], correct: 1},
-                    {question: "Which instrument is Ravi Shankar famous for playing?", options: ["Tabla", "Flute", "Sitar", "Violin"], correct: 2},
-                    {question: "Fundamental Rights are guaranteed under which Part of the Constitution?", options: ["Part II", "Part III", "Part IV", "Part V"], correct: 1},
-                    {question: "How many states are there in India currently?", options: ["28", "29", "30", "27"], correct: 0},
-                    {question: "Which country won the most gold medals in the 2020 Tokyo Olympics?", options: ["China", "USA", "Japan", "Great Britain"], correct: 1},
-                    {question: "Who wrote the play Romeo and Juliet?", options: ["Charles Dickens", "William Shakespeare", "John Keats", "Oscar Wilde"], correct: 1}
+                    {question: "Which is the longest river in the world?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], correct: 1},
+                    {question: "Which is the capital of Brazil?", options: ["Rio de Janeiro", "Sao Paulo", "Brasilia", "Salvador"], correct: 2},
+                    {question: "The Deccan Plateau is located in ___.", options: ["North India", "East India", "South India", "West India"], correct: 2},
+                    {question: "Which is the smallest continent?", options: ["Europe", "Antarctica", "Australia", "South America"], correct: 2},
+                    {question: "The Panama Canal connects which two oceans?", options: ["Atlantic and Indian", "Pacific and Indian", "Atlantic and Pacific", "Pacific and Arctic"], correct: 2},
+                    {question: "Which country has the largest population?", options: ["USA", "India", "China", "Russia"], correct: 1},
+                    {question: "Mount Kilimanjaro is in ___.", options: ["Kenya", "Tanzania", "Ethiopia", "South Africa"], correct: 1},
+                    {question: "Which is the currency of Japan?", options: ["Yuan", "Won", "Yen", "Ringgit"], correct: 2},
+                    {question: "Which ocean is the smallest?", options: ["Atlantic", "Indian", "Southern", "Arctic"], correct: 3},
+                    {question: "The Great Barrier Reef is located in ___.", options: ["USA", "India", "Australia", "Brazil"], correct: 2},
+                    {question: "Which is the capital of Russia?", options: ["St. Petersburg", "Vladivostok", "Moscow", "Novosibirsk"], correct: 2},
+                    {question: "The Thar Desert is located in ___.", options: ["Gujarat", "Maharashtra", "Rajasthan", "Madhya Pradesh"], correct: 2},
+                    {question: "Which country is called the Land of Midnight Sun?", options: ["Sweden", "Norway", "Finland", "Iceland"], correct: 1},
+                    {question: "Which is the largest country by population?", options: ["USA", "China", "India", "Russia"], correct: 1},
+                    {question: "The Nile river flows through ___.", options: ["Sudan and Ethiopia", "Egypt and Sudan", "Egypt, Sudan and Ethiopia and more", "Egypt only"], correct: 2},
+                    {question: "Which is the capital of Germany?", options: ["Munich", "Frankfurt", "Hamburg", "Berlin"], correct: 3},
+                    {question: "The Western Ghats run parallel to the ___ coast of India.", options: ["East", "West", "North", "South"], correct: 1},
+                    {question: "Which is the largest lake in the world?", options: ["Caspian Sea", "Lake Superior", "Lake Victoria", "Aral Sea"], correct: 0},
+                    {question: "Which country shares the longest border with India?", options: ["China", "Pakistan", "Bangladesh", "Nepal"], correct: 1},
+                    {question: "The currency of the United Kingdom is ___.", options: ["Euro", "Dollar", "Pound", "Franc"], correct: 2},
+                    {question: "The Brahmaputra river originates from ___.", options: ["Himalayas", "Tibet", "Bhutan", "Assam"], correct: 1},
+                    {question: "Which is the highest plateau in the world?", options: ["Deccan Plateau", "Tibetan Plateau", "Colorado Plateau", "Patagonian Plateau"], correct: 1},
+                    {question: "Which country has the most time zones?", options: ["USA", "China", "Russia", "Australia"], correct: 2},
+                    {question: "The Equator passes through which continent?", options: ["Asia only", "Africa only", "South America only", "Africa, Asia and South America"], correct: 3},
+                    {question: "Which is the longest mountain range in the world?", options: ["Himalayas", "Rocky Mountains", "Andes", "Alps"], correct: 2},
                 ]
             },
             'FINAL': {
-                title: 'GK Final Test — Mixed All Topics (25 Questions)',
-                timeLimit: 1800, passingScore: 60,
+                title: 'GK Final Test — Class VIII — Mixed Topics',
+                timeLimit: 1800, passingScore: 50,
                 questions: [
-                    {question: "Who invented the printing press?", options: ["Thomas Edison", "Johannes Gutenberg", "James Watt", "Benjamin Franklin"], correct: 1},
-                    {question: "The chemical formula of water is ___.", options: ["H2O2", "HO", "H2O", "H3O"], correct: 2},
-                    {question: "Which Indian scientist is known as Missile Man?", options: ["C.V. Raman", "Homi Bhabha", "A.P.J. Abdul Kalam", "Vikram Sarabhai"], correct: 2},
-                    {question: "The United Nations was established in ___.", options: ["1944", "1945", "1946", "1947"], correct: 1},
-                    {question: "Which is the longest river in India?", options: ["Brahmaputra", "Godavari", "Yamuna", "Ganga"], correct: 3},
-                    {question: "India's first satellite was ___.", options: ["Aryabhata", "Bhaskara", "Rohini", "INSAT-1A"], correct: 0},
-                    {question: "Which sport uses the term Love?", options: ["Cricket", "Badminton", "Football", "Tennis"], correct: 3},
-                    {question: "Who is the author of Discovery of India?", options: ["Mahatma Gandhi", "Sardar Patel", "Jawaharlal Nehru", "B.R. Ambedkar"], correct: 2},
-                    {question: "Which organ filters blood in the human body?", options: ["Liver", "Kidney", "Lung", "Heart"], correct: 1},
-                    {question: "Bharat Ratna was first awarded in ___.", options: ["1952", "1954", "1956", "1958"], correct: 1},
-                    {question: "Which country is the largest producer of tea?", options: ["India", "Sri Lanka", "Kenya", "China"], correct: 3},
-                    {question: "The first Indian to go to space was ___.", options: ["Kalpana Chawla", "Rakesh Sharma", "Sunita Williams", "Ravish Malhotra"], correct: 1},
-                    {question: "Who gave the slogan Do or Die?", options: ["Bhagat Singh", "Subhas Chandra Bose", "Mahatma Gandhi", "Bal Gangadhar Tilak"], correct: 2},
-                    {question: "Which gas causes the greenhouse effect most significantly?", options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Ozone"], correct: 2},
-                    {question: "The currency of Japan is ___.", options: ["Won", "Yuan", "Yen", "Ringgit"], correct: 2},
-                    {question: "Which is the longest wall in the world?", options: ["Hadrian Wall", "Berlin Wall", "Great Wall of China", "Wall of Babylon"], correct: 2},
-                    {question: "Who was the first woman President of India?", options: ["Vijaya Lakshmi Pandit", "Indira Gandhi", "Sarojini Naidu", "Pratibha Patil"], correct: 3},
-                    {question: "Kaziranga National Park is famous for ___.", options: ["Bengal Tiger", "Indian Elephant", "One-horned Rhinoceros", "Snow Leopard"], correct: 2},
-                    {question: "Which planet is closest to the Sun?", options: ["Venus", "Earth", "Mars", "Mercury"], correct: 3},
-                    {question: "The Constituent Assembly adopted the Indian Constitution on ___.", options: ["15 August 1947", "26 January 1950", "26 November 1949", "2 October 1950"], correct: 2},
-                    {question: "Who discovered Penicillin?", options: ["Marie Curie", "Alexander Fleming", "Louis Pasteur", "Edward Jenner"], correct: 1},
-                    {question: "Which is the capital city of India?", options: ["Mumbai", "Kolkata", "New Delhi", "Chennai"], correct: 2},
-                    {question: "How many members are in the Rajya Sabha?", options: ["238", "245", "250", "260"], correct: 1},
-                    {question: "C.V. Raman won the Nobel Prize for ___.", options: ["Physics", "Chemistry", "Medicine", "Peace"], correct: 0},
-                    {question: "Which is the national flower of India?", options: ["Rose", "Lotus", "Jasmine", "Sunflower"], correct: 1}
+                    {question: "The Indian National Congress was founded in ___.", options: ["1883", "1885", "1887", "1890"], correct: 1},
+                    {question: "What is the SI unit of energy?", options: ["Watt", "Newton", "Joule", "Pascal"], correct: 2},
+                    {question: "Who led the Salt March?", options: ["Nehru", "Bose", "Mahatma Gandhi", "Bhagat Singh"], correct: 2},
+                    {question: "Which scientist discovered penicillin?", options: ["Curie", "Pasteur", "Fleming", "Jenner"], correct: 2},
+                    {question: "The Sepoy Mutiny was in ___.", options: ["1847", "1857", "1867", "1877"], correct: 1},
+                    {question: "Which acid is in vinegar?", options: ["HCl", "H2SO4", "HNO3", "Acetic acid"], correct: 3},
+                    {question: "Who designed India's national flag?", options: ["Gandhi", "Nehru", "Pingali Venkayya", "Ambedkar"], correct: 2},
+                    {question: "The Milky Way is a ___.", options: ["Star", "Planet", "Galaxy", "Constellation"], correct: 2},
+                    {question: "The Jallianwala Bagh massacre was in ___.", options: ["1915", "1917", "1919", "1921"], correct: 2},
+                    {question: "Which is the longest river in the world?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], correct: 1},
+                    {question: "E=mc2 was given by ___.", options: ["Newton", "Bohr", "Einstein", "Faraday"], correct: 2},
+                    {question: "The Panama Canal connects ___.", options: ["Atlantic and Indian", "Pacific and Indian", "Atlantic and Pacific", "Pacific and Arctic"], correct: 2},
+                    {question: "Who founded Azad Hind Fauj?", options: ["Gandhi", "Nehru", "Subhas Bose", "Bhagat Singh"], correct: 2},
+                    {question: "The Thar Desert is in ___.", options: ["Gujarat", "Maharashtra", "Rajasthan", "MP"], correct: 2},
+                    {question: "Bhagat Singh was executed in ___.", options: ["1929", "1930", "1931", "1932"], correct: 2},
+                    {question: "The Great Barrier Reef is in ___.", options: ["USA", "India", "Australia", "Brazil"], correct: 2},
+                    {question: "Newton's first law is the law of ___.", options: ["Gravity", "Motion", "Inertia", "Friction"], correct: 2},
+                    {question: "The Indian Constitution was adopted on ___.", options: ["15 Aug 1947", "26 Jan 1950", "26 Nov 1949", "2 Oct 1950"], correct: 2},
+                    {question: "Which disease is caused by Vitamin C deficiency?", options: ["Rickets", "Scurvy", "Night blindness", "Beri-beri"], correct: 1},
+                    {question: "Which country has the largest population?", options: ["USA", "India", "China", "Russia"], correct: 1},
+                    {question: "Champaran Satyagraha was about ___.", options: ["Salt", "Indigo", "Cotton", "Rice"], correct: 1},
+                    {question: "The Andes mountain range is in ___.", options: ["Africa", "Asia", "South America", "Europe"], correct: 2},
+                    {question: "Civil Disobedience Movement began in ___.", options: ["1928", "1929", "1930", "1931"], correct: 2},
+                    {question: "Mount Kilimanjaro is in ___.", options: ["Kenya", "Tanzania", "Ethiopia", "South Africa"], correct: 1},
+                    {question: "The Non-Cooperation Movement started in ___.", options: ["1918", "1919", "1920", "1921"], correct: 2},
                 ]
-            }
+            },
         };
 
         var currentQuestion=0,userAnswers=[],timeLeft=1800,timer;
         var studentId='',currentStudentData=null,selectedQuestionSet='A',questions=[];
         var isDarkMode=false,isAdminMode=false,examStartTime=null;
         var finalTestPasswords=['CF2024','JYCC@CF','JYCC@BASIC','INSTRUCTOR123','ADMIN2024'];
-        var finalExamScores=JSON.parse(localStorage.getItem('gkFinalExamScores')||'[]');
+        var finalExamScores=JSON.parse(localStorage.getItem('gkClassVIIIScores')||'[]');
 
         function escapeHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
         function showNotification(msg,type,dur){var e=document.querySelectorAll('.notification');e.forEach(function(n){n.remove();});var colors={success:'#48bb78',error:'#e53e3e',info:'#4299e1',warning:'#d69e2e'};var n=document.createElement('div');n.className='notification';n.textContent=msg;n.style.background=colors[type]||colors.info;document.body.appendChild(n);setTimeout(function(){n.remove();},dur||3000);}
@@ -981,18 +981,18 @@ var students = {
         function toggleAdmin(){isAdminMode=!isAdminMode;document.getElementById('homeSection').style.display=isAdminMode?'none':'block';document.getElementById('adminPanel').classList.toggle('active',isAdminMode);if(isAdminMode)renderAdminTable();}
         function renderAdminTable(){var tbody=document.getElementById('adminTableBody');document.getElementById('totalResults').textContent=finalExamScores.length;if(!finalExamScores.length){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:#888;padding:2rem;">No results yet</td></tr>';return;}tbody.innerHTML=finalExamScores.map(function(r,i){return '<tr><td>'+(i+1)+'</td><td>'+r.name+'</td><td>'+r.code+'</td><td><span class="badge badge-set">Set '+r.set+'</span></td><td><strong>'+r.score+'%</strong></td><td><span class="badge '+(r.passed?'badge-pass':'badge-fail')+'">'+(r.passed?'✅ Pass':'❌ Fail')+'</span></td><td>'+r.time+'</td></tr>';}).join('');}
         function accessTest(){var code=document.getElementById('studentCode').value.trim().toUpperCase();if(!code){showNotification('Please enter your Student Code!','error');return;}if(!students[code]){showNotification('❌ Student ID not found! Contact your instructor.','error');return;}var student=students[code];studentId=code;currentStudentData=student;document.getElementById('studentName').textContent=student.name;document.getElementById('studentCodeDisplay').textContent=code;document.getElementById('studentCourse').textContent=student.course;document.getElementById('studentJoinDate').textContent=student.joinDate;document.getElementById('homeSection').style.display='none';document.getElementById('studentDashboard').style.display='block';renderQuestionSets();showNotification('✅ Welcome, '+student.name+'!','success');}
-        function renderQuestionSets(){var grid=document.getElementById('questionSetsGrid');var sets=[{key:'A',icon:'📗',label:'Set A',desc:'Science & Technology',info:'25 Qs • 30 min • Pass 50%'},{key:'B',icon:'📘',label:'Set B',desc:'History & Geography',info:'25 Qs • 30 min • Pass 50%'},{key:'C',icon:'📙',label:'Set C',desc:'Civics, Sports & Arts',info:'25 Qs • 30 min • Pass 50%'},{key:'FINAL',icon:'🏆',label:'Final Test',desc:'Mixed All Topics',info:'25 Qs • 30 min • Pass 60%',isFinal:true}];grid.innerHTML=sets.map(function(s){return '<div class="set-card" id="setCard_'+s.key+'" onclick="selectSet(\''+s.key+'\')">'+'<div class="set-icon">'+s.icon+'</div>'+'<div class="set-name">'+s.label+' '+(s.isFinal?'<span class="final-test-badge">🔐 Final</span>':'')+'</div>'+'<div style="font-size:0.85rem;color:#7b4f00;font-weight:600;">'+s.desc+'</div>'+'<div class="set-info">'+s.info+'</div></div>';}).join('');}
+        function renderQuestionSets(){var grid=document.getElementById('questionSetsGrid');var sets=[{key:'A',icon:'📗',label:'Set A',desc:'Science & Technology',info:'25 Qs • 30 min • Pass 50%'},{key:'B',icon:'📘',label:'Set B',desc:'History & Freedom Struggle',info:'25 Qs • 30 min • Pass 50%'},{key:'C',icon:'📙',label:'Set C',desc:'Geography & Current Affairs',info:'25 Qs • 30 min • Pass 50%'},{key:'FINAL',icon:'🏆',label:'Final Test',desc:'Mixed All Topics',info:'25 Qs • 30 min • Pass 50%',isFinal:true}];grid.innerHTML=sets.map(function(s){return '<div class="set-card" id="setCard_'+s.key+'" onclick="selectSet(\''+s.key+'\')">'+'<div class="set-icon">'+s.icon+'</div>'+'<div class="set-name">'+s.label+' '+(s.isFinal?'<span class="final-test-badge">🔐 Final</span>':'')+'</div>'+'<div style="font-size:0.85rem;color:#1d7874;font-weight:600;">'+s.desc+'</div>'+'<div class="set-info">'+s.info+'</div></div>';}).join('');}
         function selectSet(key){selectedQuestionSet=key;document.querySelectorAll('.set-card').forEach(function(c){c.classList.remove('selected');});document.getElementById('setCard_'+key).classList.add('selected');document.getElementById('startBtn').style.display='block';document.getElementById('startBtn').textContent=key==='FINAL'?'🔐 Unlock & Start Final Test':'▶️ Start '+key+' Test';}
         function startExam(){if(!selectedQuestionSet){showNotification('Please select a question set!','error');return;}if(selectedQuestionSet==='FINAL'){document.getElementById('passwordModal').classList.add('active');return;}launchExam(selectedQuestionSet);}
         function verifyFinalTestPassword(){var pwd=document.getElementById('finalTestPassword').value.trim();if(finalTestPasswords.indexOf(pwd)!==-1){closePasswordModal();launchExam('FINAL');}else{showNotification('❌ Incorrect password!','error');}}
         function closePasswordModal(){document.getElementById('passwordModal').classList.remove('active');document.getElementById('finalTestPassword').value='';}
         function launchExam(setKey){var set=questionSets[setKey];questions=set.questions.slice();userAnswers=new Array(questions.length).fill(null);currentQuestion=0;timeLeft=set.timeLimit;examStartTime=new Date();document.getElementById('studentDashboard').style.display='none';document.getElementById('quizSection').style.display='block';document.getElementById('quizTitle').textContent=set.title;renderQuestion();startTimer();showNotification('🚀 Exam started! Good luck!','success');}
         function renderQuestion(){var q=questions[currentQuestion],total=questions.length;document.getElementById('questionNum').textContent='Question '+(currentQuestion+1)+' of '+total;document.getElementById('questionCounter').textContent='Q '+(currentQuestion+1)+'/'+total;document.getElementById('questionText').textContent=q.question;document.getElementById('progressFill').style.width=((currentQuestion+1)/total*100)+'%';var letters=['A','B','C','D'];document.getElementById('optionsGrid').innerHTML=q.options.map(function(opt,i){var cls='option-btn'+(userAnswers[currentQuestion]===i?' selected':'');return '<button class="'+cls+'" onclick="selectAnswer('+i+')">'+'<span class="option-letter">'+letters[i]+'</span>'+escapeHtml(opt)+'</button>';}).join('');document.getElementById('nextBtn').style.display=currentQuestion<total-1?'block':'none';document.getElementById('submitBtn').style.display=currentQuestion===total-1?'block':'none';}
-        function selectAnswer(idx){userAnswers[currentQuestion]=idx;document.querySelectorAll('.option-btn').forEach(function(b,i){b.classList.toggle('selected',i===idx);var l=b.querySelector('.option-letter');l.style.background=i===idx?'#7b4f00':'';l.style.color=i===idx?'white':'';});}
+        function selectAnswer(idx){userAnswers[currentQuestion]=idx;document.querySelectorAll('.option-btn').forEach(function(b,i){b.classList.toggle('selected',i===idx);var l=b.querySelector('.option-letter');l.style.background=i===idx?'#1d7874':'';l.style.color=i===idx?'white':'';});}
         function nextQuestion(){if(currentQuestion<questions.length-1){currentQuestion++;renderQuestion();}}
         function prevQuestion(){if(currentQuestion>0){currentQuestion--;renderQuestion();}}
         function confirmSubmit(){var u=userAnswers.filter(function(a){return a===null;}).length;if(u>0){if(!confirm('You have '+u+' unanswered question(s). Submit anyway?'))return;}submitExam();}
-        function submitExam(){clearInterval(timer);var correct=0;userAnswers.forEach(function(ans,i){if(ans===questions[i].correct)correct++;});var total=questions.length,score=Math.round((correct/total)*100);var set=questionSets[selectedQuestionSet],passed=score>=set.passingScore;var elapsed=Math.floor((new Date()-examStartTime)/1000);var timeStr=Math.floor(elapsed/60)+':'+(elapsed%60<10?'0':'')+elapsed%60;finalExamScores.push({name:currentStudentData.name,code:studentId,set:selectedQuestionSet,score:score,passed:passed,time:timeStr,date:new Date().toLocaleDateString()});localStorage.setItem('gkFinalExamScores',JSON.stringify(finalExamScores));document.getElementById('quizSection').style.display='none';document.getElementById('resultsSection').style.display='block';var circle=document.getElementById('scoreCircle');circle.className='score-circle '+(passed?'passed':'failed');document.getElementById('scoreNumber').textContent=score+'%';var badge=document.getElementById('resultBadge');badge.className='result-badge '+(passed?'passed':'failed');badge.textContent=passed?'🎉 PASSED!':'😞 FAILED';document.getElementById('resultTitle').textContent=passed?'Congratulations, '+currentStudentData.name+'!':'Better luck next time!';document.getElementById('resultMessage').textContent='You scored '+score+'% (Pass mark: '+set.passingScore+'%)';document.getElementById('correctCount').textContent=correct;document.getElementById('wrongCount').textContent=total-correct-userAnswers.filter(function(a){return a===null;}).length;document.getElementById('timeTaken').textContent=timeStr;}
+        function submitExam(){clearInterval(timer);var correct=0;userAnswers.forEach(function(ans,i){if(ans===questions[i].correct)correct++;});var total=questions.length,score=Math.round((correct/total)*100);var set=questionSets[selectedQuestionSet],passed=score>=set.passingScore;var elapsed=Math.floor((new Date()-examStartTime)/1000);var timeStr=Math.floor(elapsed/60)+':'+(elapsed%60<10?'0':'')+elapsed%60;finalExamScores.push({name:currentStudentData.name,code:studentId,set:selectedQuestionSet,score:score,passed:passed,time:timeStr,date:new Date().toLocaleDateString()});localStorage.setItem('gkClassVIIIScores',JSON.stringify(finalExamScores));document.getElementById('quizSection').style.display='none';document.getElementById('resultsSection').style.display='block';var circle=document.getElementById('scoreCircle');circle.className='score-circle '+(passed?'passed':'failed');document.getElementById('scoreNumber').textContent=score+'%';var badge=document.getElementById('resultBadge');badge.className='result-badge '+(passed?'passed':'failed');badge.textContent=passed?'🎉 PASSED!':'😞 FAILED';document.getElementById('resultTitle').textContent=passed?'Congratulations, '+currentStudentData.name+'!':'Better luck next time!';document.getElementById('resultMessage').textContent='You scored '+score+'% (Pass mark: '+set.passingScore+'%)';document.getElementById('correctCount').textContent=correct;document.getElementById('wrongCount').textContent=total-correct-userAnswers.filter(function(a){return a===null;}).length;document.getElementById('timeTaken').textContent=timeStr;}
         function reviewAnswers(){var section=document.getElementById('reviewSection');section.style.display=section.style.display==='none'?'block':'none';if(section.style.display==='none')return;var letters=['A','B','C','D'];document.getElementById('reviewItems').innerHTML=questions.map(function(q,i){var ua=userAnswers[i],isCorrect=ua===q.correct;return '<div class="review-item '+(isCorrect?'correct':'incorrect')+'">'+'<div class="review-q">'+(i+1)+'. '+escapeHtml(q.question)+'</div>'+'<div class="review-a '+(isCorrect?'correct-a':'wrong-a')+'">'+(ua!==null?'📝 Your answer: '+letters[ua]+'. '+escapeHtml(q.options[ua]):'⚪ Not answered')+'</div>'+(!isCorrect?'<div class="review-a correct-a">✅ Correct: '+letters[q.correct]+'. '+escapeHtml(q.options[q.correct])+'</div>':'')+'</div>';}).join('');}
         function startTimer(){updateTimerDisplay();timer=setInterval(function(){timeLeft--;updateTimerDisplay();if(timeLeft<=0){clearInterval(timer);showNotification('⏰ Time is up!','error');submitExam();}},1000);}
         function updateTimerDisplay(){var mm=Math.floor(timeLeft/60),ss=timeLeft%60;var box=document.getElementById('timerBox');box.textContent='⏱️ '+mm+':'+(ss<10?'0':'')+ss;box.className='timer-box'+(timeLeft<=300?' danger':timeLeft<=600?' warning':'');}
