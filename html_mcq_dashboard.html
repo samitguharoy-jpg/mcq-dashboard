@@ -1492,8 +1492,8 @@ var students = {
             currentStudentData = student;
             document.getElementById('studentName').textContent = student.name;
             document.getElementById('studentCodeDisplay').textContent = code;
-            document.getElementById('studentCourse').textContent = student.course;
-            document.getElementById('studentJoinDate').textContent = student.joinDate;
+            if(document.getElementById('studentCourse')) document.getElementById('studentCourse').textContent = student.course || 'JYCC';
+            if(document.getElementById('studentJoinDate')) document.getElementById('studentJoinDate').textContent = student.dob || '-';
             document.getElementById('homeSection').style.display = 'none';
             document.getElementById('studentDashboard').style.display = 'block';
             renderQuestionSets();

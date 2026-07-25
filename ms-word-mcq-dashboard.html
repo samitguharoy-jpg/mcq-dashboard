@@ -888,7 +888,11 @@
                     <div class="loading-bar" id="loadingBar">
                         <div class="loading-progress" id="loadingProgress"></div>
                     </div>
-                    <button class="access-btn" onclick="accessTest()">🚀 ACCESS TEST</button>
+                    <div style="margin:12px 0;text-align:left;">
+                        <label style="display:block;font-weight:600;margin-bottom:6px;color:#555;font-size:0.9rem;">📅 Date of Birth</label>
+                        <input type="date" id="studentDob" max="2015-12-31" style="width:100%;padding:11px 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:1rem;background:white;">
+                    </div>
+                    <button class="access-btn" onclick="accessTest()">🔓 LOGIN & ACCESS TESTS</button>
                 </div>
                 <div class="contact-info">📞 Contact your instructor if you don't have a student code</div>
             </div>
@@ -2291,6 +2295,34 @@
                         return;
                     }
                     
+                    var dob = document.getElementById('studentDob') ? document.getElementById('studentDob').value : '';
+                    if (!dob) { showNotification('Please enter your Date of Birth!', 'error'); return; }
+                    if (!students[code].dob || students[code].dob !== dob) {
+                        showNotification('❌ Date of Birth does not match! Please try again.', 'error');
+                        if(document.getElementById('studentDob')) document.getElementById('studentDob').value = '';
+                        return;
+                    }
+                    var dobVal = document.getElementById('studentDob') ? document.getElementById('studentDob').value : '';
+                    if (!dobVal) { showNotification('Please enter your Date of Birth!', 'error'); clearInterval(loadingInterval); loadingBar.style.display='none'; return; }
+                    if (!students[code].dob || students[code].dob !== dobVal) {
+                        showNotification('❌ Date of Birth does not match! Please try again.', 'error');
+                        if(document.getElementById('studentDob')) document.getElementById('studentDob').value='';
+                        clearInterval(loadingInterval); loadingBar.style.display='none'; return;
+                    }
+                    var dobVal = document.getElementById('studentDob') ? document.getElementById('studentDob').value : '';
+            if (!dobVal) { showNotification('Please enter your Date of Birth!', 'error'); return; }
+            if (!students[code].dob || students[code].dob !== dobVal) {
+                showNotification('❌ Date of Birth does not match! Please try again.', 'error');
+                if(document.getElementById('studentDob')) document.getElementById('studentDob').value='';
+                return;
+            }
+            var dobVal = document.getElementById('studentDob') ? document.getElementById('studentDob').value : '';
+                    if (!dobVal) { showNotification('Please enter your Date of Birth!', 'error'); return; }
+                    if (!students[code].dob || students[code].dob !== dobVal) {
+                        showNotification('❌ Date of Birth does not match! Please try again.', 'error');
+                        if(document.getElementById('studentDob')) document.getElementById('studentDob').value = '';
+                        return;
+                    }
                     var student = students[code];
             // DOB Verification
             if (!students[code].dob) {
