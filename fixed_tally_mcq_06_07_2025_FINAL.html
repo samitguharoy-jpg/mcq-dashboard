@@ -2377,7 +2377,7 @@
             'ADMIN001': {name: 'SYSTEM ADMIN', dob: '1990-01-01', course: 'ADMIN', joinDate: '1990-01-01'}
         };
         
-        var eligibleCourses = ['ADCA', 'DFA', 'CA', 'ADIT', 'ADIT+COMS', 'TALLY WITH GST', 'ADMIN','SCHOOL SYLLABUS','CCA','COMA'];
+        var eligibleCourses = ['ADCA', 'DFA', 'CA', 'ADIT', 'ADIT+COMS', 'TALLY WITH GST', 'ADMIN', 'SCHOOL SYLLABUS', 'SCHOOL SYLLABUS A', 'CCA', 'COMA', 'DMCA', 'MS OFFICE 2013', 'SPOKEN ENGLISH', 'TALLY', 'BCA', 'MCA', 'GENERAL'];
         
         // Tally Prime Question sets - 25 questions each with GUARANTEED SEQUENTIAL ORDER
         var questionSets = {
@@ -2668,7 +2668,11 @@
                 if(document.getElementById('studentDob')) document.getElementById('studentDob').value = '';
                 return;
             }
-                    if (eligibleCourses.indexOf(student.course) === -1) {
+                    if (student.course && eligibleCourses.indexOf(student.course) === -1 && student.course !== 'ADMIN') {
+                        // Allow all students - just log the course
+                        console.log('Course: ' + student.course);
+                    }
+                    if (false) {
                         showNotification('❌ Course Restriction! Your course is not eligible for this exam.', 'error');
                         return;
                     }

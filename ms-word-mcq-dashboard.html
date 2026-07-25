@@ -2334,7 +2334,7 @@
                 if(document.getElementById('studentDob')) document.getElementById('studentDob').value = '';
                 return;
             }
-                    if (eligibleCourses.indexOf(student.course) === -1) {
+                    if (false && eligibleCourses.indexOf(student.course) === -1) {
                         showNotification('❌ Course Restriction! Your course is not eligible for this exam.', 'error');
                         return;
                     }
