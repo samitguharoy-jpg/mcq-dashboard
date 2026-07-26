@@ -1281,22 +1281,25 @@ var students = {
         function renderAdminTable(){var tbody=document.getElementById('adminTableBody');document.getElementById('totalResults').textContent=finalExamScores.length;if(!finalExamScores.length){tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:#888;padding:2rem;">No results yet</td></tr>';return;}tbody.innerHTML=finalExamScores.map(function(r,i){return '<tr><td>'+(i+1)+'</td><td>'+r.name+'</td><td>'+r.code+'</td><td><span class="badge badge-set">Set '+r.set+'</span></td><td><strong>'+r.score+'%</strong></td><td><span class="badge '+(r.passed?'badge-pass':'badge-fail')+'">'+(r.passed?'✅ Pass':'❌ Fail')+'</span></td><td>'+r.time+'</td></tr>';}).join('');}
         function accessTest(){
             var code=document.getElementById('studentCode').value.trim().toUpperCase();
-            var dob=document.getElementById('studentDob').value;
+            var dob=document.getElementById('studentDob')?document.getElementById('studentDob').value:'';
             if(!code){showNotification('Please enter your Student Code!','error');return;}
             if(!dob){showNotification('Please enter your Date of Birth!','error');return;}
-            if(!students[code]){showNotification('❌ Student ID not found! Please check your code.','error');return;}
-            if(students[code].dob!==dob){showNotification('❌ Date of Birth does not match! Please try again.','error');document.getElementById('studentDob').value='';return;}
+            if(!students[code]){showNotification('Student ID not found! Please check your code.','error');return;}
+            if(!students[code].dob||students[code].dob!==dob){showNotification('Date of Birth does not match! Please try again.','error');if(document.getElementById('studentDob'))document.getElementById('studentDob').value='';return;}
             var student=students[code];
-            studentId=code;currentStudentData=student;
+            studentId=code;
+            currentStudentData=student;
             document.getElementById('studentName').textContent=student.name;
             document.getElementById('studentCodeDisplay').textContent=code;
-            document.getElementById('studentCourse').textContent=student.course||'JYCC';
-            document.getElementById('studentJoinDate').textContent=student.dob;
+            if(document.getElementById('studentCourse'))document.getElementById('studentCourse').textContent=student.course||'JYCC';
+            if(document.getElementById('studentJoinDate'))document.getElementById('studentJoinDate').textContent=student.dob||'-';
             document.getElementById('homeSection').style.display='none';
             document.getElementById('studentDashboard').style.display='block';
             renderQuestionSets();
             showNotification('Welcome, '+student.name+'!','success');
-        }if(!students[code]){showNotification('❌ Student ID not found! Contact your instructor.','error');return;}var student=students[code];studentId=code;currentStudentData=student;document.getElementById('studentName').textContent=student.name;document.getElementById('studentCodeDisplay').textContent=code;document.getElementById('studentCourse').textContent=student.course;document.getElementById('studentJoinDate').textContent=student.joinDate;document.getElementById('homeSection').style.display='none';document.getElementById('studentDashboard').style.display='block';renderQuestionSets();showNotification('✅ Welcome, '+student.name+'!','success');}
+        }
+
+
         function renderQuestionSets(){var grid=document.getElementById('questionSetsGrid');var sets=[{key:'A',icon:'📗',label:'Set A',desc:'Basic Knowledge',info:'25 Qs • 35 min • Pass 60%'},{key:'B',icon:'📘',label:'Set B',desc:'Intermediate',info:'25 Qs • 35 min • Pass 60%'},{key:'C',icon:'📙',label:'Set C',desc:'Advanced',info:'25 Qs • 35 min • Pass 60%'},{key:'FINAL',icon:'🏆',label:'Final Test',desc:'Comprehensive',info:'40 Qs • 60 min • Pass 70%',isFinal:true}];grid.innerHTML=sets.map(function(s){return '<div class="set-card" id="setCard_'+s.key+'" onclick="selectSet(\''+s.key+'\')">'+'<div class="set-icon">'+s.icon+'</div>'+'<div class="set-name">'+s.label+' '+(s.isFinal?'<span class="final-test-badge">🔐 Final</span>':'')+'</div>'+'<div style="font-size:0.85rem;color:#1a6b3c;font-weight:600;">'+s.desc+'</div>'+'<div class="set-info">'+s.info+'</div></div>';}).join('');}
         function selectSet(key){selectedQuestionSet=key;document.querySelectorAll('.set-card').forEach(function(c){c.classList.remove('selected');});document.getElementById('setCard_'+key).classList.add('selected');document.getElementById('startBtn').style.display='block';document.getElementById('startBtn').textContent=key==='FINAL'?'🔐 Unlock & Start Final Test':'▶️ Start '+key+' Test';}
         function startExam(){if(!selectedQuestionSet){showNotification('Please select a question set!','error');return;}if(selectedQuestionSet==='FINAL'){document.getElementById('passwordModal').classList.add('active');return;}launchExam(selectedQuestionSet);}
