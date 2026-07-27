@@ -1229,20 +1229,22 @@ var students = {
             showNotification("Welcome, "+student.name+"!","success");
         }
         function renderQuestionSets(){
-            var grid=document.getElementById("questionSetsGrid");
+            var grid=document.getElementById('questionSetsGrid');
             var sets=[
-                {key:"A",icon:"A",label:"Set A",desc:"Basic",info:"25 Qs - 30 min - Pass 40%"},
-                {key:"B",icon:"B",label:"Set B",desc:"Intermediate",info:"25 Qs - 30 min - Pass 40%"},
-                {key:"C",icon:"C",label:"Set C",desc:"Advanced",info:"25 Qs - 30 min - Pass 40%"},
-                {key:"FINAL",icon:"F",label:"Final Test",desc:"Mixed Topics",info:"25 Qs - 30 min - Pass 50%",isFinal:true}
+                {key:'A',icon:'📗',label:'Set A',desc:questionSets.A.title.split(' — ')[2]||'Basic',info:'25 Qs • 30 min • Pass 40%'},
+                {key:'B',icon:'📘',label:'Set B',desc:questionSets.B.title.split(' — ')[2]||'Intermediate',info:'25 Qs • 30 min • Pass 40%'},
+                {key:'C',icon:'📙',label:'Set C',desc:questionSets.C.title.split(' — ')[2]||'Advanced',info:'25 Qs • 30 min • Pass 40%'},
+                {key:'FINAL',icon:'🏆',label:'Final Test',desc:'Mixed Topics',info:'25 Qs • 30 min • Pass 50%',isFinal:true}
             ];
             grid.innerHTML=sets.map(function(s){
-                return "<div class='set-card' id='setCard_"+s.key+"' onclick='selectSet(""+s.key+"")'>" +
-                    "<div class='set-icon'>"+s.icon+"</div>" +
-                    "<div class='set-name'>"+s.label+(s.isFinal?" <span class='final-badge'>Final</span>":"")+"</div>" +
-                    "<div class='set-info'>"+s.info+"</div></div>";
-            }).join("");
+                return '<div class="set-card" id="setCard_'+s.key+'" onclick="selectSet(\'' +s.key+ '\')">' +
+                    '<div class="set-icon">'+s.icon+'</div>' +
+                    '<div class="set-name">'+s.label+' '+(s.isFinal?'<span class="final-badge">🔐 Final</span>':'')+'</div>' +
+                    '<div style="font-size:0.78rem;font-weight:600;margin-top:3px;">'+s.desc+'</div>' +
+                    '<div class="set-info">'+s.info+'</div></div>';
+            }).join('');
         }
+
         function selectSet(key){
             selectedQuestionSet=key;
             document.querySelectorAll(".set-card").forEach(function(c){c.classList.remove("selected");});
