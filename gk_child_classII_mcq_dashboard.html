@@ -103,6 +103,37 @@
         .notification { position:fixed; top:20px; left:50%; transform:translateX(-50%); padding:15px 30px; border-radius:50px; color:white; font-weight:600; z-index:9999; font-size:0.95rem; box-shadow:0 10px 30px rgba(0,0,0,0.2); animation:slideIn 0.3s ease,fadeOut 0.3s ease 2.7s forwards; }
         @keyframes slideIn { from{top:-50px;opacity:0}to{top:20px;opacity:1} }
         @keyframes fadeOut { from{opacity:1}to{opacity:0} }
+
+        /* Skip Button */
+        .btn-skip { background:linear-gradient(135deg,#718096,#a0aec0); color:white; }
+        .btn-skip:hover { opacity:0.9; transform:translateY(-2px); }
+
+        /* Question Map Button */
+        .btn-map { position:fixed; bottom:20px; left:20px; z-index:1000; background:linear-gradient(135deg,#e65c00,#f9b233); color:white; border:none; border-radius:50px; padding:12px 20px; cursor:pointer; font-size:0.85rem; font-weight:700; box-shadow:0 8px 20px rgba(0,0,0,0.2); transition:all 0.3s; }
+        .btn-map:hover { transform:scale(1.05); }
+
+        /* Question Map Modal */
+        .map-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:2000; align-items:center; justify-content:center; }
+        .map-overlay.active { display:flex; }
+        .map-modal { background:white; border-radius:20px; padding:2rem; max-width:480px; width:92%; box-shadow:0 30px 60px rgba(0,0,0,0.3); }
+        body.dark .map-modal { background:#2d3748; }
+        .map-title { font-size:1.1rem; font-weight:800; color:#e65c00; text-align:center; margin-bottom:1.2rem; }
+        .map-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:1.2rem; }
+        .map-btn { aspect-ratio:1; border-radius:10px; border:2px solid #e2e8f0; background:#f7fafc; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; color:#444; transition:all 0.2s; padding:4px; }
+        body.dark .map-btn { background:#4a5568; border-color:#718096; color:#e2e8f0; }
+        .map-btn:hover { transform:scale(1.1); border-color:#e65c00; }
+        .map-btn.current { border-color:#e65c00; background:linear-gradient(135deg,#e65c00,#f9b233); color:white; }
+        .map-btn.answered { border-color:#48bb78; background:#f0fff4; color:#276749; }
+        .map-btn.skipped { border-color:#667eea; background:#ebf4ff; color:#2b5ba8; }
+        .map-btn.unanswered { border-color:#e2e8f0; }
+        .map-legend { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:1rem; }
+        .legend-item { display:flex; align-items:center; gap:5px; font-size:0.72rem; color:#666; }
+        .legend-dot { width:14px; height:14px; border-radius:4px; flex-shrink:0; }
+        .legend-answered { background:#f0fff4; border:2px solid #48bb78; }
+        .legend-skipped { background:#ebf4ff; border:2px solid #667eea; }
+        .legend-unanswered { background:#f7fafc; border:2px solid #e2e8f0; }
+        .legend-current { background:#e65c00; border:2px solid #e65c00; }
+        .btn-close-map { width:100%; padding:12px; background:linear-gradient(135deg,#e65c00,#f9b233); color:white; border:none; border-radius:12px; font-size:1rem; font-weight:700; cursor:pointer; }
     </style>
 </head>
 <body>
@@ -116,6 +147,21 @@
         <button onclick="closePasswordModal()" style="margin-top:1rem;background:none;border:none;color:#888;cursor:pointer;">Cancel</button>
     </div>
 </div>
+
+<div class="map-overlay" id="mapModal">
+    <div class="map-modal">
+        <div class="map-title">&#128202; Question Navigation Map</div>
+        <div class="map-grid" id="mapGrid"></div>
+        <div class="map-legend">
+            <div class="legend-item"><div class="legend-dot legend-answered"></div>Answered</div>
+            <div class="legend-item"><div class="legend-dot legend-skipped"></div>Skipped</div>
+            <div class="legend-item"><div class="legend-dot legend-unanswered"></div>Unanswered</div>
+            <div class="legend-item"><div class="legend-dot legend-current"></div>Current</div>
+        </div>
+        <button class="btn-close-map" onclick="closeMap()">&#10003; Close Map</button>
+    </div>
+</div>
+<button class="btn-map" id="mapBtn" onclick="openMap()" style="display:none;">&#128202; Question Map</button>
 <div class="container">
     <div id="homeSection" class="home-section">
         <div class="institute-logo">⭐</div>
@@ -165,6 +211,7 @@
         <div class="options-grid" id="optionsGrid"></div>
         <div class="nav-buttons">
             <button class="btn-nav btn-prev" onclick="prevQuestion()">&larr; Back</button>
+            <button class="btn-nav btn-skip" onclick="skipQuestion()" id="skipBtn">Skip &#8594;&#8594;</button>
             <button class="btn-nav btn-next" onclick="nextQuestion()" id="nextBtn">Next &rarr;</button>
             <button class="btn-nav btn-submit" onclick="confirmSubmit()" id="submitBtn" style="display:none;">Submit!</button>
         </div>
@@ -1191,7 +1238,7 @@ var students = {
             },
         };
 
-        var currentQuestion=0,userAnswers=[],timeLeft=1800,timer;
+        var currentQuestion=0,userAnswers=[],skippedAnswers=[],timeLeft=1800,timer;
         var studentId="",currentStudentData=null,selectedQuestionSet="A",questions=[];
         var isDarkMode=false,examStartTime=null;
         var finalTestPasswords=["GKII2024","JYCC@GKII","JYCC@CHILD","INSTRUCTOR123","ADMIN2024"];
@@ -1267,6 +1314,8 @@ var students = {
             var set=questionSets[setKey];
             questions=set.questions.slice();
             userAnswers=new Array(questions.length).fill(null);
+            skippedAnswers=new Array(questions.length).fill(false);
+            document.getElementById("mapBtn").style.display="block";
             currentQuestion=0;timeLeft=set.timeLimit;examStartTime=new Date();
             document.getElementById("studentDashboard").style.display="none";
             document.getElementById("quizSection").style.display="block";
@@ -1287,6 +1336,7 @@ var students = {
                     "<span class='option-letter'>"+letters[i]+"</span>"+escapeHtml(opt)+"</button>";
             }).join("");
             document.getElementById("nextBtn").style.display=currentQuestion<total-1?"block":"none";
+            document.getElementById("skipBtn").style.display=currentQuestion<total-1?"block":"none";
             document.getElementById("submitBtn").style.display=currentQuestion===total-1?"block":"none";
         }
         function selectAnswer(idx){
@@ -1343,6 +1393,43 @@ var students = {
                     "</div>";
             }).join("");
         }
+        
+        function skipQuestion(){
+            skippedAnswers[currentQuestion]=true;
+            userAnswers[currentQuestion]=null;
+            if(currentQuestion<questions.length-1){
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                showNotification("All questions visited! Please submit or review skipped ones.","info");
+            }
+        }
+        function openMap(){
+            renderMap();
+            document.getElementById("mapModal").classList.add("active");
+        }
+        function closeMap(){
+            document.getElementById("mapModal").classList.remove("active");
+        }
+        function renderMap(){
+            var grid=document.getElementById("mapGrid");
+            grid.innerHTML=questions.map(function(q,i){
+                var cls="map-btn ";
+                if(i===currentQuestion) cls+="current";
+                else if(userAnswers[i]!==null) cls+="answered";
+                else if(skippedAnswers[i]) cls+="skipped";
+                else cls+="unanswered";
+                var icon=i===currentQuestion?"&#128071;":userAnswers[i]!==null?"&#10003;":skippedAnswers[i]?"&#187;":"?";
+                return "<button class='"+cls+"' onclick='goToQuestion("+i+")'>"+
+                    "<span style='font-size:0.85rem;font-weight:800;'>"+(i+1)+"</span>"+
+                    "<span style='font-size:0.7rem;'>"+icon+"</span></button>";
+            }).join("");
+        }
+        function goToQuestion(idx){
+            currentQuestion=idx;
+            renderQuestion();
+            closeMap();
+        }
         function startTimer(){
             updateTimerDisplay();
             timer=setInterval(function(){
@@ -1360,10 +1447,11 @@ var students = {
             document.getElementById("resultsSection").style.display="none";
             document.getElementById("homeSection").style.display="block";
             document.getElementById("studentCode").value="";
+            document.getElementById("mapBtn").style.display="none";
         }
         document.getElementById("studentCode").addEventListener("keypress",function(e){if(e.key==="Enter")document.getElementById("studentDob").focus();});
         document.getElementById("studentDob").addEventListener("keypress",function(e){if(e.key==="Enter")accessTest();});
-        window.addEventListener("click",function(event){if(event.target===document.getElementById("passwordModal"))closePasswordModal();});
+        window.addEventListener("click",function(event){if(event.target===document.getElementById("passwordModal"))closePasswordModal();if(event.target===document.getElementById("mapModal"))closeMap();});
 </script>
 </body>
 </html>
