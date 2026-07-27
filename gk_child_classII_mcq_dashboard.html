@@ -3,98 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GK Class II MCQ - JYCC Children's Hub</title>
+    <title>GK Class II MCQ - JYCC</title>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        :root { --p1:#e65c00; --p2:#f9b233; --pg:linear-gradient(135deg,#e65c00 0%,#f9b233 100%); --success:#48bb78; --error:#e53e3e; }
-        body { font-family:'Segoe UI',Tahoma,sans-serif; background:var(--pg); min-height:100vh; padding:20px; }
+        body { font-family:'Segoe UI',Tahoma,sans-serif; background:linear-gradient(135deg,#e65c00 0%,#f9b233 100%); min-height:100vh; padding:20px; }
         body.dark { background:linear-gradient(135deg,#1a202c,#2d3748); color:#e2e8f0; }
         .container { background:white; border-radius:20px; box-shadow:0 25px 50px rgba(0,0,0,0.15); padding:2rem; max-width:1000px; margin:0 auto; min-height:75vh; }
         body.dark .container { background:#2d3748; color:#e2e8f0; }
-        .theme-toggle { position:fixed; top:20px; right:20px; z-index:1000; background:rgba(255,255,255,0.2); border:none; border-radius:50px; padding:12px 20px; cursor:pointer; font-size:16px; color:white; font-weight:600; backdrop-filter:blur(10px); }
+        .theme-toggle { position:fixed; top:20px; right:20px; z-index:1000; background:rgba(255,255,255,0.2); border:none; border-radius:50px; padding:12px 20px; cursor:pointer; font-size:16px; color:white; font-weight:600; }
         .home-section { text-align:center; }
         .institute-logo { font-size:5rem; margin-bottom:1rem; }
         .institute-name { font-size:1.8rem; font-weight:800; color:#e65c00; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:2px; }
         body.dark .institute-name { color:#f9b233; }
-        .class-badge { display:inline-block; background:var(--pg); color:white; padding:6px 20px; border-radius:50px; font-size:0.9rem; font-weight:700; margin-bottom:1rem; letter-spacing:1px; }
-        .exam-title { font-size:1.5rem; font-weight:700; margin-bottom:0.5rem; background:var(--pg); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .class-badge { display:inline-block; background:linear-gradient(135deg,#e65c00,#f9b233); color:white; padding:6px 20px; border-radius:50px; font-size:0.9rem; font-weight:700; margin-bottom:1rem; }
+        .exam-title { font-size:1.5rem; font-weight:700; margin-bottom:0.5rem; background:linear-gradient(135deg,#e65c00,#f9b233); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
         .exam-subtitle { font-size:0.95rem; color:#888; margin-bottom:2rem; }
         body.dark .exam-subtitle { color:#a0aec0; }
         .access-card { background:linear-gradient(135deg,#f8f9ff,#fff); border:2px solid #e2e8f0; border-radius:15px; padding:2rem; max-width:500px; margin:0 auto 2rem; }
         body.dark .access-card { background:linear-gradient(135deg,#374151,#4a5568); border-color:#e65c00; }
         .access-title { font-size:1.2rem; font-weight:700; color:#e65c00; margin-bottom:1rem; }
-        body.dark .access-title { color:white; }
         .input-group { margin-bottom:1rem; }
         .input-group label { display:block; font-weight:600; margin-bottom:0.5rem; color:#444; font-size:0.9rem; }
         body.dark .input-group label { color:#e2e8f0; }
-        .input-group input { width:100%; padding:12px 16px; border:2px solid #e2e8f0; border-radius:10px; font-size:1rem; background:white; color:#333; transition:all 0.3s; }
+        .input-group input { width:100%; padding:12px 16px; border:2px solid #e2e8f0; border-radius:10px; font-size:1rem; background:white; color:#333; }
         body.dark .input-group input { background:#4a5568; border-color:#718096; color:#e2e8f0; }
-        .input-group input:focus { outline:none; border-color:#e65c00; box-shadow:0 0 0 3px rgba(230,92,0,0.0.15); }
-        .btn-primary { width:100%; padding:14px; background:var(--pg); color:white; border:none; border-radius:10px; font-size:1.1rem; font-weight:700; cursor:pointer; transition:all 0.3s; text-transform:uppercase; letter-spacing:1px; }
-        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 25px rgba(230,92,0,0.0.3); }
-        .student-info-card { background:linear-gradient(135deg,#f8f9ff,#fff); border:2px solid #e2e8f0; border-radius:15px; padding:1.5rem; margin-bottom:2rem; text-align:left; }
+        .btn-primary { width:100%; padding:14px; background:linear-gradient(135deg,#e65c00,#f9b233); color:white; border:none; border-radius:10px; font-size:1.1rem; font-weight:700; cursor:pointer; transition:all 0.3s; text-transform:uppercase; letter-spacing:1px; }
+        .btn-primary:hover { transform:translateY(-2px); }
+        .student-info-card { background:linear-gradient(135deg,#f8f9ff,#fff); border:2px solid #e2e8f0; border-radius:15px; padding:1.5rem; margin-bottom:2rem; }
         body.dark .student-info-card { background:linear-gradient(135deg,#374151,#4a5568); border-color:#e65c00; }
-        .student-info-card h3 { color:#e65c00; font-size:1.1rem; margin-bottom:1rem; }
-        body.dark .student-info-card h3 { color:#f9b233; }
+        .student-info-card h3 { color:#e65c00; margin-bottom:1rem; }
         .info-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
-        .info-item { font-size:0.9rem; }
         .info-label { font-weight:600; color:#555; }
         body.dark .info-label { color:#a0aec0; }
         .info-value { color:#e65c00; font-weight:700; }
-        body.dark .info-value { color:#f9b233; }
         .question-sets-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem; }
         .set-card { background:white; border:2px solid #e2e8f0; border-radius:15px; padding:1.5rem; text-align:center; cursor:pointer; transition:all 0.3s; }
         body.dark .set-card { background:#4a5568; border-color:#718096; }
-        .set-card:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(230,92,0,0.0.2); border-color:#e65c00; }
-        .set-card.selected { border-color:#e65c00; background:linear-gradient(135deg,#f8f9ff,#fff); box-shadow:0 10px 30px rgba(230,92,0,0.0.2); }
-        body.dark .set-card.selected { background:linear-gradient(135deg,#374151,#4a5568); }
+        .set-card:hover { transform:translateY(-3px); border-color:#e65c00; }
+        .set-card.selected { border-color:#e65c00; background:linear-gradient(135deg,#f8f9ff,#fff); }
         .set-icon { font-size:2.5rem; margin-bottom:0.5rem; }
         .set-name { font-weight:700; font-size:1rem; color:#e65c00; }
-        body.dark .set-name { color:#f9b233; }
         .set-desc { font-size:0.78rem; color:#e65c00; font-weight:600; margin-top:3px; }
         .set-info { font-size:0.78rem; color:#888; margin-top:0.3rem; }
-        body.dark .set-info { color:#a0aec0; }
-        .final-test-badge { background:linear-gradient(135deg,#f6d365,#fda085); color:white; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; }
+        .final-badge { background:linear-gradient(135deg,#f6d365,#fda085); color:white; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; }
         .quiz-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem; padding-bottom:1rem; border-bottom:2px solid #e2e8f0; flex-wrap:wrap; gap:1rem; }
-        body.dark .quiz-header { border-bottom-color:#4a5568; }
         .quiz-title { font-size:1.05rem; font-weight:700; color:#e65c00; }
-        body.dark .quiz-title { color:#f9b233; }
-        .quiz-meta { display:flex; gap:1rem; align-items:center; }
-        .timer-box { background:var(--pg); color:white; padding:8px 16px; border-radius:10px; font-weight:700; font-size:1.1rem; }
+        .timer-box { background:linear-gradient(135deg,#e65c00,#f9b233); color:white; padding:8px 16px; border-radius:10px; font-weight:700; font-size:1.1rem; }
         .timer-box.warning { background:linear-gradient(135deg,#f6d365,#fda085); animation:pulse 1s infinite; }
         .timer-box.danger { background:linear-gradient(135deg,#f093fb,#f5576c); animation:pulse 0.5s infinite; }
         @keyframes pulse { 0%,100%{transform:scale(1)}50%{transform:scale(1.05)} }
         .progress-bar { width:100%; height:8px; background:#e2e8f0; border-radius:10px; margin-bottom:2rem; overflow:hidden; }
-        body.dark .progress-bar { background:#4a5568; }
-        .progress-fill { height:100%; background:var(--pg); border-radius:10px; transition:width 0.3s; }
+        .progress-fill { height:100%; background:linear-gradient(135deg,#e65c00,#f9b233); border-radius:10px; transition:width 0.3s; }
         .question-number { font-size:0.85rem; color:#888; margin-bottom:0.5rem; }
-        body.dark .question-number { color:#a0aec0; }
         .question-text { font-size:1.15rem; font-weight:600; margin-bottom:1.5rem; color:#2d3748; line-height:1.6; }
         body.dark .question-text { color:#e2e8f0; }
         .options-grid { display:grid; gap:0.75rem; margin-bottom:2rem; }
         .option-btn { padding:13px 18px; border:2px solid #e2e8f0; border-radius:12px; background:white; cursor:pointer; text-align:left; font-size:0.98rem; transition:all 0.3s; color:#333; display:flex; align-items:center; gap:12px; }
         body.dark .option-btn { background:#4a5568; border-color:#718096; color:#e2e8f0; }
-        .option-btn:hover { border-color:#e65c00; background:linear-gradient(135deg,#f8f9ff,#fff); transform:translateX(4px); }
-        body.dark .option-btn:hover { background:#374151; }
+        .option-btn:hover { border-color:#e65c00; transform:translateX(4px); }
         .option-btn.selected { border-color:#e65c00; background:linear-gradient(135deg,#f8f9ff,#fff); }
-        body.dark .option-btn.selected { background:linear-gradient(135deg,#374151,#4a5568); }
-        .option-btn.correct { border-color:var(--success); background:#f0fff4; color:#276749; }
-        .option-btn.incorrect { border-color:var(--error); background:#fff5f5; color:#742a2a; }
+        .option-btn.correct { border-color:#48bb78; background:#f0fff4; color:#276749; }
+        .option-btn.incorrect { border-color:#e53e3e; background:#fff5f5; color:#742a2a; }
         .option-letter { width:32px; height:32px; border-radius:50%; background:#e2e8f0; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85rem; flex-shrink:0; }
         .option-btn.selected .option-letter { background:#e65c00; color:white; }
-        .option-btn.correct .option-letter { background:var(--success); color:white; }
-        .option-btn.incorrect .option-letter { background:var(--error); color:white; }
+        .option-btn.correct .option-letter { background:#48bb78; color:white; }
+        .option-btn.incorrect .option-letter { background:#e53e3e; color:white; }
         .nav-buttons { display:flex; gap:1rem; justify-content:space-between; }
         .btn-nav { padding:12px 24px; border:none; border-radius:10px; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.3s; }
         .btn-prev { background:#e2e8f0; color:#444; }
-        body.dark .btn-prev { background:#4a5568; color:#e2e8f0; }
         .btn-prev:hover { background:#cbd5e0; }
-        .btn-next { background:var(--pg); color:white; }
-        .btn-next:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(230,92,0,0.0.3); }
+        .btn-next { background:linear-gradient(135deg,#e65c00,#f9b233); color:white; }
         .btn-submit { background:linear-gradient(135deg,#48bb78,#38a169); color:white; flex:1; }
-        .btn-submit:hover { transform:translateY(-2px); }
         .results-section { text-align:center; }
-        .score-circle { width:180px; height:180px; border-radius:50%; background:var(--pg); display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 2rem; color:white; box-shadow:0 20px 40px rgba(230,92,0,0.0.3); }
+        .score-circle { width:180px; height:180px; border-radius:50%; background:linear-gradient(135deg,#e65c00,#f9b233); display:flex; flex-direction:column; align-items:center; justify-content:center; margin:0 auto 2rem; color:white; }
         .score-circle.passed { background:linear-gradient(135deg,#48bb78,#38a169); }
         .score-circle.failed { background:linear-gradient(135deg,#fc8181,#e53e3e); }
         .score-number { font-size:3rem; font-weight:900; }
@@ -104,84 +85,77 @@
         .result-badge.failed { background:#fff5f5; color:#742a2a; border:2px solid #e53e3e; }
         .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:2rem 0; }
         .stat-card { background:#f7fafc; border-radius:12px; padding:1rem; text-align:center; }
-        body.dark .stat-card { background:#4a5568; }
         .stat-num { font-size:2rem; font-weight:800; color:#e65c00; }
-        body.dark .stat-num { color:#f9b233; }
         .stat-lbl { font-size:0.8rem; color:#888; }
-        body.dark .stat-lbl { color:#a0aec0; }
         .review-section { text-align:left; margin-top:2rem; }
         .review-item { border:1px solid #e2e8f0; border-radius:10px; padding:1rem; margin-bottom:1rem; }
-        body.dark .review-item { border-color:#4a5568; }
-        .review-item.correct { border-left:4px solid var(--success); }
-        .review-item.incorrect { border-left:4px solid var(--error); }
-        .review-q { font-weight:600; margin-bottom:0.5rem; font-size:0.95rem; }
+        .review-item.correct { border-left:4px solid #48bb78; }
+        .review-item.incorrect { border-left:4px solid #e53e3e; }
+        .review-q { font-weight:600; margin-bottom:0.5rem; }
         .review-a { font-size:0.85rem; margin-top:0.3rem; }
-        .review-a.correct-a { color:var(--success); }
-        .review-a.wrong-a { color:var(--error); }
-        .home-btn { margin-top:2rem; padding:14px 32px; background:var(--pg); color:white; border:none; border-radius:10px; font-size:1rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
-        .home-btn:hover { transform:translateY(-2px); }
+        .review-a.correct-a { color:#48bb78; }
+        .review-a.wrong-a { color:#e53e3e; }
+        .home-btn { margin-top:2rem; padding:14px 32px; background:linear-gradient(135deg,#e65c00,#f9b233); color:white; border:none; border-radius:10px; font-size:1rem; font-weight:700; cursor:pointer; }
         .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; }
         .modal-overlay.active { display:flex; }
-        .modal { background:white; border-radius:20px; padding:2rem; max-width:450px; width:90%; text-align:center; box-shadow:0 30px 60px rgba(0,0,0,0.3); }
-        body.dark .modal { background:#2d3748; }
+        .modal { background:white; border-radius:20px; padding:2rem; max-width:450px; width:90%; text-align:center; }
         .modal h3 { font-size:1.3rem; margin-bottom:1rem; color:#e65c00; }
         .notification { position:fixed; top:20px; left:50%; transform:translateX(-50%); padding:15px 30px; border-radius:50px; color:white; font-weight:600; z-index:9999; font-size:0.95rem; box-shadow:0 10px 30px rgba(0,0,0,0.2); animation:slideIn 0.3s ease,fadeOut 0.3s ease 2.7s forwards; }
         @keyframes slideIn { from{top:-50px;opacity:0}to{top:20px;opacity:1} }
         @keyframes fadeOut { from{opacity:1}to{opacity:0} }
-        @media(max-width:600px){ .stats-grid{grid-template-columns:1fr 1fr} .info-grid{grid-template-columns:1fr} .question-sets-grid{grid-template-columns:1fr 1fr} }
     </style>
 </head>
 <body>
-<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+<button class="theme-toggle" onclick="toggleTheme()">&#127769;</button>
 <div class="modal-overlay" id="passwordModal">
     <div class="modal">
-        <h3>🔐 Final Test Access</h3>
+        <h3>&#128272; Final Test Access</h3>
         <p style="color:#888;margin-bottom:1.5rem;font-size:0.9rem;">Enter instructor password</p>
         <div class="input-group"><input type="password" id="finalTestPassword" placeholder="Enter password" style="margin-bottom:1rem;"></div>
-        <button class="btn-primary" onclick="verifyFinalTestPassword()">🔓 Unlock</button>
+        <button class="btn-primary" onclick="verifyFinalTestPassword()">Unlock</button>
         <button onclick="closePasswordModal()" style="margin-top:1rem;background:none;border:none;color:#888;cursor:pointer;">Cancel</button>
     </div>
 </div>
 <div class="container">
     <div id="homeSection" class="home-section">
         <div class="institute-logo">⭐</div>
-        <div class="institute-name">JYCC — GK Class II</div>
-        <div class="institute-subtitle">Jatiya Yuva Computer Centre | Children's Hub</div>
-        <div class="class-badge">📚 CLASS II LEVEL — 100 QUESTIONS</div>
-        <div class="exam-title">General Knowledge — Class II</div>
-        <div class="exam-subtitle">Fun Learning with 4 Question Sets | 869 Students Registered</div>
+        <div class="institute-name">JYCC &mdash; GK Class II</div>
+        <div style="color:#666;margin-bottom:0.5rem;font-size:1rem;">Jatiya Yuva Computer Centre | Children Hub</div>
+        <div class="class-badge">CLASS II LEVEL &mdash; 100 QUESTIONS</div>
+        <div class="exam-title">General Knowledge &mdash; Class II</div>
+        <div class="exam-subtitle">Fun Learning with 4 Question Sets | 869 Students</div>
         <div class="access-card">
-            <div class="access-title">🔐 Secure Student Login</div>
+            <div class="access-title">&#128272; Secure Student Login</div>
             <div class="input-group">
                 <label>Student ID Code</label>
                 <input type="text" id="studentCode" placeholder="e.g. JYCSM-55" style="text-transform:uppercase;">
             </div>
             <div class="input-group">
-                <label>📅 Date of Birth</label>
+                <label>Date of Birth</label>
                 <input type="date" id="studentDob" max="2020-12-31">
             </div>
-            <button class="btn-primary" onclick="accessTest()">🔓 Login & Start Test</button>
+            <button class="btn-primary" onclick="accessTest()">Login &amp; Start Test</button>
         </div>
     </div>
     <div id="studentDashboard" style="display:none;">
         <div class="student-info-card">
-            <h3>👤 Student Profile</h3>
+            <h3>Student Profile</h3>
             <div class="info-grid">
-                <div class="info-item"><span class="info-label">Name: </span><span class="info-value" id="studentName"></span></div>
-                <div class="info-item"><span class="info-label">Code: </span><span class="info-value" id="studentCodeDisplay"></span></div>
-                <div class="info-item"><span class="info-label">Course: </span><span class="info-value" id="studentCourse"></span></div>
-                <div class="info-item"><span class="info-label">DOB: </span><span class="info-value" id="studentJoinDate"></span></div>
+                <div><span class="info-label">Name: </span><span class="info-value" id="studentName"></span></div>
+                <div><span class="info-label">Code: </span><span class="info-value" id="studentCodeDisplay"></span></div>
+                <div><span class="info-label">Course: </span><span class="info-value" id="studentCourse"></span></div>
+                <div><span class="info-label">DOB: </span><span class="info-value" id="studentJoinDate"></span></div>
             </div>
         </div>
-        <div class="exam-title" style="text-align:center;margin-bottom:1rem;">📚 Choose Your Set!</div>
+        <div class="exam-title" style="text-align:center;margin-bottom:1rem;">Choose Your Set!</div>
         <div class="question-sets-grid" id="questionSetsGrid"></div>
-        <button class="btn-primary" id="startBtn" onclick="startExam()" style="display:none;">▶️ Start Test</button>
+        <button class="btn-primary" id="startBtn" onclick="startExam()" style="display:none;">Start Test</button>
     </div>
     <div id="quizSection" style="display:none;">
         <div class="quiz-header">
             <div class="quiz-title" id="quizTitle"></div>
-            <div class="quiz-meta">
-                <div class="timer-box" id="timerBox">⏱️ 30:00</div>
+            <div style="display:flex;gap:1rem;align-items:center;">
+                <div class="timer-box" id="timerBox">30:00</div>
                 <div style="font-size:0.85rem;color:#888;" id="questionCounter">Q 1/25</div>
             </div>
         </div>
@@ -190,9 +164,9 @@
         <div class="question-text" id="questionText"></div>
         <div class="options-grid" id="optionsGrid"></div>
         <div class="nav-buttons">
-            <button class="btn-nav btn-prev" onclick="prevQuestion()">← Back</button>
-            <button class="btn-nav btn-next" onclick="nextQuestion()" id="nextBtn">Next →</button>
-            <button class="btn-nav btn-submit" onclick="confirmSubmit()" id="submitBtn" style="display:none;">✅ Submit!</button>
+            <button class="btn-nav btn-prev" onclick="prevQuestion()">&larr; Back</button>
+            <button class="btn-nav btn-next" onclick="nextQuestion()" id="nextBtn">Next &rarr;</button>
+            <button class="btn-nav btn-submit" onclick="confirmSubmit()" id="submitBtn" style="display:none;">Submit!</button>
         </div>
     </div>
     <div id="resultsSection" style="display:none;">
@@ -202,21 +176,21 @@
             <h2 id="resultTitle" style="margin-bottom:0.5rem;"></h2>
             <p id="resultMessage" style="color:#888;margin-bottom:1.5rem;"></p>
             <div class="stats-grid">
-                <div class="stat-card"><div class="stat-num" id="correctCount">0</div><div class="stat-lbl">✅ Correct</div></div>
-                <div class="stat-card"><div class="stat-num" id="wrongCount">0</div><div class="stat-lbl">❌ Wrong</div></div>
-                <div class="stat-card"><div class="stat-num" id="timeTaken">0:00</div><div class="stat-lbl">⏱️ Time</div></div>
+                <div class="stat-card"><div class="stat-num" id="correctCount">0</div><div class="stat-lbl">Correct</div></div>
+                <div class="stat-card"><div class="stat-num" id="wrongCount">0</div><div class="stat-lbl">Wrong</div></div>
+                <div class="stat-card"><div class="stat-num" id="timeTaken">0:00</div><div class="stat-lbl">Time</div></div>
             </div>
-            <button class="home-btn" onclick="goHome()">🏠 Home</button>
-            <button class="home-btn" onclick="reviewAnswers()" style="background:linear-gradient(135deg,#667eea,#764ba2);margin-left:1rem;">📋 Review</button>
+            <button class="home-btn" onclick="goHome()">Home</button>
+            <button class="home-btn" onclick="reviewAnswers()" style="background:linear-gradient(135deg,#667eea,#764ba2);margin-left:1rem;">Review</button>
         </div>
         <div class="review-section" id="reviewSection" style="display:none;">
-            <h3 style="margin-bottom:1rem;color:#e65c00;">📋 Answer Review</h3>
+            <h3 style="margin-bottom:1rem;color:#e65c00;">Answer Review</h3>
             <div id="reviewItems"></div>
         </div>
     </div>
 </div>
 <script>
-        var students = {
+var students = {
     'JYCSM-1': {name: 'Nabin Kirtaniya', dob: '2009-12-03', course: 'JYCC', joinDate: '2009-12-03'},
     'JYCSM-2': {name: 'RICK SARKAR', dob: '2013-05-12', course: 'JYCC', joinDate: '2013-05-12'},
     'JYCSM-3': {name: 'ABHISHIKTA CHATTERJEE', dob: '2012-09-20', course: 'JYCC', joinDate: '2012-09-20'},
@@ -1186,7 +1160,7 @@
             },
             'FINAL': {
                 title: 'GK Final Test — Class II — Mixed Topics',
-                timeLimit: 1800, passingScore: 40,
+                timeLimit: 1800, passingScore: 50,
                 questions: [
                     {question: "What is the capital of India?", options: ["Mumbai", "Kolkata", "New Delhi", "Chennai"], correct: 2},
                     {question: "What is the national bird of India?", options: ["Sparrow", "Peacock", "Parrot", "Eagle"], correct: 1},
@@ -1218,51 +1192,176 @@
         };
 
         var currentQuestion=0,userAnswers=[],timeLeft=1800,timer;
-        var studentId='',currentStudentData=null,selectedQuestionSet='A',questions=[];
+        var studentId="",currentStudentData=null,selectedQuestionSet="A",questions=[];
         var isDarkMode=false,examStartTime=null;
-        var finalTestPasswords=['GKII2024','JYCC@GKII','JYCC@CHILD','INSTRUCTOR123','ADMIN2024'];
-        var finalExamScores=JSON.parse(localStorage.getItem('gkClassIIExamScores')||'[]');
+        var finalTestPasswords=["GKII2024","JYCC@GKII","JYCC@CHILD","INSTRUCTOR123","ADMIN2024"];
+        var finalExamScores=JSON.parse(localStorage.getItem("gkChildIIScores")||"[]");
 
-        function escapeHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
-        function showNotification(msg,type,dur){var e=document.querySelectorAll('.notification');e.forEach(function(n){n.remove();});var colors={success:'#48bb78',error:'#e53e3e',info:'#4299e1',warning:'#d69e2e'};var n=document.createElement('div');n.className='notification';n.textContent=msg;n.style.background=colors[type]||colors.info;document.body.appendChild(n);setTimeout(function(){n.remove();},dur||3000);}
-        function toggleTheme(){isDarkMode=!isDarkMode;document.body.classList.toggle('dark',isDarkMode);document.querySelector('.theme-toggle').textContent=isDarkMode?'☀️':'🌙';}
+        function escapeHtml(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+        function showNotification(msg,type){
+            document.querySelectorAll(".notification").forEach(function(n){n.remove();});
+            var colors={success:"#48bb78",error:"#e53e3e",info:"#4299e1"};
+            var n=document.createElement("div");n.className="notification";
+            n.textContent=msg;n.style.background=colors[type]||colors.info;
+            document.body.appendChild(n);
+            setTimeout(function(){n.remove();},3000);
+        }
+        function toggleTheme(){isDarkMode=!isDarkMode;document.body.classList.toggle("dark",isDarkMode);}
         function accessTest(){
-            var code=document.getElementById('studentCode').value.trim().toUpperCase();
-            var dob=document.getElementById('studentDob')?document.getElementById('studentDob').value:'';
-            if(!code){showNotification('Please enter your Student Code!','error');return;}
-            if(!dob){showNotification('Please enter your Date of Birth!','error');return;}
-            if(!students[code]){showNotification('Student ID not found! Please check your code.','error');return;}
-            if(!students[code].dob||students[code].dob!==dob){showNotification('Date of Birth does not match! Please try again.','error');if(document.getElementById('studentDob'))document.getElementById('studentDob').value='';return;}
+            var code=document.getElementById("studentCode").value.trim().toUpperCase();
+            var dob=document.getElementById("studentDob").value;
+            if(!code){showNotification("Please enter your Student Code!","error");return;}
+            if(!dob){showNotification("Please enter your Date of Birth!","error");return;}
+            if(!students[code]){showNotification("Student ID not found! Please check your code.","error");return;}
+            if(!students[code].dob||students[code].dob!==dob){
+                showNotification("Date of Birth does not match! Please try again.","error");
+                document.getElementById("studentDob").value="";return;
+            }
             var student=students[code];
             studentId=code;currentStudentData=student;
-            document.getElementById('studentName').textContent=student.name;
-            document.getElementById('studentCodeDisplay').textContent=code;
-            if(document.getElementById('studentCourse'))document.getElementById('studentCourse').textContent=student.course||'JYCC';
-            if(document.getElementById('studentJoinDate'))document.getElementById('studentJoinDate').textContent=student.dob||'-';
-            document.getElementById('homeSection').style.display='none';
-            document.getElementById('studentDashboard').style.display='block';
+            document.getElementById("studentName").textContent=student.name;
+            document.getElementById("studentCodeDisplay").textContent=code;
+            document.getElementById("studentCourse").textContent=student.course||"JYCC";
+            document.getElementById("studentJoinDate").textContent=student.dob||"-";
+            document.getElementById("homeSection").style.display="none";
+            document.getElementById("studentDashboard").style.display="block";
             renderQuestionSets();
-            showNotification('Welcome, '+student.name+'!','success');
+            showNotification("Welcome, "+student.name+"!","success");
         }
-        function renderQuestionSets(){var grid=document.getElementById('questionSetsGrid');var sets=[{key:'A',icon:'📗',label:'Set A',desc:questionSets.A.title.split(' — ')[2]||'Basic',info:'25 Qs • 30 min • Pass 40%'},{key:'B',icon:'📘',label:'Set B',desc:questionSets.B.title.split(' — ')[2]||'Intermediate',info:'25 Qs • 30 min • Pass 40%'},{key:'C',icon:'📙',label:'Set C',desc:questionSets.C.title.split(' — ')[2]||'Advanced',info:'25 Qs • 30 min • Pass 40%'},{key:'FINAL',icon:'🏆',label:'Final Test',desc:'Mixed Topics',info:'25 Qs • 30 min • Pass 50%',isFinal:true}];grid.innerHTML=sets.map(function(s){return '<div class="set-card" id="setCard_'+s.key+'" onclick="selectSet(''+s.key+'')">'+'<div class="set-icon">'+s.icon+'</div>'+'<div class="set-name">'+s.label+' '+(s.isFinal?'<span class="final-test-badge">🔐</span>':'')+'</div>'+'<div class="set-desc">'+s.desc+'</div>'+'<div class="set-info">'+s.info+'</div></div>';}).join('');}
-        function selectSet(key){selectedQuestionSet=key;document.querySelectorAll('.set-card').forEach(function(c){c.classList.remove('selected');});document.getElementById('setCard_'+key).classList.add('selected');document.getElementById('startBtn').style.display='block';document.getElementById('startBtn').textContent=key==='FINAL'?'🔐 Unlock Final Test':'▶️ Start '+key+' Test';}
-        function startExam(){if(!selectedQuestionSet){showNotification('Please select a set!','error');return;}if(selectedQuestionSet==='FINAL'){document.getElementById('passwordModal').classList.add('active');return;}launchExam(selectedQuestionSet);}
-        function verifyFinalTestPassword(){var pwd=document.getElementById('finalTestPassword').value.trim();if(finalTestPasswords.indexOf(pwd)!==-1){closePasswordModal();launchExam('FINAL');}else{showNotification('❌ Incorrect password!','error');}}
-        function closePasswordModal(){document.getElementById('passwordModal').classList.remove('active');document.getElementById('finalTestPassword').value='';}
-        function launchExam(setKey){var set=questionSets[setKey];questions=set.questions.slice();userAnswers=new Array(questions.length).fill(null);currentQuestion=0;timeLeft=set.timeLimit;examStartTime=new Date();document.getElementById('studentDashboard').style.display='none';document.getElementById('quizSection').style.display='block';document.getElementById('quizTitle').textContent=set.title;renderQuestion();startTimer();showNotification('🚀 Good Luck!','success');}
-        function renderQuestion(){var q=questions[currentQuestion],total=questions.length;document.getElementById('questionNum').textContent='Question '+(currentQuestion+1)+' of '+total;document.getElementById('questionCounter').textContent='Q '+(currentQuestion+1)+'/'+total;document.getElementById('questionText').textContent=q.question;document.getElementById('progressFill').style.width=((currentQuestion+1)/total*100)+'%';var letters=['A','B','C','D'];document.getElementById('optionsGrid').innerHTML=q.options.map(function(opt,i){var cls='option-btn'+(userAnswers[currentQuestion]===i?' selected':'');return '<button class="'+cls+'" onclick="selectAnswer('+i+')">'+'<span class="option-letter">'+letters[i]+'</span>'+escapeHtml(opt)+'</button>';}).join('');document.getElementById('nextBtn').style.display=currentQuestion<total-1?'block':'none';document.getElementById('submitBtn').style.display=currentQuestion===total-1?'block':'none';}
-        function selectAnswer(idx){userAnswers[currentQuestion]=idx;document.querySelectorAll('.option-btn').forEach(function(b,i){b.classList.toggle('selected',i===idx);var l=b.querySelector('.option-letter');l.style.background=i===idx?'#e65c00':'';l.style.color=i===idx?'white':'';}); }
+        function renderQuestionSets(){
+            var grid=document.getElementById("questionSetsGrid");
+            var sets=[
+                {key:"A",icon:"A",label:"Set A",desc:"Basic",info:"25 Qs - 30 min - Pass 40%"},
+                {key:"B",icon:"B",label:"Set B",desc:"Intermediate",info:"25 Qs - 30 min - Pass 40%"},
+                {key:"C",icon:"C",label:"Set C",desc:"Advanced",info:"25 Qs - 30 min - Pass 40%"},
+                {key:"FINAL",icon:"F",label:"Final Test",desc:"Mixed Topics",info:"25 Qs - 30 min - Pass 50%",isFinal:true}
+            ];
+            grid.innerHTML=sets.map(function(s){
+                return "<div class='set-card' id='setCard_"+s.key+"' onclick='selectSet(""+s.key+"")'>" +
+                    "<div class='set-icon'>"+s.icon+"</div>" +
+                    "<div class='set-name'>"+s.label+(s.isFinal?" <span class='final-badge'>Final</span>":"")+"</div>" +
+                    "<div class='set-info'>"+s.info+"</div></div>";
+            }).join("");
+        }
+        function selectSet(key){
+            selectedQuestionSet=key;
+            document.querySelectorAll(".set-card").forEach(function(c){c.classList.remove("selected");});
+            document.getElementById("setCard_"+key).classList.add("selected");
+            document.getElementById("startBtn").style.display="block";
+            document.getElementById("startBtn").textContent=key==="FINAL"?"Unlock Final Test":"Start "+key+" Test";
+        }
+        function startExam(){
+            if(!selectedQuestionSet){showNotification("Please select a set!","error");return;}
+            if(selectedQuestionSet==="FINAL"){document.getElementById("passwordModal").classList.add("active");return;}
+            launchExam(selectedQuestionSet);
+        }
+        function verifyFinalTestPassword(){
+            var pwd=document.getElementById("finalTestPassword").value.trim();
+            if(finalTestPasswords.indexOf(pwd)!==-1){closePasswordModal();launchExam("FINAL");}
+            else{showNotification("Incorrect password!","error");}
+        }
+        function closePasswordModal(){document.getElementById("passwordModal").classList.remove("active");document.getElementById("finalTestPassword").value="";}
+        function launchExam(setKey){
+            var set=questionSets[setKey];
+            questions=set.questions.slice();
+            userAnswers=new Array(questions.length).fill(null);
+            currentQuestion=0;timeLeft=set.timeLimit;examStartTime=new Date();
+            document.getElementById("studentDashboard").style.display="none";
+            document.getElementById("quizSection").style.display="block";
+            document.getElementById("quizTitle").textContent=set.title;
+            renderQuestion();startTimer();
+            showNotification("Good Luck!","success");
+        }
+        function renderQuestion(){
+            var q=questions[currentQuestion],total=questions.length;
+            document.getElementById("questionNum").textContent="Question "+(currentQuestion+1)+" of "+total;
+            document.getElementById("questionCounter").textContent="Q "+(currentQuestion+1)+"/"+total;
+            document.getElementById("questionText").textContent=q.question;
+            document.getElementById("progressFill").style.width=((currentQuestion+1)/total*100)+"%";
+            var letters=["A","B","C","D"];
+            document.getElementById("optionsGrid").innerHTML=q.options.map(function(opt,i){
+                var sel=userAnswers[currentQuestion]===i?" selected":"";
+                return "<button class='option-btn"+sel+"' onclick='selectAnswer("+i+")'>" +
+                    "<span class='option-letter'>"+letters[i]+"</span>"+escapeHtml(opt)+"</button>";
+            }).join("");
+            document.getElementById("nextBtn").style.display=currentQuestion<total-1?"block":"none";
+            document.getElementById("submitBtn").style.display=currentQuestion===total-1?"block":"none";
+        }
+        function selectAnswer(idx){
+            userAnswers[currentQuestion]=idx;
+            document.querySelectorAll(".option-btn").forEach(function(b,i){
+                b.classList.toggle("selected",i===idx);
+                var l=b.querySelector(".option-letter");
+                l.style.background=i===idx?"#e65c00":"";
+                l.style.color=i===idx?"white":"";
+            });
+        }
         function nextQuestion(){if(currentQuestion<questions.length-1){currentQuestion++;renderQuestion();}}
         function prevQuestion(){if(currentQuestion>0){currentQuestion--;renderQuestion();}}
-        function confirmSubmit(){var u=userAnswers.filter(function(a){return a===null;}).length;if(u>0){if(!confirm('You have '+u+' unanswered question(s). Submit anyway?'))return;}submitExam();}
-        function submitExam(){clearInterval(timer);var correct=0;userAnswers.forEach(function(ans,i){if(ans===questions[i].correct)correct++;});var total=questions.length,score=Math.round((correct/total)*100);var set=questionSets[selectedQuestionSet],passed=score>=set.passingScore;var elapsed=Math.floor((new Date()-examStartTime)/1000);var timeStr=Math.floor(elapsed/60)+':'+(elapsed%60<10?'0':'')+elapsed%60;finalExamScores.push({name:currentStudentData.name,code:studentId,set:selectedQuestionSet,score:score,passed:passed,time:timeStr,date:new Date().toLocaleDateString()});localStorage.setItem('gkClassIIExamScores',JSON.stringify(finalExamScores));document.getElementById('quizSection').style.display='none';document.getElementById('resultsSection').style.display='block';var circle=document.getElementById('scoreCircle');circle.className='score-circle '+(passed?'passed':'failed');document.getElementById('scoreNumber').textContent=score+'%';var badge=document.getElementById('resultBadge');badge.className='result-badge '+(passed?'passed':'failed');badge.textContent=passed?'🎉 PASSED!':'😞 FAILED';document.getElementById('resultTitle').textContent=passed?'Great job, '+currentStudentData.name+'! 🌟':'Keep trying, you can do it! 💪';document.getElementById('resultMessage').textContent='You scored '+score+'% (Pass mark: '+set.passingScore+'%)';document.getElementById('correctCount').textContent=correct;document.getElementById('wrongCount').textContent=total-correct-userAnswers.filter(function(a){return a===null;}).length;document.getElementById('timeTaken').textContent=timeStr;}
-        function reviewAnswers(){var section=document.getElementById('reviewSection');section.style.display=section.style.display==='none'?'block':'none';if(section.style.display==='none')return;var letters=['A','B','C','D'];document.getElementById('reviewItems').innerHTML=questions.map(function(q,i){var ua=userAnswers[i],isCorrect=ua===q.correct;return '<div class="review-item '+(isCorrect?'correct':'incorrect')+'">'+'<div class="review-q">'+(i+1)+'. '+escapeHtml(q.question)+'</div>'+'<div class="review-a '+(isCorrect?'correct-a':'wrong-a')+'">'+(ua!==null?'📝 Your answer: '+letters[ua]+'. '+escapeHtml(q.options[ua]):'⚪ Not answered')+'</div>'+(!isCorrect?'<div class="review-a correct-a">✅ Correct: '+letters[q.correct]+'. '+escapeHtml(q.options[q.correct])+'</div>':'')+'</div>';}).join('');}
-        function startTimer(){updateTimerDisplay();timer=setInterval(function(){timeLeft--;updateTimerDisplay();if(timeLeft<=0){clearInterval(timer);showNotification('⏰ Time is up!','error');submitExam();}},1000);}
-        function updateTimerDisplay(){var mm=Math.floor(timeLeft/60),ss=timeLeft%60;var box=document.getElementById('timerBox');box.textContent='⏱️ '+mm+':'+(ss<10?'0':'')+ss;box.className='timer-box'+(timeLeft<=300?' danger':timeLeft<=600?' warning':'');}
-        function goHome(){document.getElementById('resultsSection').style.display='none';document.getElementById('homeSection').style.display='block';document.getElementById('studentCode').value='';}
-        document.getElementById('studentCode').addEventListener('keypress',function(e){if(e.key==='Enter')document.getElementById('studentDob').focus();});
-        document.getElementById('studentDob').addEventListener('keypress',function(e){if(e.key==='Enter')accessTest();});
-        window.addEventListener('click',function(event){var modal=document.getElementById('passwordModal');if(event.target===modal)closePasswordModal();});
+        function confirmSubmit(){
+            var u=userAnswers.filter(function(a){return a===null;}).length;
+            if(u>0){if(!confirm("You have "+u+" unanswered question(s). Submit anyway?"))return;}
+            submitExam();
+        }
+        function submitExam(){
+            clearInterval(timer);
+            var correct=0;
+            userAnswers.forEach(function(ans,i){if(ans===questions[i].correct)correct++;});
+            var total=questions.length,score=Math.round((correct/total)*100);
+            var set=questionSets[selectedQuestionSet],passed=score>=set.passingScore;
+            var elapsed=Math.floor((new Date()-examStartTime)/1000);
+            var timeStr=Math.floor(elapsed/60)+":"+(elapsed%60<10?"0":"")+elapsed%60;
+            finalExamScores.push({name:currentStudentData.name,code:studentId,set:selectedQuestionSet,score:score,passed:passed,time:timeStr,date:new Date().toLocaleDateString()});
+            localStorage.setItem("gkChildIIScores",JSON.stringify(finalExamScores));
+            document.getElementById("quizSection").style.display="none";
+            document.getElementById("resultsSection").style.display="block";
+            var circle=document.getElementById("scoreCircle");
+            circle.className="score-circle "+(passed?"passed":"failed");
+            document.getElementById("scoreNumber").textContent=score+"%";
+            var badge=document.getElementById("resultBadge");
+            badge.className="result-badge "+(passed?"passed":"failed");
+            badge.textContent=passed?"PASSED!":"FAILED";
+            document.getElementById("resultTitle").textContent=passed?"Great job, "+currentStudentData.name+"!":"Keep trying!";
+            document.getElementById("resultMessage").textContent="You scored "+score+"% (Pass mark: "+set.passingScore+"%)";
+            document.getElementById("correctCount").textContent=correct;
+            document.getElementById("wrongCount").textContent=total-correct;
+            document.getElementById("timeTaken").textContent=timeStr;
+        }
+        function reviewAnswers(){
+            var section=document.getElementById("reviewSection");
+            section.style.display=section.style.display==="none"?"block":"none";
+            if(section.style.display==="none")return;
+            var letters=["A","B","C","D"];
+            document.getElementById("reviewItems").innerHTML=questions.map(function(q,i){
+                var ua=userAnswers[i],isCorrect=ua===q.correct;
+                return "<div class='review-item "+(isCorrect?"correct":"incorrect")+"'>" +
+                    "<div class='review-q'>"+(i+1)+". "+escapeHtml(q.question)+"</div>" +
+                    "<div class='review-a "+(isCorrect?"correct-a":"wrong-a")+"'>"+(ua!==null?"Your answer: "+letters[ua]+". "+escapeHtml(q.options[ua]):"Not answered")+"</div>" +
+                    (!isCorrect?"<div class='review-a correct-a'>Correct: "+letters[q.correct]+". "+escapeHtml(q.options[q.correct])+"</div>":"") +
+                    "</div>";
+            }).join("");
+        }
+        function startTimer(){
+            updateTimerDisplay();
+            timer=setInterval(function(){
+                timeLeft--;updateTimerDisplay();
+                if(timeLeft<=0){clearInterval(timer);showNotification("Time is up!","error");submitExam();}
+            },1000);
+        }
+        function updateTimerDisplay(){
+            var mm=Math.floor(timeLeft/60),ss=timeLeft%60;
+            var box=document.getElementById("timerBox");
+            box.textContent=mm+":"+(ss<10?"0":"")+ss;
+            box.className="timer-box"+(timeLeft<=300?" danger":timeLeft<=600?" warning":"");
+        }
+        function goHome(){
+            document.getElementById("resultsSection").style.display="none";
+            document.getElementById("homeSection").style.display="block";
+            document.getElementById("studentCode").value="";
+        }
+        document.getElementById("studentCode").addEventListener("keypress",function(e){if(e.key==="Enter")document.getElementById("studentDob").focus();});
+        document.getElementById("studentDob").addEventListener("keypress",function(e){if(e.key==="Enter")accessTest();});
+        window.addEventListener("click",function(event){if(event.target===document.getElementById("passwordModal"))closePasswordModal();});
 </script>
 </body>
 </html>
