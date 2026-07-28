@@ -3,569 +3,285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JYCC Children's Learning Hub 🌟</title>
+<title>JYCC Children's Learning Hub</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #fda085 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 8s ease infinite;
-    padding: 20px;
-    overflow-x: hidden;
-  }
-  @keyframes gradientShift {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-  }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Nunito',sans-serif; min-height:100vh; background:linear-gradient(135deg,#667eea,#764ba2,#f093fb,#f5576c,#fda085); background-size:400% 400%; animation:gradShift 8s ease infinite; padding:20px; overflow-x:hidden; }
+@keyframes gradShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+.stars { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+.star { position:absolute; animation:float linear infinite; opacity:0.5; }
+@keyframes float { 0%{transform:translateY(100vh);opacity:0} 10%{opacity:0.5} 90%{opacity:0.5} 100%{transform:translateY(-100px);opacity:0} }
+.wrap { position:relative; z-index:1; max-width:1100px; margin:0 auto; }
 
-  /* Floating stars */
-  .stars { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
-  .star { position:absolute; font-size:1.5rem; animation:float linear infinite; opacity:0.6; }
-  @keyframes float { 0%{transform:translateY(100vh) rotate(0deg);opacity:0} 10%{opacity:0.6} 90%{opacity:0.6} 100%{transform:translateY(-100px) rotate(360deg);opacity:0} }
+/* HEADER */
+.header { text-align:center; margin-bottom:36px; }
+.badge { display:inline-block; background:rgba(255,255,255,0.25); border:2px solid rgba(255,255,255,0.5); border-radius:50px; padding:8px 24px; color:white; font-size:0.85rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.hub-title { font-size:clamp(2rem,7vw,3.8rem); font-weight:900; color:white; text-shadow:0 4px 20px rgba(0,0,0,0.3); margin-bottom:8px; }
+.hub-sub { color:rgba(255,255,255,0.9); font-size:1rem; font-weight:600; margin-bottom:24px; }
+.stats { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:36px; }
+.stat { background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.3); border-radius:16px; padding:14px 20px; text-align:center; color:white; min-width:100px; }
+.stat-n { font-size:1.6rem; font-weight:900; display:block; }
+.stat-l { font-size:0.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.9; }
 
-  .container { position:relative; z-index:1; max-width:1100px; margin:0 auto; }
+/* INFO BAR */
+.info-bar { background:rgba(255,255,255,0.2); border:2px solid rgba(255,255,255,0.3); border-radius:16px; padding:18px 24px; display:flex; align-items:center; gap:14px; margin-bottom:28px; color:white; }
+.info-bar-icon { font-size:1.6rem; flex-shrink:0; }
+.info-bar-text { font-size:0.85rem; line-height:1.6; font-weight:600; }
+.info-bar-text strong { color:#ffd700; }
 
-  /* HEADER */
-  .header { text-align:center; margin-bottom:40px; }
-  .jycc-badge {
-    display:inline-block; background:rgba(255,255,255,0.25);
-    border:2px solid rgba(255,255,255,0.5); border-radius:50px;
-    padding:8px 24px; color:white; font-size:0.85rem; font-weight:700;
-    letter-spacing:2px; text-transform:uppercase; margin-bottom:16px;
-    backdrop-filter:blur(10px);
-  }
-  .hub-title {
-    font-size: clamp(2rem, 7vw, 4rem);
-    font-weight: 900;
-    color: white;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    margin-bottom: 8px;
-    line-height: 1.1;
-  }
-  .hub-subtitle { color:rgba(255,255,255,0.9); font-size:1.1rem; font-weight:600; margin-bottom:24px; }
+/* SECTION HEADER */
+.sec-hdr { border-radius:16px; padding:14px 24px; margin-bottom:16px; text-align:center; color:white; }
+.sec-hdr .sec-title { font-size:1.15rem; font-weight:900; margin-bottom:4px; }
+.sec-hdr .sec-sub { font-size:0.82rem; opacity:0.88; font-weight:600; }
+.sec-label { font-size:0.72rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.8); text-align:center; margin-bottom:16px; }
 
-  /* STATS */
-  .stats-row { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:40px; }
-  .stat-bubble {
-    background:rgba(255,255,255,0.2); backdrop-filter:blur(10px);
-    border:2px solid rgba(255,255,255,0.3); border-radius:20px;
-    padding:16px 24px; text-align:center; color:white; min-width:110px;
-    transition:transform 0.3s;
-  }
-  .stat-bubble:hover { transform:translateY(-3px) scale(1.05); }
-  .stat-num { font-size:1.8rem; font-weight:900; display:block; }
-  .stat-lbl { font-size:0.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:0.9; }
+/* CARDS GRID */
+.grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:28px; }
+@media(max-width:900px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:500px){ .grid{ grid-template-columns:1fr 1fr; } }
 
-  /* SECTION LABEL */
-  .section-label {
-    text-align:center; margin-bottom:20px;
-    font-size:0.8rem; font-weight:800; letter-spacing:3px;
-    text-transform:uppercase; color:rgba(255,255,255,0.8);
-  }
+/* CARD BASE */
+.card { background:white; border-radius:20px; padding:20px 14px; text-align:center; text-decoration:none; display:block; transition:all 0.3s; position:relative; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.12); animation:popIn 0.5s ease both; }
+@keyframes popIn { from{opacity:0;transform:scale(0.85)} to{opacity:1;transform:scale(1)} }
+.card:hover { transform:translateY(-7px) scale(1.03); box-shadow:0 18px 40px rgba(0,0,0,0.22); }
+.card::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; border-radius:0; }
+.card-icon { width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto 10px; box-shadow:0 6px 16px rgba(0,0,0,0.18); }
+.card-cls { font-size:0.65rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
+.card h2 { font-size:1rem; font-weight:900; color:#2d3748; margin-bottom:4px; line-height:1.2; }
+.card p { font-size:0.73rem; color:#718096; margin-bottom:10px; line-height:1.4; font-weight:600; }
+.pills { display:flex; justify-content:center; gap:6px; margin-bottom:10px; flex-wrap:wrap; }
+.pill { background:#f7fafc; border-radius:50px; padding:2px 8px; font-size:0.65rem; color:#4a5568; font-weight:700; }
+.btn { display:block; width:100%; padding:9px; border:none; border-radius:10px; color:white; font-family:'Nunito',sans-serif; font-size:0.78rem; font-weight:800; cursor:pointer; transition:all 0.2s; text-decoration:none; text-align:center; }
+.btn:hover { opacity:0.88; transform:scale(1.02); }
 
-  /* GK SERIES HEADER */
-  .series-header {
-    background:rgba(255,255,255,0.15); backdrop-filter:blur(10px);
-    border:2px solid rgba(255,255,255,0.3); border-radius:20px;
-    padding:16px 28px; margin-bottom:20px; text-align:center; color:white;
-  }
-  .series-title { font-size:1.2rem; font-weight:900; margin-bottom:4px; }
-  .series-sub { font-size:0.85rem; opacity:0.85; font-weight:600; }
+/* COMING SOON */
+.card-coming { background:rgba(255,255,255,0.15); border:2px dashed rgba(255,255,255,0.4); box-shadow:none; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:180px; }
+.card-coming:hover { transform:none; box-shadow:none; }
+.coming-icon { font-size:2.2rem; margin-bottom:8px; opacity:0.4; }
+.coming-text { font-size:0.78rem; font-weight:700; color:rgba(255,255,255,0.7); letter-spacing:1px; }
 
-  /* CARDS GRID */
-  .cards-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:32px; }
-  @media(max-width:900px){ .cards-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media(max-width:500px){ .cards-grid{ grid-template-columns:1fr 1fr; } }
+/* MAIN HUB LINK */
+.main-hub { background:rgba(255,255,255,0.15); border:2px solid rgba(255,255,255,0.3); border-radius:16px; padding:18px 24px; text-align:center; margin-bottom:24px; }
+.main-hub p { color:rgba(255,255,255,0.9); font-size:0.88rem; font-weight:600; margin-bottom:10px; }
+.main-hub-btn { display:inline-block; background:rgba(255,255,255,0.25); border:2px solid rgba(255,255,255,0.5); border-radius:50px; padding:10px 28px; color:white; font-weight:800; text-decoration:none; font-size:0.88rem; transition:all 0.3s; }
+.main-hub-btn:hover { background:rgba(255,255,255,0.4); transform:scale(1.05); }
 
-  /* CARD */
-  .card {
-    background:white; border-radius:24px; padding:24px 16px;
-    text-align:center; text-decoration:none; display:block;
-    transition:all 0.3s ease; position:relative; overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
-    animation:popIn 0.5s ease both;
-  }
-  @keyframes popIn { from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)} }
-  .card:hover { transform:translateY(-8px) scale(1.03); box-shadow:0 20px 50px rgba(0,0,0,0.25); }
-  .card::before { content:''; position:absolute; top:0; left:0; right:0; height:5px; }
+/* FOOTER */
+.footer { text-align:center; color:rgba(255,255,255,0.7); font-size:0.76rem; font-weight:600; padding-top:20px; padding-bottom:10px; }
 
-  /* Card color themes */
-  .card-classI::before { background:linear-gradient(90deg,#e91e8c,#ff6db3); }
-  .card-classI .card-icon { background:linear-gradient(135deg,#e91e8c,#ff6db3); }
-  .card-classI .card-class { color:#e91e8c; }
-  .card-classI .btn { background:linear-gradient(135deg,#e91e8c,#ff6db3); }
+/* ====== INDIVIDUAL CARD THEMES ====== */
+/* GK Class I-V */
+.gk1::before{background:linear-gradient(90deg,#e91e8c,#ff6db3)} .gk1 .card-icon{background:linear-gradient(135deg,#e91e8c,#ff6db3)} .gk1 .card-cls{color:#e91e8c} .gk1 .btn{background:linear-gradient(135deg,#e91e8c,#ff6db3)}
+.gk2::before{background:linear-gradient(90deg,#e65c00,#f9b233)} .gk2 .card-icon{background:linear-gradient(135deg,#e65c00,#f9b233)} .gk2 .card-cls{color:#e65c00} .gk2 .btn{background:linear-gradient(135deg,#e65c00,#f9b233)}
+.gk3::before{background:linear-gradient(90deg,#1a7a4a,#2ecc71)} .gk3 .card-icon{background:linear-gradient(135deg,#1a7a4a,#2ecc71)} .gk3 .card-cls{color:#1a7a4a} .gk3 .btn{background:linear-gradient(135deg,#1a7a4a,#2ecc71)}
+.gk4::before{background:linear-gradient(90deg,#2b5ba8,#4a9eff)} .gk4 .card-icon{background:linear-gradient(135deg,#2b5ba8,#4a9eff)} .gk4 .card-cls{color:#2b5ba8} .gk4 .btn{background:linear-gradient(135deg,#2b5ba8,#4a9eff)}
+.gk5::before{background:linear-gradient(90deg,#7b4f00,#c9851a)} .gk5 .card-icon{background:linear-gradient(135deg,#7b4f00,#c9851a)} .gk5 .card-cls{color:#7b4f00} .gk5 .btn{background:linear-gradient(135deg,#7b4f00,#c9851a)}
+/* GI Cards */
+.gi1::before{background:linear-gradient(90deg,#c0392b,#e74c3c)} .gi1 .card-icon{background:linear-gradient(135deg,#c0392b,#e74c3c)} .gi1 .card-cls{color:#c0392b} .gi1 .btn{background:linear-gradient(135deg,#c0392b,#e74c3c)}
+.gi2::before{background:linear-gradient(90deg,#1a7a4a,#27ae60)} .gi2 .card-icon{background:linear-gradient(135deg,#1a7a4a,#27ae60)} .gi2 .card-cls{color:#1a7a4a} .gi2 .btn{background:linear-gradient(135deg,#1a7a4a,#27ae60)}
+.gi3::before{background:linear-gradient(90deg,#6b2fa0,#9b59b6)} .gi3 .card-icon{background:linear-gradient(135deg,#6b2fa0,#9b59b6)} .gi3 .card-cls{color:#6b2fa0} .gi3 .btn{background:linear-gradient(135deg,#6b2fa0,#9b59b6)}
+.gi4::before{background:linear-gradient(90deg,#1d5a8a,#2e86c1)} .gi4 .card-icon{background:linear-gradient(135deg,#1d5a8a,#2e86c1)} .gi4 .card-cls{color:#1d5a8a} .gi4 .btn{background:linear-gradient(135deg,#1d5a8a,#2e86c1)}
+/* IQ Cards */
+.iq1::before{background:linear-gradient(90deg,#e67e22,#f39c12)} .iq1 .card-icon{background:linear-gradient(135deg,#e67e22,#f39c12)} .iq1 .card-cls{color:#e67e22} .iq1 .btn{background:linear-gradient(135deg,#e67e22,#f39c12)}
+.iq2::before{background:linear-gradient(90deg,#16a085,#1abc9c)} .iq2 .card-icon{background:linear-gradient(135deg,#16a085,#1abc9c)} .iq2 .card-cls{color:#16a085} .iq2 .btn{background:linear-gradient(135deg,#16a085,#1abc9c)}
+.iq3::before{background:linear-gradient(90deg,#8e44ad,#9b59b6)} .iq3 .card-icon{background:linear-gradient(135deg,#8e44ad,#9b59b6)} .iq3 .card-cls{color:#8e44ad} .iq3 .btn{background:linear-gradient(135deg,#8e44ad,#9b59b6)}
+.iq4::before{background:linear-gradient(90deg,#2c3e50,#34495e)} .iq4 .card-icon{background:linear-gradient(135deg,#2c3e50,#34495e)} .iq4 .card-cls{color:#2c3e50} .iq4 .btn{background:linear-gradient(135deg,#2c3e50,#34495e)}
+/* GK Middle VI-VIII */
+.gkm1::before{background:linear-gradient(90deg,#0077b6,#48cae4)} .gkm1 .card-icon{background:linear-gradient(135deg,#0077b6,#48cae4)} .gkm1 .card-cls{color:#0077b6} .gkm1 .btn{background:linear-gradient(135deg,#0077b6,#48cae4)}
+.gkm2::before{background:linear-gradient(90deg,#6b2fa0,#9b59b6)} .gkm2 .card-icon{background:linear-gradient(135deg,#6b2fa0,#9b59b6)} .gkm2 .card-cls{color:#6b2fa0} .gkm2 .btn{background:linear-gradient(135deg,#6b2fa0,#9b59b6)}
+.gkm3::before{background:linear-gradient(90deg,#1d7874,#27b6a0)} .gkm3 .card-icon{background:linear-gradient(135deg,#1d7874,#27b6a0)} .gkm3 .card-cls{color:#1d7874} .gkm3 .btn{background:linear-gradient(135deg,#1d7874,#27b6a0)}
 
-  .card-classII::before { background:linear-gradient(90deg,#e65c00,#f9b233); }
-  .card-classII .card-icon { background:linear-gradient(135deg,#e65c00,#f9b233); }
-  .card-classII .card-class { color:#e65c00; }
-  .card-classII .btn { background:linear-gradient(135deg,#e65c00,#f9b233); }
-
-  .card-classIII::before { background:linear-gradient(90deg,#1a7a4a,#2ecc71); }
-  .card-classIII .card-icon { background:linear-gradient(135deg,#1a7a4a,#2ecc71); }
-  .card-classIII .card-class { color:#1a7a4a; }
-  .card-classIII .btn { background:linear-gradient(135deg,#1a7a4a,#2ecc71); }
-
-  .card-classIV::before { background:linear-gradient(90deg,#2b5ba8,#4a9eff); }
-  .card-classIV .card-icon { background:linear-gradient(135deg,#2b5ba8,#4a9eff); }
-  .card-classIV .card-class { color:#2b5ba8; }
-  .card-classIV .btn { background:linear-gradient(135deg,#2b5ba8,#4a9eff); }
-
-  .card-classV::before { background:linear-gradient(90deg,#7b4f00,#c9851a); }
-  .card-classV .card-icon { background:linear-gradient(135deg,#7b4f00,#c9851a); }
-  .card-classV .card-class { color:#7b4f00; }
-  .card-classV .btn { background:linear-gradient(135deg,#7b4f00,#c9851a); }
-
-  .card-classVI::before { background:linear-gradient(90deg,#0077b6,#48cae4); }
-  .card-classVI .card-icon { background:linear-gradient(135deg,#0077b6,#48cae4); }
-  .card-classVI .card-class { color:#0077b6; }
-  .card-classVI .btn { background:linear-gradient(135deg,#0077b6,#48cae4); }
-
-  .card-classVII::before { background:linear-gradient(90deg,#6b2fa0,#9b59b6); }
-  .card-classVII .card-icon { background:linear-gradient(135deg,#6b2fa0,#9b59b6); }
-  .card-classVII .card-class { color:#6b2fa0; }
-  .card-classVII .btn { background:linear-gradient(135deg,#6b2fa0,#9b59b6); }
-
-  .card-classVIII::before { background:linear-gradient(90deg,#1d7874,#27b6a0); }
-  .card-classVIII .card-icon { background:linear-gradient(135deg,#1d7874,#27b6a0); }
-  .card-classVIII .card-class { color:#1d7874; }
-  .card-classVIII .btn { background:linear-gradient(135deg,#1d7874,#27b6a0); }
-
-  .card-icon {
-    width:64px; height:64px; border-radius:18px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:2rem; margin:0 auto 12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.2);
-  }
-  .card-class { font-size:0.72rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:4px; }
-  .card h2 { font-size:1.05rem; font-weight:900; color:#2d3748; margin-bottom:4px; line-height:1.2; }
-  .card p { font-size:0.75rem; color:#718096; margin-bottom:12px; line-height:1.4; font-weight:600; }
-  .card-details { display:flex; justify-content:center; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
-  .detail-pill { background:#f7fafc; border-radius:50px; padding:3px 10px; font-size:0.7rem; color:#4a5568; font-weight:700; }
-  .btn {
-    display:block; width:100%; padding:10px;
-    border:none; border-radius:12px; color:white;
-    font-family:'Nunito',sans-serif; font-size:0.82rem;
-    font-weight:800; cursor:pointer; transition:all 0.2s;
-    text-decoration:none; text-align:center;
-  }
-  .btn:hover { opacity:0.9; transform:scale(1.02); }
-
-  /* COMING SOON */
-  .card-coming {
-    background:rgba(255,255,255,0.15); backdrop-filter:blur(10px);
-    border:2px dashed rgba(255,255,255,0.4); border-radius:24px;
-    padding:24px 16px; text-align:center; color:rgba(255,255,255,0.7);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-height:200px; box-shadow:none;
-  }
-  .card-coming:hover { transform:none; box-shadow:none; }
-  .coming-icon { font-size:2.5rem; margin-bottom:8px; opacity:0.5; }
-  .coming-text { font-size:0.8rem; font-weight:700; letter-spacing:1px; }
-
-  /* INFO BAR */
-  .info-bar {
-    background:rgba(255,255,255,0.2); backdrop-filter:blur(10px);
-    border:2px solid rgba(255,255,255,0.3); border-radius:20px;
-    padding:20px 28px; display:flex; align-items:center; gap:16px;
-    margin-bottom:20px; color:white;
-  }
-  .info-bar-icon { font-size:1.8rem; flex-shrink:0; }
-  .info-bar-text { font-size:0.88rem; line-height:1.6; font-weight:600; }
-  .info-bar-text strong { color:#ffd700; }
-
-  /* MAIN HUB LINK */
-  .main-hub-bar {
-    background:rgba(255,255,255,0.15); backdrop-filter:blur(10px);
-    border:2px solid rgba(255,255,255,0.3); border-radius:20px;
-    padding:20px 28px; text-align:center; margin-bottom:24px;
-  }
-  .main-hub-bar p { color:rgba(255,255,255,0.9); font-size:0.9rem; font-weight:600; margin-bottom:12px; }
-  .main-hub-btn {
-    display:inline-block; background:rgba(255,255,255,0.25);
-    border:2px solid rgba(255,255,255,0.5); border-radius:50px;
-    padding:10px 28px; color:white; font-weight:800;
-    text-decoration:none; font-size:0.9rem; transition:all 0.3s;
-    backdrop-filter:blur(10px);
-  }
-  .main-hub-btn:hover { background:rgba(255,255,255,0.4); transform:scale(1.05); }
-
-  /* FOOTER */
-  .footer { text-align:center; color:rgba(255,255,255,0.7); font-size:0.78rem; font-weight:600; padding-top:20px; padding-bottom:10px; }
-
-  /* Animation delays */
-  .card:nth-child(1){animation-delay:0.05s}
-  .card:nth-child(2){animation-delay:0.10s}
-  .card:nth-child(3){animation-delay:0.15s}
-  .card:nth-child(4){animation-delay:0.20s}
-  .card:nth-child(5){animation-delay:0.25s}
-  .card:nth-child(6){animation-delay:0.30s}
-  .card:nth-child(7){animation-delay:0.35s}
-  .card:nth-child(8){animation-delay:0.40s}
-
-  /* General Intelligence Cards */
-  .card-gi-1::before { background:linear-gradient(90deg,#c0392b,#e74c3c); }
-  .card-gi-1 .card-icon { background:linear-gradient(135deg,#c0392b,#e74c3c); }
-  .card-gi-1 .card-class { color:#c0392b; }
-  .card-gi-1 .btn { background:linear-gradient(135deg,#c0392b,#e74c3c); }
-
-  .card-gi-2::before { background:linear-gradient(90deg,#1a7a4a,#27ae60); }
-  .card-gi-2 .card-icon { background:linear-gradient(135deg,#1a7a4a,#27ae60); }
-  .card-gi-2 .card-class { color:#1a7a4a; }
-  .card-gi-2 .btn { background:linear-gradient(135deg,#1a7a4a,#27ae60); }
-
-  .card-gi-3::before { background:linear-gradient(90deg,#6b2fa0,#9b59b6); }
-  .card-gi-3 .card-icon { background:linear-gradient(135deg,#6b2fa0,#9b59b6); }
-  .card-gi-3 .card-class { color:#6b2fa0; }
-  .card-gi-3 .btn { background:linear-gradient(135deg,#6b2fa0,#9b59b6); }
-
-  .card-gi-4::before { background:linear-gradient(90deg,#1d5a8a,#2e86c1); }
-  .card-gi-4 .card-icon { background:linear-gradient(135deg,#1d5a8a,#2e86c1); }
-  .card-gi-4 .card-class { color:#1d5a8a; }
-  .card-gi-4 .btn { background:linear-gradient(135deg,#1d5a8a,#2e86c1); }
-
-  /* IQ Test Cards */
-  .card-iq-1::before { background:linear-gradient(90deg,#e67e22,#f39c12); }
-  .card-iq-1 .card-icon { background:linear-gradient(135deg,#e67e22,#f39c12); }
-  .card-iq-1 .card-class { color:#e67e22; }
-  .card-iq-1 .btn { background:linear-gradient(135deg,#e67e22,#f39c12); }
-
-  .card-iq-2::before { background:linear-gradient(90deg,#16a085,#1abc9c); }
-  .card-iq-2 .card-icon { background:linear-gradient(135deg,#16a085,#1abc9c); }
-  .card-iq-2 .card-class { color:#16a085; }
-  .card-iq-2 .btn { background:linear-gradient(135deg,#16a085,#1abc9c); }
-
-  .card-iq-3::before { background:linear-gradient(90deg,#8e44ad,#9b59b6); }
-  .card-iq-3 .card-icon { background:linear-gradient(135deg,#8e44ad,#9b59b6); }
-  .card-iq-3 .card-class { color:#8e44ad; }
-  .card-iq-3 .btn { background:linear-gradient(135deg,#8e44ad,#9b59b6); }
-
-  .card-iq-4::before { background:linear-gradient(90deg,#2c3e50,#34495e); }
-  .card-iq-4 .card-icon { background:linear-gradient(135deg,#2c3e50,#34495e); }
-  .card-iq-4 .card-class { color:#2c3e50; }
-  .card-iq-4 .btn { background:linear-gradient(135deg,#2c3e50,#34495e); }
+/* Animation delays */
+.card:nth-child(1){animation-delay:0.05s} .card:nth-child(2){animation-delay:0.10s} .card:nth-child(3){animation-delay:0.15s} .card:nth-child(4){animation-delay:0.20s} .card:nth-child(5){animation-delay:0.25s} .card:nth-child(6){animation-delay:0.30s} .card:nth-child(7){animation-delay:0.35s} .card:nth-child(8){animation-delay:0.40s}
 </style>
 </head>
 <body>
-
-<!-- Floating Stars -->
 <div class="stars" id="stars"></div>
-
-<div class="container">
+<div class="wrap">
 
   <!-- HEADER -->
   <div class="header">
-    <div class="jycc-badge">🏫 Jatiya Yuva Computer Centre</div>
-    <div class="hub-title">🌟 Children's Learning Hub 🌟</div>
-    <div class="hub-subtitle">Fun MCQ Tests for Class I to VIII — Learn & Grow Every Day!</div>
-    <div class="stats-row">
-      <div class="stat-bubble"><span class="stat-num">8</span><span class="stat-label">Classes</span></div>
-      <div class="stat-bubble"><span class="stat-num">16</span><span class="stat-label">Subjects</span></div>
-      <div class="stat-bubble"><span class="stat-num">1600+</span><span class="stat-label">Questions</span></div>
-      <div class="stat-bubble"><span class="stat-num">869</span><span class="stat-label">Students</span></div>
-      <div class="stat-bubble"><span class="stat-num">Free!</span><span class="stat-label">Always</span></div>
+    <div class="badge">&#127979; Jatiya Yuva Computer Centre</div>
+    <div class="hub-title">&#127775; Children's Learning Hub &#127775;</div>
+    <div class="hub-sub">Fun MCQ Tests for Class I to VIII &mdash; Learn &amp; Grow Every Day!</div>
+    <div class="stats">
+      <div class="stat"><span class="stat-n">8</span><span class="stat-l">Classes</span></div>
+      <div class="stat"><span class="stat-n">16</span><span class="stat-l">Subjects</span></div>
+      <div class="stat"><span class="stat-n">1600+</span><span class="stat-l">Questions</span></div>
+      <div class="stat"><span class="stat-n">869</span><span class="stat-l">Students</span></div>
     </div>
   </div>
 
   <!-- LOGIN INFO -->
   <div class="info-bar">
-    <div class="info-bar-icon">🔐</div>
+    <div class="info-bar-icon">&#128272;</div>
     <div class="info-bar-text">
-      <strong>How to Login:</strong> Click any subject below → Enter your <strong>Student Code</strong> (e.g. JYCSM-55) and your <strong>Date of Birth</strong> → Start learning! Each test has <strong>4 sets of 25 questions</strong> — Set A, B, C and Final Test!
+      <strong>How to Login:</strong> Click any subject &rarr; Enter your <strong>Student Code</strong> (e.g. JYCSM-55) and <strong>Date of Birth</strong> &rarr; Choose a Set &rarr; Start Learning! Each test has <strong>4 sets of 25 questions</strong> with Skip &amp; Question Map features!
     </div>
   </div>
 
-  <!-- GK SERIES I-V -->
-  <div class="series-header">
-    <div class="series-title">📚 General Knowledge — Primary Section (Class I to V)</div>
-    <div class="series-sub">My World • Nature • India • Science • History • Numbers</div>
+  <!-- ===== GK PRIMARY SECTION ===== -->
+  <div class="sec-hdr" style="background:linear-gradient(135deg,rgba(233,30,140,0.25),rgba(255,109,179,0.25));border:2px solid rgba(233,30,140,0.35);">
+    <div class="sec-title">&#128218; General Knowledge &mdash; Primary (Class I to V)</div>
+    <div class="sec-sub">My World &bull; Nature &bull; India &bull; Science &bull; History &bull; Numbers</div>
   </div>
-  <div class="section-label">🌱 Class I to V — GK Series</div>
-  <div class="cards-grid">
-
-    <a class="card card-classI" href="gk_child_classI_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🌟</div>
-      <div class="card-class">Class I</div>
-      <h2>General Knowledge</h2>
-      <p>My World, Animals, Colors & Nature</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 40%</span>
-      </div>
-      <div class="btn">Start Class I GK! 🌟</div>
+  <div class="sec-label">&#127807; GK Series — Class I to V</div>
+  <div class="grid">
+    <a class="card gk1" href="gk_child_classI_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#127775;</div><div class="card-cls">Class I</div>
+      <h2>General Knowledge</h2><p>My World, Animals, Colors &amp; Nature</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 40%</span></div>
+      <div class="btn">Start Class I GK!</div>
     </a>
-
-    <a class="card card-classII" href="gk_child_classII_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">⭐</div>
-      <div class="card-class">Class II</div>
-      <h2>General Knowledge</h2>
-      <p>Our India, Science & General Awareness</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 40%</span>
-      </div>
-      <div class="btn">Start Class II GK! ⭐</div>
+    <a class="card gk2" href="gk_child_classII_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#11088;</div><div class="card-cls">Class II</div>
+      <h2>General Knowledge</h2><p>Our India, Science &amp; General Awareness</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 40%</span></div>
+      <div class="btn">Start Class II GK!</div>
     </a>
-
-    <a class="card card-classIII" href="gk_child_classIII_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🌈</div>
-      <div class="card-class">Class III</div>
-      <h2>General Knowledge</h2>
-      <p>Science, India & World, Maths Reasoning</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 40%</span>
-      </div>
-      <div class="btn">Start Class III GK! 🌈</div>
+    <a class="card gk3" href="gk_child_classIII_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#127752;</div><div class="card-cls">Class III</div>
+      <h2>General Knowledge</h2><p>Science, India &amp; World, Maths Reasoning</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 40%</span></div>
+      <div class="btn">Start Class III GK!</div>
     </a>
-
-    <a class="card card-classIV" href="gk_child_classIV_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🚀</div>
-      <div class="card-class">Class IV</div>
-      <h2>General Knowledge</h2>
-      <p>Science & Tech, History, Civics</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 40%</span>
-      </div>
-      <div class="btn">Start Class IV GK! 🚀</div>
+    <a class="card gk4" href="gk_child_classIV_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#128640;</div><div class="card-cls">Class IV</div>
+      <h2>General Knowledge</h2><p>Science &amp; Tech, History, Civics</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 40%</span></div>
+      <div class="btn">Start Class IV GK!</div>
     </a>
-
-    <a class="card card-classV" href="gk_child_classV_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🏆</div>
-      <div class="card-class">Class V</div>
-      <h2>General Knowledge</h2>
-      <p>Advanced Science, History & World Affairs</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 40%</span>
-      </div>
-      <div class="btn">Start Class V GK! 🏆</div>
+    <a class="card gk5" href="gk_child_classV_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#127942;</div><div class="card-cls">Class V</div>
+      <h2>General Knowledge</h2><p>Advanced Science, History &amp; World Affairs</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 40%</span></div>
+      <div class="btn">Start Class V GK!</div>
     </a>
-
+    <div class="card card-coming"><div class="coming-icon">&#128336;</div><div class="coming-text">More Coming Soon!</div></div>
+    <div class="card card-coming"><div class="coming-icon">&#128218;</div><div class="coming-text">MS Word Basic!</div></div>
+    <div class="card card-coming"><div class="coming-icon">&#128202;</div><div class="coming-text">MS Excel Easy!</div></div>
   </div>
 
-  <!-- IQ TEST SECTION -->
-  <div class="series-header" style="background:linear-gradient(135deg,rgba(230,126,34,0.2),rgba(243,156,18,0.2));border-color:rgba(230,126,34,0.4);">
-    <div class="series-title">🧩 IQ Test — Class I to VIII</div>
-    <div class="series-sub">Numbers &bull; Logic &bull; Spatial Reasoning &bull; Critical Analysis &bull; Mathematics</div>
+  <!-- ===== GI SECTION ===== -->
+  <div class="sec-hdr" style="background:linear-gradient(135deg,rgba(192,57,43,0.25),rgba(231,76,60,0.25));border:2px solid rgba(192,57,43,0.35);">
+    <div class="sec-title">&#129504; General Intelligence &mdash; Class I to VIII</div>
+    <div class="sec-sub">Patterns &bull; Sequences &bull; Analogies &bull; Logical Reasoning &bull; Data Interpretation</div>
   </div>
-  <div class="section-label">🧩 IQ Test Series</div>
-  <div class="cards-grid">
+  <div class="sec-label">&#129504; General Intelligence Series</div>
+  <div class="grid">
+    <a class="card gi1" href="gi_classI_II_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#127775;</div><div class="card-cls">Class I &amp; II</div>
+      <h2>General Intelligence</h2><p>Patterns, Sequences, Odd One Out &amp; Basic Logic</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
+      <div class="btn">Start Class I &amp; II GI!</div>
+    </a>
+    <a class="card gi2" href="gi_classIII_IV_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#128269;</div><div class="card-cls">Class III &amp; IV</div>
+      <h2>General Intelligence</h2><p>Series, Analogies, Classification &amp; Logical Reasoning</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
+      <div class="btn">Start Class III &amp; IV GI!</div>
+    </a>
+    <a class="card gi3" href="gi_classV_VI_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#129513;</div><div class="card-cls">Class V &amp; VI</div>
+      <h2>General Intelligence</h2><p>Number Series, Verbal Reasoning &amp; Logical Deduction</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
+      <div class="btn">Start Class V &amp; VI GI!</div>
+    </a>
+    <a class="card gi4" href="gi_classVII_VIII_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#127919;</div><div class="card-cls">Class VII &amp; VIII</div>
+      <h2>General Intelligence</h2><p>Advanced Series, Critical Reasoning &amp; Data Interpretation</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 60%</span></div>
+      <div class="btn">Start Class VII &amp; VIII GI!</div>
+    </a>
+  </div>
 
-    <a class="card card-iq-1" href="iq_classI_II_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🧩</div>
-      <div class="card-class">Class I &amp; II</div>
-      <h2>IQ Test</h2>
-      <p>Visual Patterns, Logical Thinking &amp; Spatial Reasoning</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
+  <!-- ===== IQ TEST SECTION ===== -->
+  <div class="sec-hdr" style="background:linear-gradient(135deg,rgba(230,126,34,0.25),rgba(243,156,18,0.25));border:2px solid rgba(230,126,34,0.35);">
+    <div class="sec-title">&#129513; IQ Test &mdash; Class I to VIII</div>
+    <div class="sec-sub">Numbers &bull; Logic &bull; Spatial Reasoning &bull; Critical Analysis &bull; Mathematics</div>
+  </div>
+  <div class="sec-label">&#129513; IQ Test Series</div>
+  <div class="grid">
+    <a class="card iq1" href="iq_classI_II_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#129513;</div><div class="card-cls">Class I &amp; II</div>
+      <h2>IQ Test</h2><p>Visual Patterns, Logical Thinking &amp; Spatial Reasoning</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
       <div class="btn">Start Class I &amp; II IQ!</div>
     </a>
-
-    <a class="card card-iq-2" href="iq_classIII_IV_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🔮</div>
-      <div class="card-class">Class III &amp; IV</div>
-      <h2>IQ Test</h2>
-      <p>Number Patterns, Verbal Logic &amp; Spatial Analysis</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
+    <a class="card iq2" href="iq_classIII_IV_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#128302;</div><div class="card-cls">Class III &amp; IV</div>
+      <h2>IQ Test</h2><p>Number Patterns, Verbal Logic &amp; Spatial Analysis</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
       <div class="btn">Start Class III &amp; IV IQ!</div>
     </a>
-
-    <a class="card card-iq-3" href="iq_classV_VI_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">💡</div>
-      <div class="card-class">Class V &amp; VI</div>
-      <h2>IQ Test</h2>
-      <p>Advanced Reasoning, Critical Analysis &amp; Mathematics</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
+    <a class="card iq3" href="iq_classV_VI_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#128161;</div><div class="card-cls">Class V &amp; VI</div>
+      <h2>IQ Test</h2><p>Advanced Reasoning, Critical Analysis &amp; Mathematics</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
       <div class="btn">Start Class V &amp; VI IQ!</div>
     </a>
-
-    <a class="card card-iq-4" href="iq_classVII_VIII_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🏅</div>
-      <div class="card-class">Class VII &amp; VIII</div>
-      <h2>IQ Test</h2>
-      <p>Advanced IQ, Analytical Reasoning &amp; Math IQ</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 60%</span>
-      </div>
+    <a class="card iq4" href="iq_classVII_VIII_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#127885;</div><div class="card-cls">Class VII &amp; VIII</div>
+      <h2>IQ Test</h2><p>Advanced IQ, Analytical Reasoning &amp; Math IQ</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 60%</span></div>
       <div class="btn">Start Class VII &amp; VIII IQ!</div>
     </a>
-
   </div>
 
-  <!-- PLACEHOLDER for remaining coming soon -->
-  <div class="cards-grid" style="margin-bottom:32px;">
-    <div class="card card-coming">
-
+  <!-- ===== GK MIDDLE SECTION ===== -->
+  <div class="sec-hdr" style="background:linear-gradient(135deg,rgba(0,119,182,0.25),rgba(72,202,228,0.25));border:2px solid rgba(0,119,182,0.35);">
+    <div class="sec-title">&#128218; General Knowledge &mdash; Middle (Class VI to VIII)</div>
+    <div class="sec-sub">Science &bull; History &bull; Geography &bull; Civics &bull; Sports &amp; Arts</div>
   </div>
-
-
-  <!-- GI SECTION -->
-  <div class="series-header" style="background:linear-gradient(135deg,rgba(192,57,43,0.2),rgba(231,76,60,0.2));border-color:rgba(192,57,43,0.4);">
-    <div class="series-title">🧠 General Intelligence — Class I to VIII</div>
-    <div class="series-sub">Patterns • Sequences • Analogies • Logical Reasoning • Data Interpretation</div>
-  </div>
-  <div class="section-label">🧠 General Intelligence Series</div>
-  <div class="cards-grid">
-
-    <a class="card card-gi-1" href="gi_classI_II_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🌟</div>
-      <div class="card-class">Class I & II</div>
-      <h2>General Intelligence</h2>
-      <p>Patterns, Sequences, Odd One Out and Basic Logic</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
-      <div class="btn">Start Class I & II GI!</div>
+  <div class="sec-label">&#127807; GK Series — Class VI to VIII</div>
+  <div class="grid">
+    <a class="card gkm1" href="gk_classVI_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#127807;</div><div class="card-cls">Class VI</div>
+      <h2>General Knowledge</h2><p>Science, History, Geography &amp; Civics</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
+      <div class="btn">Start Class VI GK!</div>
     </a>
-
-    <a class="card card-gi-2" href="gi_classIII_IV_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🔍</div>
-      <div class="card-class">Class III & IV</div>
-      <h2>General Intelligence</h2>
-      <p>Series, Analogies, Classification and Logical Reasoning</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
-      <div class="btn">Start Class III & IV GI!</div>
+    <a class="card gkm2" href="gk_classVII_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#128216;</div><div class="card-cls">Class VII</div>
+      <h2>General Knowledge</h2><p>Science, History, Geography &amp; Sports</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
+      <div class="btn">Start Class VII GK!</div>
     </a>
-
-    <a class="card card-gi-3" href="gi_classV_VI_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🧩</div>
-      <div class="card-class">Class V & VI</div>
-      <h2>General Intelligence</h2>
-      <p>Number Series, Verbal Reasoning and Logical Deduction</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
-      <div class="btn">Start Class V & VI GI!</div>
+    <a class="card gkm3" href="gk_classVIII_mcq_dashboard.html" target="_blank">
+      <div class="card-icon">&#128217;</div><div class="card-cls">Class VIII</div>
+      <h2>General Knowledge</h2><p>Science, Freedom Struggle &amp; Geography</p>
+      <div class="pills"><span class="pill">&#128221; 100 Qs</span><span class="pill">&#9201; 30 min</span><span class="pill">&#9989; 50%</span></div>
+      <div class="btn">Start Class VIII GK!</div>
     </a>
-
-    <a class="card card-gi-4" href="gi_classVII_VIII_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🎯</div>
-      <div class="card-class">Class VII & VIII</div>
-      <h2>General Intelligence</h2>
-      <p>Advanced Series, Critical Reasoning and Data Interpretation</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 60%</span>
-      </div>
-      <div class="btn">Start Class VII & VIII GI!</div>
-    </a>
-
-  </div>
-
-  <!-- GK SERIES VI-VIII -->
-  <div class="series-header">
-    <div class="series-title">📚 General Knowledge — Middle Section (Class VI to VIII)</div>
-    <div class="series-sub">Science • History • Geography • Civics • Sports & Arts</div>
-  </div>
-  <div class="section-label">🌿 Class VI to VIII — GK Series</div>
-  <div class="cards-grid">
-
-    <a class="card card-classVI" href="gk_classVI_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">🌱</div>
-      <div class="card-class">Class VI</div>
-      <h2>General Knowledge</h2>
-      <p>Science, History, Geography & Civics</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
-      <div class="btn">Start Class VI GK! 🌱</div>
-    </a>
-
-    <a class="card card-classVII" href="gk_classVII_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">📘</div>
-      <div class="card-class">Class VII</div>
-      <h2>General Knowledge</h2>
-      <p>Science, History, Geography & Sports</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
-      <div class="btn">Start Class VII GK! 📘</div>
-    </a>
-
-    <a class="card card-classVIII" href="gk_classVIII_mcq_dashboard.html" target="_blank">
-      <div class="card-icon">📗</div>
-      <div class="card-class">Class VIII</div>
-      <h2>General Knowledge</h2>
-      <p>Science, Freedom Struggle & Geography</p>
-      <div class="card-details">
-        <span class="detail-pill">📝 100 Qs</span>
-        <span class="detail-pill">⏱️ 30 min</span>
-        <span class="detail-pill">✅ 50%</span>
-      </div>
-      <div class="btn">Start Class VIII GK! 📗</div>
-    </a>
-
-    <div class="card card-coming">
-      <div class="coming-icon">🔜</div>
-      <div class="coming-text">More Subjects Coming!</div>
-    </div>
-
+    <div class="card card-coming"><div class="coming-icon">&#128336;</div><div class="coming-text">Current Affairs Coming!</div></div>
   </div>
 
   <!-- MAIN HUB LINK -->
-  <div class="main-hub-bar">
-    <p>🖥️ Looking for Computer Courses? Visit the Main Hub for MS Excel, Python, Tally and more!</p>
-    <a class="main-hub-btn" href="JYCC_MCQ_HUB.html">
-      🖥️ Go to Main MCQ Hub →
-    </a>
+  <div class="main-hub">
+    <p>&#128187; Looking for Computer Courses? Visit the Main Hub for MS Excel, Python, Tally and more!</p>
+    <a class="main-hub-btn" href="JYCC_MCQ_HUB.html">&#128187; Go to Main MCQ Hub &rarr;</a>
   </div>
 
   <!-- FOOTER -->
   <div class="footer">
-    © 2025 Jatiya Yuva Computer Centre &nbsp;·&nbsp; samitguharoy-jpg &nbsp;·&nbsp; Children's Learning Hub<br>
-    8 Classes &nbsp;|&nbsp; 16 Subjects &nbsp;|&nbsp; 1600+ Questions &nbsp;|&nbsp; 869 Students &nbsp;|&nbsp; Free Forever 🌟
+    &copy; 2025 Jatiya Yuva Computer Centre &nbsp;&middot;&nbsp; samitguharoy-jpg &nbsp;&middot;&nbsp; Children's Learning Hub<br>
+    8 Classes &nbsp;|&nbsp; 16 Subjects &nbsp;|&nbsp; 1600+ Questions &nbsp;|&nbsp; 869 Students &nbsp;|&nbsp; Free Forever &#127775;
   </div>
 
 </div>
 
 <script>
-  // Create floating stars
-  var emojis = ['⭐','🌟','✨','🎈','🌈','🦋','🌸','🎀','🎯','🏆','📚','🔬'];
-  var container = document.getElementById('stars');
-  for(var i = 0; i < 20; i++) {
-    var star = document.createElement('div');
-    star.className = 'star';
-    star.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-    star.style.left = Math.random() * 100 + '%';
-    star.style.animationDuration = (8 + Math.random() * 12) + 's';
-    star.style.animationDelay = (Math.random() * 10) + 's';
-    star.style.fontSize = (1 + Math.random() * 1.5) + 'rem';
+  var emojis=['⭐','🌟','✨','🎈','🌈','🦋','🌸','🎀','🎯','🏆','📚','🔬'];
+  var container=document.getElementById('stars');
+  for(var i=0;i<20;i++){
+    var star=document.createElement('div');
+    star.className='star';
+    star.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    star.style.left=Math.random()*100+'%';
+    star.style.animationDuration=(8+Math.random()*12)+'s';
+    star.style.animationDelay=(Math.random()*10)+'s';
+    star.style.fontSize=(1+Math.random()*1.5)+'rem';
     container.appendChild(star);
   }
 </script>
